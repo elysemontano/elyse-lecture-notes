@@ -8,6 +8,10 @@
 
 // WHAT ARE ARRAYS?
 
+// REFLECTION NOTES:
+// Work in a break -- This lecture takes approx 1 hr 45 minutes with questions
+// (GO INTO DETAIL ON WHY WE WOULD WANT TO USE ARRAYS!)
+
     // Until now, we've only dealt with primitive data types which are single pieces of information
 
     // Arrays are a non-primitive data type that store collections of ordered data. 
@@ -16,7 +20,7 @@
 
     // Interacting with arrays is a really important fundamental concept 
 
-    
+
 
     // An array consists of the elements inside of brackets [ ], each element has a value that is separated by a comma.  
 
@@ -27,14 +31,14 @@
 
 // ** Change to editor ***
 
-// Set up environment with git -- create new branch
+// Set up environment with git -- create new branch (javascript-arrays)
 // Create a js file
 // Run file with node
 
 
 
 // ACCESSING SPECIFIC VALUES INSIDE ARRAY:
-    // While storing data in arrays is a important, it is even more important that we are capable of accessing specific values within the array.  Because we have a value that has a specific index it is attached to, we can retrieve a specific value by asking for it's index
+    // While storing data in arrays is important, it is even more important that we are capable of accessing specific values within the array.  Because we have a value that has a specific index it is attached to, we can retrieve a specific value by calling on it's index
 
 // EX: 
       var learnStaff = ["Sarah", "Chelsea", "Beau", "Elyse"]
@@ -87,8 +91,6 @@
 
 // MUTATORS:
     // When using mutators, sometimes the output of the method action is not going to be the array.
-
-
 
     .push(value)
     // Adds a value onto end of an array
@@ -146,6 +148,16 @@
     // There are alot more mutator built in methods to explore, alot of which are in the syllabus.
 
 
+    var numArray = [58, 93, 405, 20]
+    console.log(numArray.sort())
+    // [ 20, 405, 58, 93 ]
+
+    // the array is sorted according to each character's Unicode code point value, according to the string conversion of each element.
+    console.log(numArray.sort((a, b) => a - b))
+    // [ 20, 58, 93, 405 ]
+
+
+
 // ACCESSORS:
       // Once again accessor methods do not change the array.  To keep the output, it will need to be stored seperately as a variable
 
@@ -174,7 +186,7 @@
       var learnStaff = ["Sarah", "Chelsea", "Beau", "Elyse", "Charlean", "Austin"]
 
       console.log(learnStaff.slice(2))
-      // Output: ["Beau", "Elyse"]
+      // Output: ["Beau", "Elyse", "Charlean", "Austin"]
 
       console.log(learnStaff.slice(2, 4))
       // Output: ["Beau", "Elyse", "Charlean"]
@@ -192,6 +204,8 @@
       console.log(alphaTeam.concat(echoTeam))
       // Output: ["Sarah", "Austin", "Charlean", "Sarah", "Beau", "Elyse"]
 
+// Strings to Arrays and Back Again
+    //   In JavaScript, arrays and strings have a lot of similar properties. They both are a collection of items, both have a length property, both are zero-indexed. But strings and arrays have many differences. It is often convenient to convert string into arrays and vice-versa.
 
 // Array to string
 
