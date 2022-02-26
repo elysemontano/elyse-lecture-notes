@@ -1,0 +1,162 @@
+          /*       JavaScript background     */
+
+// JavaScript was created in 1995 so it is another old, well documented programming language. Java and JavaScript are not the same language! Javascript was created as a collaboration between Brenden Eich and Netscape and during development it was called LiveScript. But Netscape changed the name of the language just before its release. JS was actually only named to ride the hype around this really highly anticipated language at the time called Java. It was pretty much a marketing ploy.
+
+// JavaScript code is written into an HTML page so that when a user requests an HTML page with JavaScript in it, the script is sent to the browser (chrome) and it's up to the browser to execute that code
+
+// We will do lots of practice today if it’s not making sense quite yet what that means!
+
+// -CONSOLE
+
+// Inspect the page, console
+// Before we get into syntax, etc. let’s look at the JS console in chrome.
+//   Next, we are going to expore a really valuable developer tool to run javascript code provided by google chrome.
+
+//  If you don't, please take a minute to install it.  If you do have it installed, please open up a browswer.
+//  Chrome browswer -> right click -> inspect -> console
+//  Inside the console, we can type javascript directly into here.  This will be our way of talking to the computer for today.
+
+// Inside our chrome console, we can do basic math, for instance:
+// 5 + 5
+// 8 - 2
+// 10 * 4
+// 100 / 2
+
+// Every language is going to have data types of some sort. In computer science and computer programming, a data type is an attribute of data which tells your computer how the programmer intends to use the data.
+
+
+            /* *Create practice.js* */
+
+// PRIMITIVE DATA TYPES
+
+// During jumpstart we are going to be dealing with three kinds of data
+
+    // NUMBER -  Just as you would imagine Numbers and computers work really well together.
+    // String - Anytime we would have anything like text that we are going to use it will be a string.
+    // Boolean - True and false values that are super useful for making decisions. 
+
+
+// NUMBERS                                                    
+    4
+    9.3
+    -10
+    // type a number, number is spit back out
+
+    // basic math
+    4 + 100
+    40 - 6
+    76 * 2
+    9 / 3
+
+    // JS follows the order of operations
+    7 * (8 + 11) - 3
+
+
+// STRINGS                                                    
+    "Salt and Pepper Kettle Chips"
+    "Hello world"
+    "100"
+
+    // single or double quotes
+    "Double"
+    'Single'
+
+
+// CONCATENATION (returns a single string)
+    "I made" + " a sentence!"
+
+    // escaping out of the quotes in a string
+    // "My mother said "do you want meatloaf?""
+    //  ^ this will not work properly
+    //  Need to use a back slash to use double quotes inside
+    "My mother said \"do you want meatloaf?\" "
+
+
+// BOOLEANS                                                    
+    True
+    False
+    // result of a query or comparison, etc.
+                                                                                                                                                            
+// VARIABLES - Variables are like a piece of tupperware
+  // variables come with four parts
+        // DECLARATION
+        // NAME
+            // descriptive and in camelCase
+        // ASSIGNMENT OPERATOR  =,
+        // DATA
+
+        var catName = "Raisins"
+        var age = 3
+        var isCute = true
+
+        // Let's combine a sentance with our variable using concatenation
+        "Have you met " + catName + "?"
+
+
+// STRING INTERPOLATION
+    // Same end result of concatenation. Both can be used but String Interpolation can be easier when working with lots of different variables. 
+
+    `Have you met ${catName}?`
+    `In 5 years, she will be ${( age + 5 )}`
+      // Rather than…
+    "In 5 years, she will be " + (age + 5)
+
+
+
+// BUILT IN METHODS  
+    // Parentheses are a call to action ()
+    // lots of things can be executed in your code with a single call to action
+
+    alert("Hi!")
+    prompt("how old are you?")
+    "Raisins".charAt(5)   // Output: "n"
+    "Raisins".length()   // Output: 7
+    "Raisins".includes("sins")  // Output: true
+
+
+// Challenges up to and including MADLIBS (expected time 30 mins) - 
+// post current notes in jumpstart slack using code block
+
+     
+//  Strict Equality operator
+// Strict comparison
+// Javascript allows us to make comparisons and these comparisons work as questions for our program. 
+// Essentially these comparisons ask the questions “are these things the same?”
+// 3 ===  4
+// “Fifteen” === 15
+// The way javascript answers these questions is by giving us a boolean, a true or false value, back when we use this operator
+// Difference between Single equal sign being the assignment operator and the triple equal
+// Relational Operators
+// Like the equality operator the relational operator also asks a question that gives us a true or false value
+// Is this greater or less than that
+// 3 > 4
+// False
+// 3 < 4 
+// True
+// Conditional Statements  - if/else                                                 
+//   age checker
+//   commenting in/out
+//   console.log() used for bug-fixing
+
+// if(myAge > 22) {
+//  alert("You can drink and vote!")
+// } else if(myAge > 19) {
+//  alert("You can vote!")
+// } else {
+//  alert("You're too young for it all")
+// }
+
+// Challenge World Domination (expected time 25 mins) - 
+// post current notes in jumpstart slack using code block
+
+
+// Magic 8 ball Code along 
+// Return
+// Console.log
+// Const
+// Arrow Syntax
+// Parentheses are a call to action
+// Curly braces are an execution
+// Passing an argument
+// Math.floor()
+// Math.Random()
