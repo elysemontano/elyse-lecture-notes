@@ -29,7 +29,7 @@
 
 // PRIMITIVE DATA TYPES
 
-// During jumpstart we are going to be dealing with three kinds of data
+// During jumpstart we are going to be dealing with three kinds of data - Numbers, Strings and Boolean
 
 
 // NUMBERS - Just as you would imagine Numbers and computers work really well together.
