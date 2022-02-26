@@ -1,6 +1,6 @@
           /*       JavaScript background     */
 
-// JavaScript was created in 1995 so it is another old, well documented programming language. Java and JavaScript are not the same language! Javascript was created as a collaboration between Brenden Eich and Netscape and during development it was called LiveScript. But Netscape changed the name of the language just before its release. JS was actually only named to ride the hype around this really highly anticipated language at the time called Java. It was pretty much a marketing ploy.
+// JavaScript was created in 1995 so it is another old, well documented programming language. Java and JavaScript are not the same language! Javascript was created as a collaboration between Brenden Eich and Netscape and during development it was called LiveScript. But Netscape changed the name of the language just before its release. Javascript was actually only named to ride the hype around this really highly anticipated language at the time called Java. It was pretty much a marketing ploy.
 
 // JavaScript code is written into an HTML page so that when a user requests an HTML page with JavaScript in it, the script is sent to the browser (chrome) and it's up to the browser to execute that code
 
@@ -10,9 +10,9 @@
 
 // Inspect the page, console
 // Before we get into syntax, etc. let’s look at the JS console in chrome.
-//   Next, we are going to expore a really valuable developer tool to run javascript code provided by google chrome.
+//   Chrome is a really valuable developer tool to run javascript code.
 
-//  If you don't, please take a minute to install it.  If you do have it installed, please open up a browswer.
+//  If you don't have chrom installed, please take a minute to install it.  If you do have it installed, please open up a browswer.
 //  Chrome browswer -> right click -> inspect -> console
 //  Inside the console, we can type javascript directly into here.  This will be our way of talking to the computer for today.
 
@@ -31,12 +31,8 @@
 
 // During jumpstart we are going to be dealing with three kinds of data
 
-    // NUMBER -  Just as you would imagine Numbers and computers work really well together.
-    // String - Anytime we would have anything like text that we are going to use it will be a string.
-    // Boolean - True and false values that are super useful for making decisions. 
 
-
-// NUMBERS                                                    
+// NUMBERS - Just as you would imagine Numbers and computers work really well together.
     4
     9.3
     -10
@@ -52,7 +48,7 @@
     7 * (8 + 11) - 3
 
 
-// STRINGS                                                    
+// STRINGS - - Anytime we would have anything like text that we are going to use it will be a string.
     "Salt and Pepper Kettle Chips"
     "Hello world"
     "100"
@@ -62,17 +58,17 @@
     'Single'
 
 
-// CONCATENATION (returns a single string)
-    "I made" + " a sentence!"
+    // String concatenation (returns a single string)
+        "I made" + " a sentence!"
 
-    // escaping out of the quotes in a string
-    // "My mother said "do you want meatloaf?""
-    //  ^ this will not work properly
-    //  Need to use a back slash to use double quotes inside
-    "My mother said \"do you want meatloaf?\" "
+        // escaping out of the quotes in a string
+        // "My mother said "do you want meatloaf?""
+        //  ^ this will not work properly
+        //  Need to use a back slash to use double quotes inside
+        "My mother said \"do you want meatloaf?\" "
 
 
-// BOOLEANS                                                    
+// BOOLEANS - - True and false values that are super useful for making decisions. 
     True
     False
     // result of a query or comparison, etc.
@@ -82,7 +78,7 @@
         // DECLARATION
         // NAME
             // descriptive and in camelCase
-        // ASSIGNMENT OPERATOR  =,
+        // ASSIGNMENT OPERATOR  =
         // DATA
 
         var catName = "Raisins"
@@ -198,6 +194,8 @@
 //   }
 
 //   To call the function: myFunction()
+
+
 
 //  Let's make a function that acts as a magic 8 ball
 
