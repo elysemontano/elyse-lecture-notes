@@ -17,10 +17,10 @@
 //  Inside the console, we can type javascript directly into here.  This will be our way of talking to the computer for today.
 
 // Inside our chrome console, we can do basic math, for instance:
-// 5 + 5
-// 8 - 2
-// 10 * 4
-// 100 / 2
+5 + 5
+8 - 2
+10 * 4
+100 / 2
 
 // Every language is going to have data types of some sort. In computer science and computer programming, a data type is an attribute of data which tells your computer how the programmer intends to use the data.
 
@@ -114,49 +114,146 @@
     "Raisins".includes("sins")  // Output: true
 
 
-// Challenges up to and including MADLIBS (expected time 30 mins) - 
-// post current notes in jumpstart slack using code block
+
+
+
+
+            /* CHALLENGES up to and including MADLIBS (expected time 30 mins) */
+                // post current notes in jumpstart slack using code block
 
      
-//  Strict Equality operator
-// Strict comparison
-// Javascript allows us to make comparisons and these comparisons work as questions for our program. 
-// Essentially these comparisons ask the questions “are these things the same?”
-// 3 ===  4
-// “Fifteen” === 15
-// The way javascript answers these questions is by giving us a boolean, a true or false value, back when we use this operator
-// Difference between Single equal sign being the assignment operator and the triple equal
-// Relational Operators
-// Like the equality operator the relational operator also asks a question that gives us a true or false value
-// Is this greater or less than that
-// 3 > 4
-// False
-// 3 < 4 
-// True
-// Conditional Statements  - if/else                                                 
-//   age checker
-//   commenting in/out
-//   console.log() used for bug-fixing
 
-// if(myAge > 22) {
-//  alert("You can drink and vote!")
-// } else if(myAge > 19) {
-//  alert("You can vote!")
-// } else {
-//  alert("You're too young for it all")
+
+
+
+
+//  STRICT EQUALITY OPERATOR
+        // This performs a strict comparison
+        // Javascript allows us to make comparisons and these comparisons work as questions for our program. 
+        // Essentially these comparisons ask the questions “are these things the same?”
+        3 ===  4  // false
+        15 === 15  // true
+        
+        // The way javascript answers these questions is by giving us a boolean, a true or false value
+        //  We use three equal signs to evaluate equality because we use a single equal sign to assign variables
+
+
+// RELATIONAL OPERATORS
+    // Like the equality operator the relational operator also asks a question that gives us a true or false value
+    // Is this greater or less than that
+         3 > 4  // Output: false
+        3 < 4  // Output: true
+
+
+// CONDITIONAL STATEMENTS  - if/else
+    //  If else statements allows Javascript to evaluate a condition and return a response.  
+
+        // if(condition is true) {
+        //   do this action
+        // } else if(this condition is true) {
+        //   do this action
+        // } else {
+        //   do this action as a catch all
+        // }
+
+    //  Let's explore this in a more practical application. We will make an age checker
+
+    var myAge = 20
+
+    if(myAge > 22) {
+     alert("You can drink and vote!")
+    } else if(myAge > 19) {
+     alert("You can vote!")
+    } else {
+     alert("You're too young for it all")
+    }
+
+    // console.log() for bug - fixing
+
+
+
+
+
+                /* Challenge World Domination (expected time 25 mins) */
+                // post current notes in jumpstart slack using code block
+
+
+
+
+
+
+// Magic 8 ball Code along  -- Encourage everyone to open up a file and code this
+
+// -FUNCTIONS
+//   Reusable blocks of code, think of it as a container or tupperware that holds your code and can be reused over and over
+//   Executes when ran and will always return an output
+//   Declare function as a variable, this time with the keyword const
+//   Parenthesis are a call to action where you can pass an arguement
+//   We will then use what is called arrow syntax
+//   Curly braces are an execution
+//   Every function must have a return
+
+//   const myFunction = () => {
+//      return this code block
+//   }
+
+//   To call the function: myFunction()
+
+//  Let's make a function that acts as a magic 8 ball
+
+// First let's set up our function
+
+// const magic8 = () => {
+//     
 // }
 
-// Challenge World Domination (expected time 25 mins) - 
-// post current notes in jumpstart slack using code block
+
+//  To make a magic 8 ball, let's think about how a magic 8 ball works.  When you shake the ball, a random answer is spit out.  We can mimic this by displaying random messages. 
+// To display random messages, we are going to approach this with a few steps.  We first need to find a way to randomly generate something.  Javascript has some built in methods that can help us out here.  
+
+//  Math.floor() =>  Rounds down to the nearest whole number
+// Ex: 
+Math.floor(5.5) // => 5
+Math.floor(5.1)  // => 5
+
+Math.random() * 3   //=>  Generates a number between 0 and specified number (can create numbers with decimals)
+//  Combined: 
+Math.floor(Math.random() * 3) //  =>  Generates a random number between 1 and 6
 
 
-// Magic 8 ball Code along 
-// Return
-// Console.log
-// Const
-// Arrow Syntax
-// Parentheses are a call to action
-// Curly braces are an execution
-// Passing an argument
-// Math.floor()
-// Math.Random()
+// Now that we have a random number that we can use to randomize something, we will need to evaluate this number and return an outcome based on the number.  This sounds like a great place for a conditional statement
+
+
+// var randomNum = Math.floor(Math.random() * 3)
+
+// if(randomNum === 0) {
+//     return "It is decidedly so"
+// } else if(randomNum === 1) {
+//     return "Ask again tomorrow"
+// } else if(randomNum === 2) {
+//     return "Looks promising"
+// } else {
+//     return "Ooops, something went wrong"
+// }
+
+
+// Let's wrap this with our function
+
+const magic8 = () => {
+    var randomNum = Math.floor(Math.random() * 3)
+    console.log(randomNum)
+    if(randomNum === 0) {
+        return "It is decidedly so"
+    } else if(randomNum === 1) {
+        return "Ask again tomorrow"
+    } else if(randomNum === 2) {
+        return "Looks promising"
+    } else {
+        return "Ooops, something went wrong"
+    }
+}
+
+
+
+        /*  Challenge Refactor World Domination into Function (expected time 20 mins) */
+                //  post current notes in jumpstart slack using code block
