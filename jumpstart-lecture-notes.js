@@ -12,7 +12,7 @@
 // Before we get into syntax, etc. let’s look at the JS console in chrome.
 //   Chrome is a really valuable developer tool to run javascript code.
 
-//  If you don't have chrom installed, please take a minute to install it.  If you do have it installed, please open up a browswer.
+//  If you don't have chrome installed, please take a minute to install it.  If you do have it installed, please open up a browswer.
 //  Chrome browswer -> right click -> inspect -> console
 //  Inside the console, we can type javascript directly into here.  This will be our way of talking to the computer for today.
 
@@ -29,7 +29,7 @@
 
 // PRIMITIVE DATA TYPES
 
-// During jumpstart we are going to be dealing with three kinds of data - Numbers, Strings and Boolean
+// During jumpstart we are going to be dealing with three kinds of data types - Numbers, Strings and Boolean
 
 
 // NUMBERS - Just as you would imagine Numbers and computers work really well together.
@@ -93,7 +93,7 @@
     // Same end result of concatenation. Both can be used but String Interpolation can be easier when working with lots of different variables. 
 
     `Have you met ${catName}?`
-    `In 5 years, she will be ${( age + 5 )}`
+    `In 5 years, she will be ${ age + 5 }`
       // Rather than…
     "In 5 years, she will be " + (age + 5)
 
@@ -105,9 +105,11 @@
 
     alert("Hi!")
     prompt("how old are you?")
-    "Raisins".charAt(5)   // Output: "n"
-    "Raisins".length()   // Output: 7
-    "Raisins".includes("sins")  // Output: true
+    // set prompt as variable: 
+    var age = prompt("How old are you?")
+
+
+    // .toLowerCase() ???
 
 
 
@@ -156,9 +158,9 @@
 
     var myAge = 20
 
-    if(myAge > 22) {
+    if(myAge > 20) {
      alert("You can drink and vote!")
-    } else if(myAge > 19) {
+    } else if(myAge > 17) {
      alert("You can vote!")
     } else {
      alert("You're too young for it all")
@@ -180,7 +182,7 @@
 
 // Magic 8 ball Code along  -- Encourage everyone to open up a file and code this
 
-// -FUNCTIONS
+// FUNCTIONS
 //   Reusable blocks of code, think of it as a container or tupperware that holds your code and can be reused over and over
 //   Executes when ran and will always return an output
 //   Declare function as a variable, this time with the keyword const
@@ -196,15 +198,12 @@
 //   To call the function: myFunction()
 
 
-
 //  Let's make a function that acts as a magic 8 ball
-
 // First let's set up our function
 
 // const magic8 = () => {
 //     
 // }
-
 
 //  To make a magic 8 ball, let's think about how a magic 8 ball works.  When you shake the ball, a random answer is spit out.  We can mimic this by displaying random messages. 
 // To display random messages, we are going to approach this with a few steps.  We first need to find a way to randomly generate something.  Javascript has some built in methods that can help us out here.  
@@ -221,22 +220,6 @@ Math.floor(Math.random() * 3) //  =>  Generates a random number between 1 and 6
 
 // Now that we have a random number that we can use to randomize something, we will need to evaluate this number and return an outcome based on the number.  This sounds like a great place for a conditional statement
 
-
-// var randomNum = Math.floor(Math.random() * 3)
-
-// if(randomNum === 0) {
-//     return "It is decidedly so"
-// } else if(randomNum === 1) {
-//     return "Ask again tomorrow"
-// } else if(randomNum === 2) {
-//     return "Looks promising"
-// } else {
-//     return "Ooops, something went wrong"
-// }
-
-
-// Let's wrap this with our function
-
 const magic8 = () => {
     var randomNum = Math.floor(Math.random() * 3)
     console.log(randomNum)
@@ -251,7 +234,23 @@ const magic8 = () => {
     }
 }
 
+// We need to call the function using function invocation
+magic8()
+// ^ this will call on the function and will run the entire function block
 
 
         /*  Challenge Refactor World Domination into Function (expected time 20 mins) */
                 //  post current notes in jumpstart slack using code block
+
+
+
+// FEEDBACK:
+
+// const myFunction =
+// this is a variable declarion 
+
+// the function is the parenthesis and arrow function
+
+// The arrow function is the actual arrow (makes it a machine)
+
+
