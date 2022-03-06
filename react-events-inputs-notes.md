@@ -28,7 +28,8 @@
            * Spin up a React App
           - cd into the alpha-lecture-examples repository
           - Create a new branch: react-events-inputs
-          - Create a new React application with no spaces: yarn create react-app inputs-events-elyse-otherinstructors
+          - Create a new React application with no spaces: 
+              * yarn create react-app inputs-events-elyse-otherinstructors
               * While creating, discuss events
           - cd into the project
             * Convert App.js to a class component
@@ -36,6 +37,9 @@
 
 
     -  Events
+      * Show what happens when hovering over a link or text *
+      * Big data is able to analyze what you click, how often you click, where you click, what you look at, and how you interact with those things.
+
         * The browser is always listening for events. An event occurs anytime a user or the browser manipulates a webpage. Examples of events are when a page loads, when the user clicks a button, any key strokes, and resizing a window. All these events can be captured by developers through event handlers, or methods that track events. If you have ever used an onclick/onClick method you have made an event handler. While onclick is often used for button click events, we are going to talk about onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
 
         * Google "JavaScript inputs", select "HTML Input Types - W3Schools"
@@ -56,6 +60,7 @@ class App extends Component {
         <input type="password"/>
         <input type="checkbox"/>
         <input type="submit"/>
+        <input type="date"/>
       </>
     )
   }
@@ -65,40 +70,74 @@ export default App
 
 
   ## OnChange
-    * onChange is an attribute that lives on the input tag. Its job is to listen for changes in the input field and capture those changes. This action is a behavior so onChange is going to correspond to a method.
-      - It is a convention for the method attached to the onChange attributes to be called handleChange
-      - onChange automatically passes an argument of event to the method
-      - It is common practice for event to be shortened to e
-          
-          - Inspect the page and look at the logs for event
-          - Event is an object that has many key:value pairs
-          - One of the keys is called target which is also an object
-          - Inside the target there is a key called value that will have a string of the text from the input field
-          - Update the log to e.target
-          - Update the log to e.target.value
+    * onChange is an attribute that lives on the input tag. Its job is to listen for changes in the input field and capture those changes. 
+    * Out of the box, onChange provides certain properties.  It is listening for any dom event and will give that to us when we call a method.  Event is a property of the onChange listener
+    * This action is a behavior so onChange is going to correspond to a method.
 
-``` javascript 
-    import React, { Component } from 'react'
+      
+  ``` javascript 
+import React, { Component } from 'react'
 
 class App extends Component {
 
-  handleChange = (e) => {
-    console.log(e) // first step
-    console.log(e.target) // second step
-    console.log(e.target.value) // third step
+  handleChange = () => {
   }
 
   render() {
     return(
       <>
         <h1>Greeter App</h1>
-        <input type="text" onChange={this.handleChange} />
+        <input type="text" onChange={this.handleChange} /> // ** Start here! **
       </>
     )
   }
 }
 export default App
 ```
+
+      - It is a convention for the method attached to the onChange attributes to be called handleChange
+      - onChange automatically passes an argument of event to the method
+      - It is common practice for event to be shortened to e
+
+``` javascript 
+import React, { Component } from 'react'
+
+class App extends Component {
+
+  handleChange = (e) => {
+    console.log(e) // first step
+          // - Inspect the page and look at the logs for event
+          // - Event is an object that has many key:value pairs
+          // - One of the keys is called target which is also an object
+          
+    console.log(e.target) // second step
+          // - Inside the target there is a key called value that will have a string of the text from the input field
+
+    console.log(e.target.value) // third step
+          // - Displays the value inside the input
+  }
+
+  render() {
+    return(
+    <>
+      <h1>Greeter App</h1>
+      <input type="text" onChange={this.handleChange} />
+    </>
+    )
+    }
+    }
+export default App
+```
+          
+          - Inspect the page and look at the logs for event
+          - Event is an object that has many key:value pairs
+          - One of the keys is called target which is also an object
+
+          - Inside the target there is a key called value that will have a string of the text from the input field
+          - Update the log to e.target
+          - Update the log to e.target.value
+
+
 
 
   ## Setting State
@@ -130,13 +169,15 @@ class App extends Component {
     return(
       <>
         <h1>Greeter App</h1>
-        // first step: show a hardcoded value
+            // first step: show a hardcoded value
         <input
           type="text"
           onChange={this.handleChange}
-          value="hello"
+          value="placeholder"
         />
-        // second step: change the value to reflect the current value of state
+
+
+            // second step: change the value to reflect the current value of state
         <input
           type="text"
           onChange={this.handleChange}
