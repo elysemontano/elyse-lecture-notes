@@ -24,16 +24,19 @@
 
     - DOM stands for Document Object Model
     - React uses a Virtual DOM which is a representation of the actual DOM which will create a diff every time there is a change
-    -  Events
-        * The browser is always listening for events. An event occurs anytime a user or the browser manipulates a webpage. Examples of events are when a page loads, when the user clicks a button, any key strokes, and resizing a window. All these events can be captured by developers through event handlers, or methods that track events. If you have ever used an onclick/onClick method you have made an event handler. While onclick is often used for button click events, we are going to talk about onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
 
-        * Spin up a React App
+           * Spin up a React App
           - cd into the alpha-lecture-examples repository
           - Create a new branch: react-events-inputs
           - Create a new React application with no spaces: yarn create react-app inputs-events-elyse-otherinstructors
+              * While creating, discuss events
           - cd into the project
             * Convert App.js to a class component
             * Add a heading an ensure the app is rendering
+
+
+    -  Events
+        * The browser is always listening for events. An event occurs anytime a user or the browser manipulates a webpage. Examples of events are when a page loads, when the user clicks a button, any key strokes, and resizing a window. All these events can be captured by developers through event handlers, or methods that track events. If you have ever used an onclick/onClick method you have made an event handler. While onclick is often used for button click events, we are going to talk about onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
 
         * Google "JavaScript inputs", select "HTML Input Types - W3Schools"
         * Input is a self-closing tag, in HTML it can look like this <input> but in JSX it needs to look like this <input />
@@ -149,6 +152,7 @@ export default App
 
   ## Passing the Input as Props
     -Now that we have the value in state we can pass the data to another component.
+    - I want to use this component to see the input value shown on the page so it will be my display or dumb component
 
     - Create a folder called components
     - Create a file called Yelling.js
@@ -250,7 +254,8 @@ export default Yelling
     What is the convention for naming the event?
     What data type is the event?
     What does the onChange attribute do?
-    Next Steps
+
+## Next Steps
     Open the syllabus section and briefly run through the challenges and expectations
     Remind the student to use the react-challenges repo
     Remind the students of the appropriate naming conventions for their branch and project name
