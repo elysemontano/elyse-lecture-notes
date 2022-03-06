@@ -28,9 +28,12 @@
         * The browser is always listening for events. An event occurs anytime a user or the browser manipulates a webpage. Examples of events are when a page loads, when the user clicks a button, any key strokes, and resizing a window. All these events can be captured by developers through event handlers, or methods that track events. If you have ever used an onclick/onClick method you have made an event handler. While onclick is often used for button click events, we are going to talk about onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
 
         * Spin up a React App
-          - 
-        * Convert App.js to a class component
-        * Add a heading an ensure the app is rendering
+          - cd into the alpha-lecture-examples repository
+          - Create a new branch: react-events-inputs
+          - Create a new React application with no spaces: yarn create react-app inputs-events-elyse-otherinstructors
+          - cd into the project
+            * Convert App.js to a class component
+            * Add a heading an ensure the app is rendering
 
         * Google "JavaScript inputs", select "HTML Input Types - W3Schools"
         * Input is a self-closing tag, in HTML it can look like this <input> but in JSX it needs to look like this <input />
@@ -207,13 +210,13 @@ export default Yelling
 ```
 
 
-Manipulating the Prop Values
-Inside the Yelling component we can use JavaScript logic to manipulate the output. We don't need state, just a good ol' fashion class method.
+  ## Manipulating the Prop Values
+    Inside the Yelling component we can use JavaScript logic to manipulate the output. We don't need state, just a good ol' fashion class method.
 
-Create a method with a parameter
-Return the parameter in all uppercase letters
-Call the method and pass in the argument of the props values
-// src/components/Yelling.js
+    Create a method with a parameter
+    Return the parameter in all uppercase letters
+    Call the method and pass in the argument of the props values
+    // src/components/Yelling.js
 
 
 ```javascript
@@ -237,20 +240,20 @@ export default Yelling
 ```
 
 
-  ## Additional Notes and Goals
-Revisit the fundamentals of React as you build
+# Additional Notes and Goals
+    Revisit the fundamentals of React as you build
 
-  ## Review
-What is an input?
-What different types of inputs are there?
-What is an event?
-What is the convention for naming the event?
-What data type is the event?
-What does the onChange attribute do?
-Next Steps
-Open the syllabus section and briefly run through the challenges and expectations
-Remind the student to use the react-challenges repo
-Remind the students of the appropriate naming conventions for their branch and project name
-Remind the students that yarn commands happen at the project level and git commands happen at the repo level
-Post pairs in Slack
-Open breakout rooms with ability for participants to choose their room
+# Review
+    What is an input?
+    What different types of inputs are there?
+    What is an event?
+    What is the convention for naming the event?
+    What data type is the event?
+    What does the onChange attribute do?
+    Next Steps
+    Open the syllabus section and briefly run through the challenges and expectations
+    Remind the student to use the react-challenges repo
+    Remind the students of the appropriate naming conventions for their branch and project name
+    Remind the students that yarn commands happen at the project level and git commands happen at the repo level
+    Post pairs in Slack
+    Open breakout rooms with ability for participants to choose their room
