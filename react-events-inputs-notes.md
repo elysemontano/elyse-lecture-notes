@@ -20,7 +20,7 @@
 
 
   ## Lecture
-    React is really, really good at responding (or React-ing) to user interactions. React is able to handle user interactions effectively and efficiently by only making updating where there are changes detected rather than refreshing the entire page. React does this by always listening for any changes made to the DOM.
+    React is really, really good at responding (or React-ing) to user interactions. React is able to handle user interactions effectively and efficiently by only making updates where there are changes detected rather than refreshing the entire page. React does this by always listening for any changes made to the DOM.
 
     - DOM stands for Document Object Model
     - React uses a Virtual DOM which is a representation of the actual DOM which will create a diff every time there is a change
@@ -29,7 +29,7 @@
           - cd into the alpha-lecture-examples repository
           - Create a new branch: react-events-inputs
           - Create a new React application with no spaces: 
-              * yarn create react-app inputs-events-elyse-otherinstructors
+              * yarn create react-app events-inputs-elyse-otherinstructors
               * While creating, discuss events
           - cd into the project
             * Convert App.js to a class component
@@ -37,12 +37,14 @@
 
 
     -  Events
-      * Show what happens when hovering over a link or text *
-      * Big data is able to analyze what you click, how often you click, where you click, what you look at, and how you interact with those things.
+        * The browser is always listening for events. An event occurs anytime a user or the browser manipulates a webpage. Examples of events are when a page loads, when the user clicks a button, any key strokes, and resizing a window. All these events can be captured by developers through event handlers, or methods that track events. If you have ever used an onclick/onClick method you have made an event handler.
 
-        * The browser is always listening for events. An event occurs anytime a user or the browser manipulates a webpage. Examples of events are when a page loads, when the user clicks a button, any key strokes, and resizing a window. All these events can be captured by developers through event handlers, or methods that track events. If you have ever used an onclick/onClick method you have made an event handler. While onclick is often used for button click events, we are going to talk about onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
+        - Big data is able to analyze what you click, how often you click, where you click, what you look at, and how you interact with those things. 
+        
+        -While onclick is often used for button click events, we are going to talk about onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
 
         * Google "JavaScript inputs", select "HTML Input Types - W3Schools"
+
         * Input is a self-closing tag, in HTML it can look like this <input> but in JSX it needs to look like this <input />
         
         * By default the "type" is text but it is a good practice to specify the input type no matter what
@@ -68,6 +70,8 @@ class App extends Component {
 export default App
 ```
 
+    * We are going to want to be able to grab the information from these input tags and the way we do that is with an onChange:
+
 
   ## OnChange
     * onChange is an attribute that lives on the input tag. Its job is to listen for changes in the input field and capture those changes. 
@@ -87,7 +91,10 @@ class App extends Component {
     return(
       <>
         <h1>Greeter App</h1>
-        <input type="text" onChange={this.handleChange} /> // ** Start here! **
+        <input 
+          type="text" 
+          onChange={this.handleChange} 
+        /> // ** Start here! **
       </>
     )
   }
