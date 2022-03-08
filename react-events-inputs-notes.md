@@ -29,7 +29,7 @@
           - cd into the alpha-lecture-examples repository
           - Create a new branch: react-events-inputs
           - Create a new React application with no spaces: 
-              * yarn create react-app inputs-events-elyse-otherinstructors
+              * yarn create react-app events-inputs-elyse-otherinstructors
               * While creating, discuss events
           - cd into the project
             * Convert App.js to a class component
