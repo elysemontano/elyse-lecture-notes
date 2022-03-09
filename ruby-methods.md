@@ -18,12 +18,22 @@
 - Ruby has an implicit return
 - Methods must be invoked
 
+
+
+
+### Process
+    - Ensure you are in the cohort-lecture-examples repo
+    - Ensure your local is up to date and there are no stale branches
+    - Create a new branch
+    - Create a Ruby file `ruby-methods.rb`
+    - Run the file with `ruby`
+
 ### Lecture
     * Everything in Ruby is an object which is an instance of a class. If everything is an object, that means that all functions are technically methods.
 
-    * Just like in JavaScript we need to be able to define custom methods that take an input and produce an output.
-
     *Talking about custom methods is basically the same thing we talk about when we say "creating a function to do this thing in JavaScript.
+
+    * Just like in JavaScript we need to be able to define custom methods that take an input and produce an output.
 
     - When you create a method in Ruby, you define it
     - `def` is a keyword in Ruby short for define
@@ -44,13 +54,15 @@ end
 
     * In terminal run: $ ruby filename.rb
 
-    - This won't do anything because the method is currently is not being invoked. Note that there isn't a return. In JavaScript if we didn't use the keyword return, we would get back undefined. While there is a `return` keyword in Ruby, we don't have to use it. Ruby will automatically return the last line of every method unless we say otherwise. That is called an implicit return.
+    - This won't do anything because the method is currently is not being invoked. 
+
+    - So lets try that again by invoking the function
 
     - To call a method in ruby, just reference it's name and add p before it so it prints to the console.
 
     - The `puts` or `p` should always be on the invocation not on the inner working of the method
 
-```ruby
+    ```ruby
 def greeter  # step one - define the method
 end
 def greeter  # step two - add a string
@@ -58,8 +70,10 @@ def greeter  # step two - add a string
 end
 p greeter  # step three - invoke the method
 ```
+    - Note that there isn't a return. In JavaScript if we didn't use the keyword return, we would get back undefined. While there is a `return` keyword in Ruby, we don't have to use it. Ruby will automatically return the last line of every method unless we say otherwise. That is called an implicit return.
 
-    * In terminal run: $ ruby filename.rb
+
+
 
 
 
@@ -74,7 +88,6 @@ def greeter name
 end
 p greeter
 ```
-    * In terminal run: $ ruby filename.rb
 
     - This will throw an error showing wrong number of arguements.  This is a super helpful error because it points us exactly to where the problem is. 
     - If we have a parameter set inside our method, what is needed when we invoke the method?  We will need an arguement!
@@ -150,8 +163,8 @@ p user_name
 puts 'Enter your Age'
 user_age = gets.chomp
 p user_age
-p user_age.class
-user_age = gets.chomp.to_i
+
+
 def can_you_vote(name, age)
   if age >= 18
     "Hi #{name}. #{age} is old enough to vote"
@@ -160,6 +173,9 @@ def can_you_vote(name, age)
   end
 end
 p can_you_vote(user_name, user_age)
+
+p user_age.class
+user_age = gets.chomp.to_i
 ```
 
 ### Review
