@@ -1,3 +1,5 @@
+# HTML Part 2
+
 # Set Up From Part 1
     - Copy code from Sarah on slack
     - Create a file called index.html
@@ -54,6 +56,7 @@
     - This next section is something you will likely need in your treasure hunt game board, but doesn’t quite fit neatly into the recipe page, however, it is important to know.
 
     - We will set up a table which will need multiple nested HTML elements
+
 ```html
 <table> <!-- You will need to set up a table tag -->
   <tr> <!-- Set up table row -->
@@ -67,29 +70,43 @@
 </table>
 ```
     - 3 rows of 3 table data
-And if we want to add some temporary style to our table we can use the attribute
-<table border = 1>
+    - And if we want to add some temporary style to our table we can use the attribute <table border = 1>
 
-Favicon
-A favicon is a small image that sits on the chrome tab.
-Back in the head tag we need to add a special tag called link
-<link>
-Link takes three attributes
-rel="icon" 
-type="image/x-icon"
-href=""
-The href will link to an image address of something like a ladle
-https://cdn-icons-png.flaticon.com/512/2728/2728598.png
+# Favicon
+    - A favicon is a small image that sits on the chrome tab.
+    - Back in the head tag we need to add a special tag called link
 
-Button
-Lastly Let’s make a button on the top of the page to take our user to the recipe if they just want the information.
-First we’ll set up a div around the recipe and give it the id of recipe
+```html
+<link rel="icon" type="image/x-icon" href="some-link-here">
+```
+
+    - Link takes three attributes
+        * rel="icon" 
+        * type="image/x-icon"
+        * href=""
+            - The href will link to an image address of something 
+
+
+# Button
+    - Lastly Let’s make a button on the top of the page to take our user to the recipe if they just want the information.
+    - First we’ll set up a div around the recipe and give it the id of recipe
+
 <div id=’recipe’></div>
-Next we’ll create an anchor tag at the top of the page that will send us to the recipe
-<a href=’#recipe’></a>
-And then inside that a tag we’ll create a button tag that will show the words take me to the recipe
-<button>Take me to the recipe <button>
 
-**no share screen**
-Okay let's break into our pairs again and finish up the section on HTML in the ‘Jumpstart Weekend Student Notes’ 
-We’ll come back together for checkout at 8:40pm
+    - Next we’ll create an anchor tag at the top of the page that will send us to the recipe
+
+<a href=’#recipe’></a>
+
+    - And then inside that a tag we’ll create a button tag that will show the words take me to the recipe
+
+```html
+    <a href="#recipe">
+      <button> Take me to the recipe </button>
+    </a> 
+```
+
+**Stop screen share**
+
+    Okay let's break into our pairs again and finish up the section on HTML in the ‘Jumpstart Weekend Student Notes’ 
+
+    We’ll come back together for checkout at 8:40pm

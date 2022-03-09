@@ -23,7 +23,7 @@
 
     * Just like in JavaScript we need to be able to define custom methods that take an input and produce an output.
 
-    *Talking about custom methods is basically the same thing we talk about when we say "creating a function to do x, y, z" in JavaScript.
+    *Talking about custom methods is basically the same thing we talk about when we say "creating a function to do this thing in JavaScript.
 
     - When you create a method in Ruby, you define it
     - `def` is a keyword in Ruby short for define
@@ -33,7 +33,7 @@
     - Give the method a name
     - end the method with the word end
         * end is like the closing curly in javascript
-    - Indention is super important because we are not reliant on curly braces to show us the start and end places, our indentation is really going to know if something is missing.
+    - Indention is super important because we are not reliant on curly braces to show us the start and end places, our indentation is really going help us see if something is missing.
     - The most simple method we can create will just return a line of code. 
 
 ```ruby
@@ -48,6 +48,8 @@ end
 
     - To call a method in ruby, just reference it's name and add p before it so it prints to the console.
 
+    - The `puts` or `p` should always be on the invocation not on the inner working of the method
+
 ```ruby
 def greeter  # step one - define the method
 end
@@ -58,13 +60,11 @@ p greeter  # step three - invoke the method
 ```
 
     * In terminal run: $ ruby filename.rb
-    
-    - The `puts` or `p` should always be on the invocation not on the inner working of the method
 
 
 
 #### Methods with Arguments
-    - This last example is pretty basic, but we want to utilize the benefits of creating a method for it's reusability.
+    - The last example is pretty basic, but we want to utilize the benefits of creating a method for it's reusability.
     - We can refactor this to take in a parameter and use some string interpolation to greet the person.
     - Interestingly enough, we do not need parenthesis on either the arguement or parameter.
 
@@ -77,7 +77,15 @@ p greeter
     * In terminal run: $ ruby filename.rb
 
     - This will throw an error showing wrong number of arguements.  This is a super helpful error because it points us exactly to where the problem is. 
-    - If we have a parameter set inside our method, what is needed when we invoke the method?
+    - If we have a parameter set inside our method, what is needed when we invoke the method?  We will need an arguement!
+
+
+```ruby
+def greeter name
+  "Hello #{name}!"
+end
+p greeter "Person"
+```
 
 
 ### Multiple Arguements
@@ -92,9 +100,9 @@ end
 p multiply(3, 7)
 ```
 
-    - Ruby will be happy with either way, however sometimes using parenthesis can make your code more readable such as when passing multiple arguements.
+    - Ruby will be happy with either way, however, using parenthesis can make your code more readable such as when passing multiple arguements.
 
-    - Methods are reusable so we can call them over and over again
+    - Also, methods are reusable so we can call them over and over again
 
 ```ruby
 def multiply(num1, num2)
