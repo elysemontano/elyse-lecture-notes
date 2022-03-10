@@ -18,12 +18,22 @@
 - Ruby has an implicit return
 - Methods must be invoked
 
+
+
+
+### Process
+    - Ensure you are in the cohort-lecture-examples repo
+    - Ensure your local is up to date and there are no stale branches
+    - Create a new branch
+    - Create a Ruby file `ruby-methods.rb`
+    - Run the file with `ruby`
+
 ### Lecture
-    * Everything in Ruby is an object which is an instance of a class. If everything is an object, that means that all functions are technically methods.
+    - Everything in Ruby is an object which is an instance of a class. If everything is an object, that means that all functions are technically methods.
 
-    * Just like in JavaScript we need to be able to define custom methods that take an input and produce an output.
+    - Talking about custom methods is basically the same thing we talk about when we say "creating a function to do this thing in JavaScript.
 
-    *Talking about custom methods is basically the same thing we talk about when we say "creating a function to do x, y, z" in JavaScript.
+    - Just like in JavaScript we need to be able to define custom methods that take an input and produce an output.
 
     - When you create a method in Ruby, you define it
     - `def` is a keyword in Ruby short for define
@@ -32,8 +42,8 @@
 #### Method Syntax
     - Give the method a name
     - end the method with the word end
-        * end is like the closing curly in javascript
-    - Indention is super important because we are not reliant on curly braces to show us the start and end places, our indentation is really going to know if something is missing.
+        - end is like the closing curly in javascript
+    - Indention is super important because we are not reliant on curly braces to show us the start and end places, our indentation is really going help us see if something is missing.
     - The most simple method we can create will just return a line of code. 
 
 ```ruby
@@ -44,11 +54,15 @@ end
 
     * In terminal run: $ ruby filename.rb
 
-    - This won't do anything because the method is currently is not being invoked. Note that there isn't a return. In JavaScript if we didn't use the keyword return, we would get back undefined. While there is a `return` keyword in Ruby, we don't have to use it. Ruby will automatically return the last line of every method unless we say otherwise. That is called an implicit return.
+    - This won't do anything because the method is currently is not being invoked. 
+
+    - So lets try that again by invoking the function
 
     - To call a method in ruby, just reference it's name and add p before it so it prints to the console.
 
-```ruby
+    - The `puts` or `p` should always be on the invocation not on the inner working of the method
+
+    ```ruby
 def greeter  # step one - define the method
 end
 def greeter  # step two - add a string
@@ -56,15 +70,15 @@ def greeter  # step two - add a string
 end
 p greeter  # step three - invoke the method
 ```
+    - Note that there isn't a return. In JavaScript if we didn't use the keyword return, we would get back undefined. While there is a `return` keyword in Ruby, we don't have to use it. Ruby will automatically return the last line of every method unless we say otherwise. That is called an implicit return.
 
-    * In terminal run: $ ruby filename.rb
-    
-    - The `puts` or `p` should always be on the invocation not on the inner working of the method
+
+
 
 
 
 #### Methods with Arguments
-    - This last example is pretty basic, but we want to utilize the benefits of creating a method for it's reusability.
+    - The last example is pretty basic, but we want to utilize the benefits of creating a method for it's reusability.
     - We can refactor this to take in a parameter and use some string interpolation to greet the person.
     - Interestingly enough, we do not need parenthesis on either the arguement or parameter.
 
@@ -74,10 +88,17 @@ def greeter name
 end
 p greeter
 ```
-    * In terminal run: $ ruby filename.rb
 
     - This will throw an error showing wrong number of arguements.  This is a super helpful error because it points us exactly to where the problem is. 
-    - If we have a parameter set inside our method, what is needed when we invoke the method?
+    - If we have a parameter set inside our method, what is needed when we invoke the method?  We will need an arguement!
+
+
+```ruby
+def greeter name
+  "Hello #{name}!"
+end
+p greeter "Person"
+```
 
 
 ### Multiple Arguements
@@ -92,9 +113,9 @@ end
 p multiply(3, 7)
 ```
 
-    - Ruby will be happy with either way, however sometimes using parenthesis can make your code more readable such as when passing multiple arguements.
+    - Ruby will be happy with either way, however, using parenthesis can make your code more readable such as when passing multiple arguements.
 
-    - Methods are reusable so we can call them over and over again
+    - Also, methods are reusable so we can call them over and over again
 
 ```ruby
 def multiply(num1, num2)
@@ -142,8 +163,8 @@ p user_name
 puts 'Enter your Age'
 user_age = gets.chomp
 p user_age
-p user_age.class
-user_age = gets.chomp.to_i
+
+
 def can_you_vote(name, age)
   if age >= 18
     "Hi #{name}. #{age} is old enough to vote"
@@ -152,6 +173,9 @@ def can_you_vote(name, age)
   end
 end
 p can_you_vote(user_name, user_age)
+
+p user_age.class
+user_age = gets.chomp.to_i
 ```
 
 ### Review
