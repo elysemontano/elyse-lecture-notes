@@ -29,11 +29,11 @@
     - Run the file with `ruby`
 
 ### Lecture
-    * Everything in Ruby is an object which is an instance of a class. If everything is an object, that means that all functions are technically methods.
+    - Everything in Ruby is an object which is an instance of a class. If everything is an object, that means that all functions are technically methods.
 
-    *Talking about custom methods is basically the same thing we talk about when we say "creating a function to do this thing in JavaScript.
+    - Talking about custom methods is basically the same thing we talk about when we say "creating a function to do this thing in JavaScript.
 
-    * Just like in JavaScript we need to be able to define custom methods that take an input and produce an output.
+    - Just like in JavaScript we need to be able to define custom methods that take an input and produce an output.
 
     - When you create a method in Ruby, you define it
     - `def` is a keyword in Ruby short for define
@@ -42,7 +42,7 @@
 #### Method Syntax
     - Give the method a name
     - end the method with the word end
-        * end is like the closing curly in javascript
+        - end is like the closing curly in javascript
     - Indention is super important because we are not reliant on curly braces to show us the start and end places, our indentation is really going help us see if something is missing.
     - The most simple method we can create will just return a line of code. 
 
