@@ -22,11 +22,18 @@
 
 
 ### Process
+    - RECORD LECTURE!!!
     - Ensure you are in the cohort-lecture-examples repo
     - Ensure your local is up to date and there are no stale branches
+        - $ git status
+        - $ git pull
+        - $ git branch
+        - $ git checkout -b ruby-methods
     - Create a new branch
-    - Create a Ruby file `ruby-methods.rb`
-    - Run the file with `ruby`
+    - Create a Ruby file 
+        - $ touch ruby-methods.rb
+    - Run the file
+        - $ ruby ruby-methods.rb
 
 ### Lecture
     - Everything in Ruby is an object which is an instance of a class. If everything is an object, that means that all functions are technically methods.
@@ -172,6 +179,7 @@ def can_you_vote(name, age)
     "Hi #{name}. #{age} is not old enough to vote"
   end
 end
+
 p can_you_vote(user_name, user_age)
 
 p user_age.class
