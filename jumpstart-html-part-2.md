@@ -13,11 +13,11 @@
 <footer> </footer>
 ```
 
-    - In this tag I can put a copyright logo © with the names of my team
+    - In this tag I can put a copyright logo © which is "& copy" with no space between and add the names in my team
       
 ```html
  <footer>
-    &copy
+    &copy LEARN Instructors and TA's | Jumpstart |
 </footer>
  ```
 
@@ -28,16 +28,26 @@
     - The Anchor tag is simply an HTML tag made with the letter “a”
 
 ```html
-<a></a>
+<footer>
+  &copy LEARN Instructors and TA's | Jumpstart |
+  <a></a>
+</footer>
 ```
 
     - The Anchor tag takes an attribute of href and then the place we want the link to go
+    - href stands for "hypertext reference"
 
 ```html
-<a href =’#top’>Back to the top</a>
+<footer>
+  &copy LEARN Instructors and TA's | Jumpstart |
+
+  <a href =’#top’>Back to the top</a>
+
+</footer>
 ```
 
     - We will also need to add an id=’top’ to the first element in our <body> tag
+    - An id is an attribute we can use to identify a specific tag
 
 ```html
 <h1 id="top"> Learn's Apple Pie </h1>
@@ -47,7 +57,12 @@
     - An <a> tag with link to where I got the recipe from <myrecipelink>
 
 ```html
-<a href="add-url-here">Link Info Here</a>
+<footer>
+  &copy LEARN Instructors and TA's | Jumpstart |
+
+  <a href =’#top’>Back to the top</a>
+  <a href="https://littlespoonfarm.com/apple-pie-recipe/" target="_blank"> A Similar Apple Pie Recipe </a>
+</footer>
 ```
 
 
@@ -72,6 +87,26 @@
     - 3 rows of 3 table data
     - And if we want to add some temporary style to our table we can use the attribute <table border = 1>
 
+```html
+<table border=1>
+  <tr>
+    <td> Granny Smith </td>
+    <td> Honeycrisp </td>
+    <td> Golden Delicious </td>
+  </tr>
+  <tr>
+    <td> Super tart and very firm </td>
+    <td> Super crisp, tart, sweet </td>
+    <td> Little softer than the others </td>
+  </tr>
+  <tr>
+    <td> Holds up the best </td>
+    <td> Holds up great </td>
+    <td> Holds up well </td>
+  </tr>
+</table>
+```
+
 # Favicon
     - A favicon is a small image that sits on the chrome tab.
     - Back in the head tag we need to add a special tag called link
@@ -81,7 +116,7 @@
 ```
 
     - Link takes three attributes
-        * rel="icon" 
+        * rel="icon" = relation
         * type="image/x-icon"
         * href=""
             - The href will link to an image address of something 
@@ -89,9 +124,9 @@
 
 # Button
     - Lastly Let’s make a button on the top of the page to take our user to the recipe if they just want the information.
-    - First we’ll set up a div around the recipe and give it the id of recipe
+    - First we’ll set up an id at my h2 where the recipe starts and set it to recipe
 
-<div id=’recipe’></div>
+<h3 id=’recipe’>Recipe Instructions</h3>
 
     - Next we’ll create an anchor tag at the top of the page that will send us to the recipe
 
