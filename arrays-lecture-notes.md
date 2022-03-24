@@ -6,12 +6,10 @@
         Why did the programmer quit their job?  Because they didn’t get arrays!
 
 ## WHAT ARE ARRAYS?
-    - Until now, we've only dealt with primitive data types which are single pieces of information
     - Arrays are a non-primitive data type that store collections of ordered data. 
     - Arrays contain any type of information as long as it is a valid data type
-    - Interacting with arrays is a really important fundamental concept 
-    - An array consists of the elements inside of brackets [ ], each element has a value that is separated by a comma.  
-
+    - An array consists of the elements inside of brackets [ ] called bracket notation
+    - Each element has a value that is separated by a comma.  
     - Each element is also indexed to track it’s placement inside the array starting with 0.  This is called zero indexed which means the first element in the array has an index of 0, the second element in the array has an index of 1 and so on.
 
 
@@ -82,7 +80,7 @@ var learnStaff = ["Sarah", "Chelsea", "Beau", "Elyse"]
 console.log(learnStaff.length)
 // Output: 4
 ```
-     - To find length we access the variable name and add .length which will return an integer
+     - To find length we access the variable name and add .length which will return a number
 
 ** Take Break **
 
@@ -101,7 +99,9 @@ console.log(learnStaff.length)
 ### MUTATORS:
     When using mutators, sometimes the output of the method action is not going to be the array.
 
-    .push(value)
+
+
+#### .push(value)
      - Adds a value onto end of an array
      - Value is added by being passed as an arguement
      - Output of this method is the length of the new array
@@ -121,7 +121,10 @@ console.log(learnStaff.push("Kumba"))
 console.log(learnStaff)
 // Output: ["Sarah", "Chelsea", "Beau", "Elyse", "Kumba"]
 ```
-    .pop()
+   
+   
+   
+#### .pop()
      - Removes the last value in an array and returns the value that was just removed
      - Nothing needs to be passed as an argument
 
@@ -141,7 +144,9 @@ console.log(learnStaff)
 // Output: ["Sarah", "Chelsea", "Beau"]
 ```
 
-    .reverse()
+
+
+#### .reverse()
      Reverses the array and does not take an arguement
 
 ```javascript
@@ -151,7 +156,9 @@ console.log(learnStaff.reverse())
 // Output: ["Elyse", "Beau", "Chelsea", Sarah"]
 ```
 
-    .sort()
+
+
+#### .sort()
      Alphabetizes strings
      Numbers are sorted based on additional information passed as an arguement
 
@@ -180,7 +187,8 @@ console.log(numArray.sort((a, b) => a - b))
 ## ACCESSORS:
     Once again accessor methods do not change the array.  To keep the output, it will need to be stored seperately as a variable
 
-    .indexOf(value)
+
+#### .indexOf(value)
        - Returns the index number of the first instance of the value.
        - Return will be -1 if the value does not exist in the array
 
@@ -197,7 +205,8 @@ console.log(learnStaff.indexOf("Joe"))
 // Output: -1
 ```
 
-    .slice()
+
+#### .slice(index)
        - Creates a subset of the array
        - Takes the arguement of the index that starts the subset and an optional arguement to end subset
 
@@ -208,42 +217,32 @@ console.log(learnStaff.slice(2))
 // Output: ["Beau", "Elyse", "Charlean", "Austin"]
 
 console.log(learnStaff.slice(2, 4))
-// Output: ["Beau", "Elyse", "Charlean"]
+// Output: ["Beau", "Elyse"]
 ```
 
-    .concat()
+
+#### .concat()
        - Merges two arrays together
        - Can also be used to add value to array without mutating
 
 ```javascript
 var alphaTeam = ["Sarah", "Austin", "Charlean"]
-var echoTeam = ["Sarah", "Beau", "Elyse"]
+var bravoTeam = ["Sarah", "Beau", "Elyse"]
 
-console.log(alphaTeam.concat(echoTeam))
+console.log(alphaTeam.concat(bravoTeam))
 // Output: ["Sarah", "Austin", "Charlean", "Sarah", "Beau", "Elyse"]
 ```
+
+
+
 
 ## Strings to Arrays and Back Again
     In JavaScript, arrays and strings have a lot of similar properties. They both are a collection of items, both have a length property, both are zero-indexed. But strings and arrays have many differences. It is often convenient to convert string into arrays and vice-versa.
 
-### Array to string
-
-    .join() 
-        - Takes an arguement that determine what is in between each character in the string
-
-```javascript
-var hello = ["Hello", "Bravo", "class"]
-
-console.log(hello.join(""))
-// Output: "HelloBravoclass"
-
-console.log(hello.join(" "))
-// Output: "Hello Bravo class"
-```
 
 ### String to Array
 
-    .split()
+#### .split()
       - Takes an arguement of where to split the string determining what it is at each index in the array
 
 ```javascript
@@ -257,6 +256,24 @@ console.log(hello.split(""))
 
 console.log(hello.split(" "))
 // Output: ['Hello', 'Bravo', 'class!']
+```
+
+
+
+### Array to string
+
+
+#### .join() 
+        - Takes an arguement that determine what is in between each character in the string
+
+```javascript
+var hello = ["Hello", "Bravo", "class"]
+
+console.log(hello.join(""))
+// Output: "HelloBravoclass"
+
+console.log(hello.join(" "))
+// Output: "Hello Bravo class"
 ```
 
 
