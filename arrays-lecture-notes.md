@@ -1,5 +1,6 @@
 # Arrays:
 
+** RECORD LECTURE! **
 ** SLIDE SHOW **
 
     JOKE:
@@ -160,7 +161,7 @@ console.log(learnStaff.reverse())
 
 #### .sort()
      Alphabetizes strings
-     Numbers are sorted based on additional information passed as an arguement
+     
 
 ```javascript
 var learnStaff = ["Sarah", "Chelsea", "Beau", "Elyse"]
@@ -171,6 +172,7 @@ console.log(learnStaff.sort())
      There are alot more mutator built in methods to explore, alot of which are in the syllabus.
 
 <!-- ```javascript
+Numbers are sorted based on additional information passed as an arguement
 var numArray = [58, 93, 405, 20]
 console.log(numArray.sort())
 // Output: [ 20, 405, 58, 93 ]
