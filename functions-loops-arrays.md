@@ -163,6 +163,9 @@ Let's try another example.  In this case, let's break this problem down using ps
 	 What will I put in, what data type?
 	 What do I want from it?
 
+
+
+
 EX: Create a function that takes a set of data and adds each item to a sentance
 
 ```javascript
@@ -171,10 +174,10 @@ var teas = ["chai", "earl gray", "green", "herbal"]
 ```
 
  input: array, array of strings
- output: set of strings as an output, specifically an array with each sentance in a string
+ output: set of strings as an output, specifically an array with each sentance in a string that includes the current index value
 
  create a function that takes in an array
- access each item in the array
+ access each item in the array using iteration
  modify the string of each item
  return a new array
 
@@ -187,7 +190,7 @@ const coffeeOrder = (array) => {
 
 	for (let i = 0; i < array.length; i++) {
 
-		//  PROMPT!  --- we need to collect the values of the iteration and keep in mind the output.  As a result, we will create another array inside the for loop to store the values
+		//  PROMPT!  --- we need to collect the values of the iteration and keep in mind the output.  As a result, we will create another array outside the for loop but inside our function to store the values
 
 		//  I will then push my string interpolation into the orders and later return specifically just the variable
 		orders.push(`I would like a ${array[i]}.`)
