@@ -25,7 +25,7 @@
 
 
 ### Lecture
-- Object oriented programming is a very common programming concept that is much more difficult to learn initially, but is well worth the extra effort. 
+- Object oriented programming is a very common programming concept that is much more difficult to learn initially which is why we spend so much time teaching this.
 
 - Objects are a data structure that help us organize information and behavior. A class helps us to make multiple instances of objects with specific properties. Classes are like a template to built a bunch of different objects.
 
@@ -33,7 +33,7 @@
 
 - Just as a child will inherit specific properties in their genetic makeup, classes also allow a parent class to pass properties down to a child or rather, the child inherits these properties from the parent.
  
-- A class relationship is is defined as parent-child.
+- A class relationship is defined as parent-child.
 
 - It is best to have the parent class be more generic and the child class more specific.
 
@@ -62,8 +62,8 @@ I also want to set up another class of Dog that has the same properties as the A
 
 ```javascript
 class Dog extends Animal {
-  constructor() {
-    super()
+  constructor(animalNameInChild) {
+    super(animalNameInChild)
     this.playsFetch = true
   }
 }
@@ -81,6 +81,7 @@ Methods can also be passed down from parent to child.
 class Animal {
   constructor(animalName) {
     this.name = animalName
+    
     this.sleeping = false
   }
   isSleeping() {
@@ -89,8 +90,8 @@ class Animal {
 }
 
 class Dog extends Animal {
-  constructor() {
-    super()
+  constructor(animalNameInChild) {
+    super(animalNameInChild)
     this.playsFetch = true
   }
 }
@@ -122,8 +123,8 @@ class Animal {
 }
 
 class Dog extends Animal {
-  constructor() {
-    super()
+  constructor(animalNameInChild) {
+    super(animalNameInChild)
     this.playsFetch = true
     this.barks = 0
   }
@@ -133,8 +134,8 @@ let bruno = new Dog("Yellow Lab")
 console.log(bruno)
 
 class Bird extends Animal {
-  constructor() {
-    super()
+  constructor(animalNameInChild) {
+    super(animalNameInChild)
     this.hasWings = true
   }
 }
@@ -159,8 +160,8 @@ class Animal {
 }
 
 class Dog extends Animal {
-  constructor() {
-    super()
+  constructor(animalNameInChild) {
+    super(animalNameInChild)
     this.playsFetch = true
     this.barks = 0
   }
@@ -177,8 +178,8 @@ console.log(bruno)
 // Output: Dog { name: "yellow lab", sleeping: false, playsFetch: true, barks: 10 }
 
 class Bird extends Animal {
-  constructor() {
-    super()
+  constructor(animalNameInChild) {
+    super(animalNameInChild)
     this.hasWings = true
     this.flying = false
   }
@@ -201,7 +202,7 @@ console.log(donald)
 - Creating relationships in classes helps reduce duplicate code
 - Parent classes are more general and child classes are more specific
 - A child class extends the parent class
-- Calling super in the child class will call the constructor in the parent class
+- Calling super in the child class will call the constructor(which is initializing the object) in the parent class
 
 ### Next Steps
 - Open the syllabus section and briefly run through the challenges and expectations
