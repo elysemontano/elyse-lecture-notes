@@ -25,6 +25,8 @@
 
 
 ### Lecture
+- Inheritance is one of the pillars of object-oriented programming
+- Inheritance helps solve the problem of redundancy in creating code
 - Object oriented programming is a very common programming concept that is much more difficult to learn initially which is why we spend so much time teaching this.
 
 - Objects are a data structure that help us organize information and behavior. A class helps us to make multiple instances of objects with specific properties. Classes are like a template to built a bunch of different objects.
@@ -63,6 +65,7 @@ I also want to set up another class of Dog that has the same properties as the A
 ```javascript
 class Dog extends Animal {
   constructor(animalNameInChild) {
+    //   - `super` calls the constructor in the parent class or initializes the properties in the parent class to the child class
     super(animalNameInChild)
     this.playsFetch = true
   }
@@ -81,10 +84,9 @@ Methods can also be passed down from parent to child.
 class Animal {
   constructor(animalName) {
     this.name = animalName
-    
     this.sleeping = false
   }
-  isSleeping() {
+  sleep() {
       this.sleeping = true
   }
 }
@@ -101,10 +103,44 @@ let bruno = new Dog("Yellow Lab")
 console.log(bruno)
 // Output: Dog { name: "Yellow Lab", sleeping: false, playsFetch: true }
 
-bruno.isSleeping()
+bruno.sleep()
 console.log(bruno)
 // Output: Dog { name: "Yellow Lab", sleeping: true, playsFetch: true }
 ```
+
+#### Methods in Child Classes
+A child class can inherit methods from the parent class as well as have methods of their own.
+
+```javascript
+class Animal {
+  constructor(animalName) {
+    this.name = animalName
+    this.sleeping = false
+  }
+  isSleeping() {
+      this.sleeping = true
+  }
+}
+
+class Dog extends Animal {
+  constructor(animalNameInChild) {
+    super(animalNameInChild)
+    this.playsFetch = true
+    this.barks = 0
+  }
+    bark(number) {
+        this.barks = number
+  }
+}
+
+let bruno = new Dog("yellow lab")
+console.log(bruno)
+// Output: Dog { name: "yellow lab", sleeping: false, playsFetch: true, barks: 0 }
+bruno.bark(10)
+console.log(bruno)
+// Output: Dog { name: "yellow lab", sleeping: false, playsFetch: true, barks: 10 }
+```
+
 
 #### Multiple Child Classes
 The power of inheritance is the ability pass the information from a parent class to many child classes.
@@ -137,50 +173,6 @@ class Bird extends Animal {
   constructor(animalNameInChild) {
     super(animalNameInChild)
     this.hasWings = true
-  }
-}
-
-let donald = new Bird("duck")
-console.log(donald)
-// Output: Bird { name: "duck", sleeping: false, hasWings: true }
-```
-
-#### Methods in Child Classes
-A child class can inherit methods from the parent class as well as have classes of their own.
-
-```javascript
-class Animal {
-  constructor(animalName) {
-    this.name = animalName
-    this.sleeping = false
-  }
-  isSleeping() {
-      this.sleeping = true
-  }
-}
-
-class Dog extends Animal {
-  constructor(animalNameInChild) {
-    super(animalNameInChild)
-    this.playsFetch = true
-    this.barks = 0
-  }
-    bark(number) {
-        this.barks = number
-  }
-}
-
-let bruno = new Dog("yellow lab")
-console.log(bruno)
-// Output: Dog { name: "yellow lab", sleeping: false, playsFetch: true, barks: 0 }
-bruno.bark(10)
-console.log(bruno)
-// Output: Dog { name: "yellow lab", sleeping: false, playsFetch: true, barks: 10 }
-
-class Bird extends Animal {
-  constructor(animalNameInChild) {
-    super(animalNameInChild)
-    this.hasWings = true
     this.flying = false
   }
   fly() {
@@ -197,6 +189,7 @@ donald.fly()
 console.log(donald)
 // Output: Tree { name: "duck", sleeping: true, hasWings: true, flying: true }
 ```
+
 
 ### Review
 - Creating relationships in classes helps reduce duplicate code
