@@ -136,7 +136,7 @@ p multiply(2, 8)
 
 
 #### Methods with Conditional Logic
-    - Oftentimes we need to add more logic into a method. We can create a method that decides which number is greater.
+    - Oftentimes we need to add more logic into a method. Let's create a problem where we create a method that decides which number is greater.
         - Every `def` needs an `end`
         - Every `if` needs an `end`
         - Two different ends means two different execution layers of code
