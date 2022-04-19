@@ -32,26 +32,42 @@ We are going to have two files. One is going to have the Ruby code and one is go
 - Google: ruby gem rspec and look at the https://rubygems.org/gems/rspec/versions/3.4.0 documentation for the number of downloads for RSpec
 
 - $ `gem install rspec`
-- Set imports
+- Set imports (inside rspec_spec file)
     - require 'rspec'
     - require_relative 'rubyfilename'
 
 - Add `describe` block with a do/end block
 - Add `it` block with a do/end block
 
-    * AAA - Standard philosophy for writing tests 
-- Arrange - inputs, targets
-    - does it create object or special setting?
+```ruby
+# rspec_spec.rb
+# require the rspec tools
+require 'rspec'
+# require the file that contains the code
+require_relative 'rspec_book.rb'
 
-- Act - focused on behavior
-    - calling function, login, interactions
+describe 'Book' do # reference
+  it 'has to be real' do
+  end
+end
 
-- Assert - outcomes
-    - goodness or badness of responses
 
-- Some tests won't have all of these attributes
+#     * AAA - Standard philosophy for writing tests 
+# - Arrange - inputs, targets
+#     - does it create object or special setting?
+
+# - Act - focused on behavior
+#     - calling function, login, interactions
+
+# - Assert - outcomes
+#     - goodness or badness of responses
+
+# - Some tests won't have all of these attributes
+```
 
 - Add expect statement that will run the new method and expect the creation of a class
+  - google Ruby matchers and click on Relish
+  - show different built in matchers
 
 - Run the tests with `rspec rspec_spec.rb`
 - Look at the failing test
