@@ -22,8 +22,8 @@ TDD which stands for test-driven development, is a developer philosophy of writi
 - `$ mkdir ruby-rspec`
 - `$ cd ruby-rspec`
 - `$ touch rspec_book.rb`
-- `$ touch rspec_spec.rb`
-- Run the tests with `rspec rspec_spec.rb`
+- `$ touch rspec_book_spec.rb`
+- Run the tests with `rspec rspec_book_spec.rb`
 
 ### RSPEC Setup
 For this example we are going to create a class for Book. Book is going to be a template from which we can create many instances of books. The Book class will have both data and behavior. A book can have a title, an author, and pages which are all data. So we can read a book and change the current page we are on. That is an action, or a behavior, which in development we call them methods.
