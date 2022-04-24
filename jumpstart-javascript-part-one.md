@@ -63,8 +63,6 @@ Inside our chrome console, we can do basic math, for instance:
 10 * 4
 100 / 2
 ```                                                  
-You can type a number, number is spit back out
-basic math
 
 - JS follows the order of operations
 ```javascript

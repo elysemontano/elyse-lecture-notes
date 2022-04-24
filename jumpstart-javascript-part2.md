@@ -95,41 +95,83 @@ magic8()
                 //  post current notes in jumpstart slack using code block
 
 
+
+
 # Connecting JS to HTML
 
-  - Script tag, add an alert to make sure they're connected
+- We need to add some things to our html page so that our javascript file and html files are connected and working properly.
+- Setup script tag with src and type attributes
 
-```html  
-<script type="text/javascript" src="recipe.js"></script>
-  ```
-  - onclick with getElementById(‘string’)
-      - Html element
-          - id=”html-container”
-          - Html element getting updated
+```html
+<script type="text/javascript" src="name.js"></script>
+```
+
+- Set up an alert in Javascript to show page is connected:
+```javascript
+alert("I am connected!")
+```
+- Let's make this alert appear only when we click somewhere on the page instead of when the page loads.  To do this, let's place our alert inside a function so we have control on when the alert appears
+
+```javascript
+  const easterEgg = () => {
+    alert("I am connected!")
+  }
+```
+
+- Now we need to add an onclick attribute to where we want there to be a javascript action
+{<td onclick="easterEgg()"></td}
+- Check button is calling alert
 
 
-Javascript side…
-  - Parameters in function
-      - Add conditional to the function
-      - Pass the params from the HTML page 
-          - onclick=”functionName(‘string passing through’)”
-          - Clarify single quotes inside double quotes when introducing passing strings into the function
+- Now that we have our function being called when we click on a specific location, let's have it do something other than an alert.  I want to change the text in this particular box to an emoji.
+- Let's start by adding an id to the tag I want to change so I can tell Javascript that this is my target.
+```html
+<td id="granny" onclick="easterEgg()"> Granny Smith </td>
+```
+
+Now we need to update our javascript function to do the actual action.
+
+```javascript
+const easterEgg = () => {
+    document.getElementById("granny").innerHTML = "🍏"
+}
+```
+
+- And our easter egg works beautifully!
+
+- I want to add in a few more things.  I want each one of these apples to change to an emoji so I will need to refactor again.
+
+- Let's start with adding id's to each of our elements that I want to change
+
+- I also want to pass into my function invocation a value which is called an arguement, so I can tell which box has been clicked over in javascript
+
+```html
+    <tr>
+      <td id="granny" onclick="easterEgg('granny')"> Granny Smith </td>
+      <td id="honeycrisp" onclick="easterEgg('honeycrisp')"> Honeycrisp </td>
+      <td id="golden" onclick="easterEgg('golden')"> Golden Delicious </td>
+    </tr>
+```
+
+- Now I can add something into the parenthesis of my function at the top and this is called a parameter.  This is basically assigning a new name to the arguement being passed in.  
+
+- Now I can use this param in a conditional.
+```javascript
+const easterEgg = (apple) => {
+  if(apple === "granny") {
+    document.getElementById(apple).innerHTML = "🍏"
+  } else if(apple === "honeycrisp") {
+    document.getElementById(apple).innerHTML = "🍎"
+  } else if(apple === "golden") {
+    document.getElementById(apple).innerHTML = "🥧"
+  }
+}
+```
+
+- There we go!  We now have our easter eggs in here and can click any of these three boxes to change the text to an emoji.
 
 
-I am not going to share this js file I am working in but your student notes and the previous javascript notes have  
 
 Encourage students to think through the logic and needs of the treasure hunt function
 
  /*Challenge Treasure Hunt*/
-
-
-
-# FEEDBACK:
-
-    const myFunction =
-    this is a variable declarion 
-
-    the function is the parenthesis and arrow function
-
-    The arrow function is the actual arrow (makes it a machine)
-
