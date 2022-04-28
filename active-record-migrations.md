@@ -26,8 +26,8 @@ Let's head on over to our syllabus and head to Active Record Migrations
 
     - Scroll down on the syllabus to where it has Creating a Migration.
         - Copy/Paste terminal commands:
-            $ rails new migrations_practice -d postgresql -T
-            $ cd migrations_practice
+            $ rails new learn_band -d postgresql -T
+            $ cd learn_band
             $ rails db:create
             $ rails server
         - Open text editor so that rails app is visible
@@ -101,3 +101,25 @@ Use our change definition, model, column we renaming, new name of column
 
  - $ rails db:migrate
 
+
+Great!  Now when we run BandMember.all we see that our pay is nil.
+
+Let's practice updating this.
+
+    > elyse = BandMember.find 1
+    > elyse.update hourly_pay:500
+
+
+# Update Data Type
+Let's say we want to change our data type from integer to float so we can be more precise with our pay scale.  We can run another migration
+
+- $ rails generate migration change_data_type_of_pay_to_float
+
+```ruby
+    def change
+        change_column :band_members, :hourly_pay, :float
+    end
+```
+
+
+An important note: Do NOT modify your migration files after you have migrated them into your schema!  This can cause some really crazy errors and can become very difficult to fix.  Do not delete migration files either.  Your application requires each of those files to know how to build your database.
