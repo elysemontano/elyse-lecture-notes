@@ -155,7 +155,7 @@ We have some refactoring on App.js to do because we have the same dilema as befo
 - First, we know that our show page is going to need some kind of param because we are only displaying one cat and need to know which cat is showing.  We will add this to our path:
 
     ```javascript
-  <Route path="/catshow/:id" render={(props) => <CatIndex cats={this.state.cats} /> } />
+  <Route path="/catshow/:id"} />
   ```
 
 - We also need to pass in data, so lets make this dynamic.  We need to write in some logic that is going to allow us to look up which cat we want to display.  Because we are not going to be using implicit return we will need to add in some curlies for our anonymous function and return something.
@@ -319,16 +319,6 @@ describe("When CatShow renders", () => {
     const showHeading = catShow.find("h2")
     expect(showHeading.text()).toEqual("Cat Show")
   })
-  it("displays a card", () => {
-    const catShow = shallow(<CatShow cat={cat}/>)
-    const card = catShow.find("Card")
-    expect(card.length).toEqual(1)
-    const cardTitle = catShow.find("CardTitle")
-    expect(cardTitle.length).toEqual(1)
-    const cardText = catShow.find("CardText")
-    expect(cardText.length).toEqual(2)
-    const showImage = catShow.find("img")
-    expect(showImage.length).toEqual(1)
-  })
+
 })
 ```
