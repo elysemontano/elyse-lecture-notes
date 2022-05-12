@@ -62,7 +62,9 @@ end
 
 # API CORS
 
-Before we continue with cors we are going to want to make our lives a bit easier by bypassing some built in security in rails. normally this before_action command would verify that information was coming from within the rails app and would not allow us to pass in information from outside. We want to skip that before_action.
+Before we continue with cors we are going to want to make our lives a bit easier by bypassing some built in security in rails. 
+
+Normally this before_action command would verify that information was coming from within the rails app and would not allow us to pass in information from outside. We want to skip that before_action.
 
 ```ruby
 app/controllers/application_controller.rb
