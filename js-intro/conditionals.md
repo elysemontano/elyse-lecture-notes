@@ -79,13 +79,13 @@ console.log(myFavNum === '7') // False
     var num = 6
 
     console.log(num > 2 && "hello" === greeting) // true + true = true
-    console.log(num < 2 && "hello" === greeting) // false + true = true
+    console.log(num < 2 && "hello" === greeting) // false + true = false
     ```
 
   - We also have the logical or `||`
 
     ```javascript
-    console.log(num > 2 + 2 || num === greeting)
+    console.log(num > 2 || num === greeting) // true
     ```
 
 **Negation**
@@ -153,6 +153,8 @@ if(myName === "Elyse"){
 #### Else If
 Sometimes we will need more than two possible outcomes.  We can still use conditionals, but we just need to use a new friend called 'else if'
 
+ - Talk about string interpolation
+
 ```javascript
 var num1 = 3
 var num2 = 6
@@ -186,3 +188,15 @@ JavaScript is read line by line. So our little program is just waiting or lookin
 - Remind the students of the appropriate naming conventions for their branch and file
 - Post pairs in Slack
 - Open breakout rooms with ability for participants to choose their room
+
+
+### Other Examples:
+
+```javascript
+var color1 = "green"
+var color2 = "blue"
+
+if(color1.length === color2.length) {
+
+}
+```
