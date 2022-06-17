@@ -23,7 +23,7 @@
 - Logic can be passed into the executable block of code to modify the outcome of the iteration
 
 ### Lecture
-One of the most fundamental concepts in coding is being able to repeat a process over and over again. This is called iteration. Computers are really great at iteration. There are many ways to create iteration. Today we will look specifically at how for loops can interact with arrays. The array data type is basically a list. Developers use arrays to group data. Two very common actions are wanting to look at each item in an array or make a decision about each item in the array.
+One of the most fundamental concepts in coding is being able to repeat a process over and over again. This is called iteration. Computers are really great at iteration. There are many ways to create iteration. Today we will look specifically at how for loops can interact with arrays. The array data type is basically a list. Developers use arrays to group data. We will often need to look each item in an array or make a decision about each item in the array.
 
 #### Anatomy of a Loop
 For loops don't innately connect to arrays. But they are really good at counting. And we can match up the counting action of a for loop to match to the indexes of an array.
@@ -33,7 +33,43 @@ To create a for loop we need three pieces of information.
 - Where to stop counting
 - How to get from the start to the stop
 
+We are going to need to use a variable to keep track of our count.  To do this though, I want to talk briefly about the different types of variables and their different purposes:
+
+## Var
+  - var is available anywhere (function scoped).  Can be defined in a block (if/else, loops) and accessed outside of the block
+  - let is available only inside the block it is defined in
+  - var can be reasigned and overwrite variables whereas let and const will not allow this.  Also allows hoisting
+  - const does not allow you to redclare or reasign variable
+
+
+```javascript
+// Why we use let:
+  if(true) {
+    var myName = "Elyse"
+  }
+  console.log(myName) // This will work
+
+  if(true) {
+    let yourName = "Trish"
+  }
+  console.log(yourName)// This will throw an error
+
+// Why const is not reassingable:
+let myCat = "Tobey"
+myName = "Nala"
+
+console.log(myName)
+
+const myDog = "Bruno"
+myDog = "Kodi"
+
+console.log(myDog) // Will throw an error
+```
+
+
+
 Since we often use for loops on arrays, it is a convention to use the variable name `index` to store the current count. This is often shorted to `i`. This is the longhand way to write the three pieces.
+
 ```javascript
 for(let index = 0; index < 10; index = index + 1)
 ```
@@ -88,4 +124,26 @@ for(let i = 0; i < numsArray.length; i++) {
 - Remind the students of the appropriate naming conventions for their branch and file
 - Post pairs in Slack
 - Open breakout rooms with ability for participants to choose their room
+
+
+## Extra Examples:
+
+```javascript
+const instructors = ["Sarah", "Trish", "Elyse", "Austin", "Charlean"]
+for(let i = 0; i < numsArray.length; i++) {
+  console.log(`${instructors[i]} is on the instruction team at LEARN`)
+}
+
+
+const myString = "Hey there Delta!"
+let count = 0
+for(let i = 0; i < myString.length; i++) {
+  let splitString = myString.split("")
+  if(splitString[i].toLowerCase() === "e") {
+    count ++
+  }
+}
+console.log(count)
+```
+
 
