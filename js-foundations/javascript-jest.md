@@ -20,19 +20,19 @@
 - Vocabulary
 
 ## Lecture
-- Create a repository
-- Create a folder
 - Create a branch
 - Create a Testing suite JavaScript file with a `.test.js` extension and no spaces in the name
-- $ yarn add jest
-- $ yarn jest
-
-### Vocabulary
-#### yarn
-- Code is shared through something called a package. A package contains all the code being shared. Yarn is a package manager for your code. It allows you to use and share code with other developers from around the world. Yarn does this quickly, securely, and reliably so you don't ever have to worry. Yarn allows you to use other developers' solutions to different problems, making it easier for you to develop your software.
 
 #### Jest
 Jest is a JavaScript testing framework. The framework is a collection of files that are managed by yarn.
+
+#### yarn
+- Code is shared through something called a package. A package contains all the code being shared. Yarn is a package manager for your code. It allows you to use and share code with other developers from around the world. Yarn does this quickly, securely, and reliably so you don't ever have to worry. Yarn allows you to use other developers' solutions to different problems, making it easier for you to develop your software.
+
+A package manager for javascript that contains code being shared from other developers
+
+- $ yarn add jest
+
 
 #### TDD
 - (Test Driven Development)
@@ -42,48 +42,52 @@ Breaking the code into a series of tests helps us break the big problem down int
 - 1: Write the test first!
 - 2: Run your testing suit to see a failing test
 - 3: Write the code
-- 4: Run your testing suit to see your test pass
+- 4: Run your testing suit to see your test pass $ yarn jest
 - 5: Refactor if necessary
 
 One of the fastest ways to prove to future employers that you care about your code, and know what you are doing, is to write good tests. When we write our tests first, then write the code required to make them pass, we as developers, are thinking about our code in a different, more logical way.
 Your tests speak volumes about you as a developer, as much or more than the actual code.
+
 ***
 - Better, cleaner code
 - Less bugs
 - Forces the developer to think about the input and output before beginning to code
-- Avoid feature creep - stay focused on essential piece of the program
+- Stay focused on essential piece of the program
 - Communicates to other developers the intent of the function
 - Allows for "safe" and confident refactoring of code
 ***
 
-#### TDD (Test Driven Development)
-- Breaking the big problem down into much smaller ones
 
 ### Process
 1: Write the test first! 
 Here's an example of a JavaScript test using Jest:
-This is a test for a function called aloha() that returns a string that says hi.
+
+Create a function called greeter that returns a string that says Hi, Delta 2022!!!
+
+Before writing a test, I like to determine any inputs and my expected output
+Input: none
+Output: "Hi, Delta 2022!!!"
 
 #### Explanation of Testing Syntax with Jest (use this explanation while pseudocoding in the text editor)
-Jest uses a method called describe() that runs other nested methods. First we invoke the describe method, providing the argument of "aloha" which is our function name, followed by a comma, a set of parentheses, arrow syntax and an opening curly brace to allow us to nest more code within its block scope. (place pseudocode above the describe method)
+Jest uses a method called describe() that runs other nested methods. First we invoke the describe method, providing the argument of "greeter" which is our function name, followed by a comma, a set of parentheses, arrow syntax and an opening curly brace to allow us to nest more code within its block scope. (place pseudocode above the describe method)
 
 ```javascript
 // a describe method that lists the name of the function OR naming of the particular test.
-describe("aloha", () => {
+describe("greeter", () => {
 ```
 
   Second we invoke the test method, providing it an argument that in plain words explains what the function does, followed by a comma, a set of parentheses, arrow syntax and its own opening curly brace allowing us to nest more code within its block scope. 
 
   ```javascript
   // a test/it method, nested within the describe block, that in plain words, describes that the function does.
-  it("returns a string that says Aloha, Alpha 2022!!!", () => {
+  it("returns a string that says Hi, Delta 2022!!!", () => {
   ```
 
     Third we then invoke the expect method, providing it an argument of the function call, and then chain a matcher to the end of it, in this case we use toEqual(), which will check that the return of the function to be a string that says hi.
   
     ```javascript  
-    //an expect method, nested within the test block, calling on the hello() function, followed by the .toEqual() matcher that checks the expected output of the function return.
-    expect(aloha()).toEqual("Aloha, Alpha 2022!!!")
+    // expect will invoke the function and compare the result to a predetermined expected output using .toEqual matcher
+    expect(greeter()).toEqual("Hi, Delta 2022!!!")
   })
 })
     ```
@@ -92,14 +96,17 @@ describe("aloha", () => {
 
  Run `$ yarn jest` in the terminal to run the test. We can expect that the test will fail since we haven't created the function yet (the red part of red-green refactor). 
 
-Yay! A good failure! The test points to exactly where the issue is in the code through an error message and an arrow `^` at the point it failed. The test is looking for a function called aloha and cannot find one. We can tell this is the case, because of the `ReferenceError: aloha is not defined` part of the fail message. This tells us that our test is written correctly, but it failed because when our expect method tried to invoke the function aloha(), it couldn't find it.
+Yay! A good failure! The test points to exactly where the issue is in the code through an error message and an arrow `^` at the point it failed. The test is looking for a function called greeter and cannot find one. We can tell this is the case, because of the `ReferenceError: greeter is not defined` part of the fail message. This tells us that our test is written correctly, but it failed because when our expect method tried to invoke the function greeter(), it couldn't find it.
+
+
 It's important that we read our fail/error messages thoroughly, as it won't always be a ReferenceError. We may have messed up our syntax, or something else, but Jest will give us a good indication as to where it went wrong. In this case, it failed where we expected it to.
 
+
 3: Write the code
-This failure message is exactly what we wanted, so now we can build the function to make the test pass (the green part of red-green refactor):
+
 ```javascript
-const aloha = () => {
-  return "Aloha, Alpha 2022!!!"
+const greeter = () => {
+  return "Hi, Alpha 2022!!!"
 }
 ```
 Notice: There is no console.log() or function call. Jest handles all of that in the expect method. Our function name AND the return must exactly match what we provided our expect and matcher methods.
@@ -121,6 +128,12 @@ Our test passes and we can now move on to creating more tests.
 
 ```javascript
 // Write a test for a function that logs "help others" if you do understand or "ask questions" if you do not understand
+
+// Input: "yes"
+// Output: "help others"
+
+// Input: "no"
+// Output: "ask questions"
 
 describe("doYouUnderstand", () => {
   it("returns help others or ask questions based on input", () => {
