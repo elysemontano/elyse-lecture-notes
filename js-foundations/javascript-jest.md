@@ -21,7 +21,8 @@
 
 ## Lecture
 - Create a branch
-- Create a Testing suite JavaScript file with a `.test.js` extension and no spaces in the name
+- Create a folder called javascript-foundations-jest
+- Create a Testing file with a `javascript-jest.test.js` extension and no spaces in the name
 
 #### Jest
 Jest is a JavaScript testing framework. The framework is a collection of files that are managed by yarn.
@@ -35,6 +36,8 @@ A package manager for javascript that contains code being shared from other deve
 
 
 #### TDD
+We use jest to write tests for our Javascript code
+
 - (Test Driven Development)
 Breaking the code into a series of tests helps us break the big problem down into much smaller ones, and smaller problems are easier to solve, so we write dramatically better code because of it. If you have solid tests, and decide that you want to refactor some part of your application because either the requirements of the application changed, or you have realized a better way, you are free to do so with confidence.
 
@@ -60,9 +63,8 @@ Your tests speak volumes about you as a developer, as much or more than the actu
 
 ### Process
 1: Write the test first! 
-Here's an example of a JavaScript test using Jest:
 
-Create a function called greeter that returns a string that says Hi, Delta 2022!!!
+Prompt:  Create a function called greeter that returns a string that says Hi, Delta 2022!!!
 
 Before writing a test, I like to determine any inputs and my expected output
 Input: none
@@ -76,7 +78,7 @@ Jest uses a method called describe() that runs other nested methods. First we in
 describe("greeter", () => {
 ```
 
-  Second we invoke the test method, providing it an argument that in plain words explains what the function does, followed by a comma, a set of parentheses, arrow syntax and its own opening curly brace allowing us to nest more code within its block scope. 
+  Second we invoke the test or it method, providing it an argument that in plain words explains what the function does, followed by a comma, a set of parentheses, arrow syntax and its own opening curly brace allowing us to nest more code within its block scope. 
 
   ```javascript
   // a test/it method, nested within the describe block, that in plain words, describes that the function does.
@@ -156,18 +158,31 @@ Notice: We don't comment out the old tests and function. We leave those there, a
 Sometimes it can be useful to create variables within our test method for use later on in our expect methods.
 Note: These variables are only available within the scope of the specific test it has been created in.
 
-```javascript
-describe("becomeADeveloper", () => {
-  it("adds ask questions to the end of an array", () => {
-    let developerList = ["take notes", "pay attention", "practice", "take breaks"]
-    let result = ["take notes", "pay attention", "practice", "take breaks", "ask questions"]
-    expect(addGranola(developerList)).toEqual(result)
-  })
-})
 
-const becomeADeveloper = (array) => {
-  return array.concat("ask questions")
-}
+
+Prompt: Create a function that takes in an array and a string and appends the string to the end of the array
+
+```javascript
+
+// Prompt: Create a function that takes in an array and a string and appends the string to the end of the array
+
+// Input: ["take notes", "pay attention", "practice", "take breaks"]
+// Output: ["take notes", "pay attention", "practice", "take breaks", "ask questions"]
+
+describe("becomeADeveloper", () => {
+    it("adds ask questions to the end of an array", () => {
+      let developerList = ["take notes", "pay attention", "practice", "take breaks"]
+      let developerString = "ask questions"
+      let result = ["take notes", "pay attention", "practice", "take breaks", "ask questions"]
+      expect(becomeADeveloper(developerList, developerString)).toEqual(result)
+    })
+  })
+
+//   ReferenceError: addGranola is not defined
+
+const becomeADeveloper = (array, string) => {
+    return array.concat(string)
+  }
 ```
 
 We can see here, utilizing variables for our arrays, that it keeps our code cleaner and easier to understand and read, versus having to put these huge arrays into the argument parentheses.

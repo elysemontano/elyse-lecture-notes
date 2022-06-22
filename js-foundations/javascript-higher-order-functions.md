@@ -122,7 +122,8 @@ console.log(evenOrOdd(myArray)) // ["odd", "even", "odd", "even"]
 
 As you can see, there are multiple layers in this block of code.  Each layer is seperated by some curly braces and has a level of indentation to help show the level we are working in within a block of code.
 
-
+** Look at github to show all repos in organization
+** Use search to filter repos in organization
 
 ## Filter
 Sometimes we are going to want to iterate over an array and narrow down what is returned and this is where filter comes in.  Just as it sounds, filter will filter out what we don't want and only keep what we do want.
