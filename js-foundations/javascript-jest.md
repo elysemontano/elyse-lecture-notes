@@ -187,6 +187,47 @@ const becomeADeveloper = (array, string) => {
 
 We can see here, utilizing variables for our arrays, that it keeps our code cleaner and easier to understand and read, versus having to put these huge arrays into the argument parentheses.
 
+
+```javascript
+// Prompt: // Create a function that allows a customer to filter the cost of an item dynamically by selecting the cost range
+
+
+
+describe("priceFilter", () => {
+  it("filter the cost of an item dynamically by selecting the cost range", () => {
+    const prices = [10, 22, 33, 94, 46, 55, 27, 37]
+    expect(priceFilter(prices, 20, 40)).toEqual([22, 33, 27, 37])
+  })
+})
+
+const priceFilter = (array, num1, num2) => {
+  return array.filter(value => {
+    return value > num1 && value < num2
+  })
+}
+
+```
+
+
+```javascript
+describe("filterNames", () => {
+  it("filter the names based on search", () => {
+    const names = ["Elyse", "Trish", "Sarah", "Austin", "Charlean"]
+    const letterS = "s"
+    const letterE = "E"
+    expect(priceFilter(names, letterS)).toEqual([ 'Elyse', 'Trish', 'Sarah', 'Austin' ])
+    expect(priceFilter(names, letterE)).toEqual([ 'Elyse', 'Charlean' ])
+  })
+})
+
+const filterNames = (array, search) => {
+  return array.filter(value => {
+    return value.toLowerCase().includes(search.toLowerCase())
+  })
+}
+
+```
+
 ## Review
 - What is the extension to make a test suite?
 - How do you know if you have good failure?
