@@ -61,9 +61,11 @@ Code Editors and File Naming
 
 ```html
 <!DOCTYPE html>   Ensures the most recent version of HTML
-<html lang="en"> Everything You write goes between HTML tags
+<html lang="en" dir="ltr"> Everything You write goes between HTML tags
+    lang="en" stands for the language is in english
+    dir="ltr" stands for direction runs from left to right
 <head> One Head / Metadata and info / Things you don’t see on the screen
-   <title>Document</title> Shows up in tab / Helps with SEO
+   <title>LEARN's Apple Pie</title> Shows up in tab / Helps with SEO
 </head> 
 <body>
   	Everything we can see on the page
@@ -122,34 +124,65 @@ Code Editors and File Naming
   Lorem Ipsum is a kind of fake latin that developers use to hold as a placeholder until something more permanent can be created. It was created in the 1500s as a way to test printing presses
 ```
 
+```html
+  <body>
+    <h1> LEARN's Apple Pie </h1>
+    <h2> A spoonful or forkful will make your worries go bye! </h2>
+    <hr>
+    <div>
+      <p> Go to your kitchen and grab your utensils. Let them know they are about to do something spectacular. Tell your tastebuds to get ready for a splendid occurence because you are about to bake some Learn Apple Pie! </p>
+
+      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+    </div>
+  </body>
+```
+
 ## List
 ```html
 <ul>:
-meatball ingredients
+ingredients
     A UL tag creates an unordered list which is perfect for setting out a list of ingredients needed for the meatballs
 
 <li>:
 for each ingredient.
-    Ground beef
-    Bread crumbs
-    Milk
-    Salt
-    Worcestershire
-    Pepper
-    Onion, finely chopped
-    One egg
+      <li> Large Granny Smith apples (1/2 inch slices) </li>
+      <li> Large Honeycrisp apples (1/2 inch slices) </li>
+      <li> Large Golden Delicious apples (1/2 inch slices) </li>
+      <li> Pie crusts </li>
+      <li> White sugar </li>
+      <li> Brown sugar </li>
+      <li> Tapioca </li>
+      <li> Cinnamon </li>
+      <li> Nutmeg </li>
+      <li> Lemon (zested and juiced) </li>
+      <li> Large Egg (lightly beaten for egg wash) </li>
+<ul>
 
 <ol>:
 preparation steps
-    An OL tag creates a ordered list this will be useful for something like our steps to make the meatballs
+    An OL tag creates a ordered list this will be useful for something like our steps to make the pie
 
 <li>:
 for different steps of the cooking process.
 
-    Heat oven to 400^f
-    Mix ingredients
-    Form into balls
-    Bake for 20 mins
+    <li> Preheat oven to 400F </li>
+    <li> Prebake pie crust inside a deep dish pie pan </li>
+    <li> Mix all the ingredients except egg wash in a mixing bowl </li>
+    <li> Spoon the apple filling over the bottom crust and discard juices </li>
+    <li> Lay a pie crust over the apple filling </li>
+    <li> Trim the dough along the outside edge of the pie pan </li>
+    <li> Cut 4 slits in the top of the dough to allow steam to vent </li>
+    <li> Cover the edges with a strip of foil to keep from over browning </li>
+    <li>
+    Bake them!
+    <ul>
+        <li> 400 degrees for 25 minutes </li>
+        <li> Remove aluminum foil </li>
+        <li> 375 degrees for an additional 30 minutes or until the top is golden brown and the juices are bubbly </li>
+    </ul>
+    </li>
+    <li> Let them sit for a bit </li>
+</ol>
 ```
 
 
@@ -158,16 +191,15 @@ for different steps of the cooking process.
   - add height attributes (not height and width)
   - Non-commercial use pictures
     - Google image search -> tools -> Creative Commons
-    -  https://cdn.pixabay.com/photo/2021/02/14/07/07/fry-6013647_1280.jpg
+
 ```html
- ** <img> tag and introduce the src attribute ** 
+ **  <img src="" height="300px">tag and introduce the src attribute ** 
  ```
 
 ## Attributes
   - What is an attribute?
     - HTML attributes are a modifier of an HTML element type
     ```
-      - <a href="https://www.w3schools.com">This is a link</a>
       - <img src="img_girl.jpg">
       - <p style="color:red">This is a paragraph.</p>
       ```
@@ -175,7 +207,7 @@ for different steps of the cooking process.
 
    ** Be sure to fill out the src attribute on the image tag and the alt attribute ** 
 
- ** no screen share ** 
+
 
 _________________________________________________________________________________________
  ** TREASURE HUNT ** 
