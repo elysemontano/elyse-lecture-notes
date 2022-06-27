@@ -20,14 +20,17 @@
 
 ### Lecture
 - Create a branch
-- Create a React app with no spaces in the name
+- Create a React app with no spaces in the name $ yarn create react-app react-state
 - `cd` into the project
 - Run the app with `yarn start`
 
 #### Review of React Anatomy
-Let's start out by reviewing the basic structure of a React class component. Have the class walk through what is needed in order to put Hello World in the browser.
+Let's start out by heading to App.js. App.js is the component that gets rendered to the browser.  This does all the heavy lifting.  We will be utilizing lots of different pieces and the pieces of the puzzle will have to come through App.js to show up on our page.
+
+We are going to rewrite the boiler plate code given which currently renders the cool react logo that we don't need.
 
 ```javascript
+// To gain access to the foundational React code to make it all work, we have to import react
 import React, { Component } from 'react'
 
 class App extends Component {
@@ -74,7 +77,9 @@ class App extends Component {
 #### State Object
 We need a place to store the miles. We need to maintain a running total of miles that can be updated every time we click the button. Right now I have a hard coded 0. Eventually we are going to replace that 0 with a class variable that can reflect the changes in the miles.
 
-Class variables are stored in the constructor. We know the constructor is a method that runs automatically when the component is invoked. In React there is a very particular way that we create class variables. It is called state. State is an object that holds as many key value pair as needed. The values in the state object can be made available to the entire class.
+Class variables are stored in the constructor. We know the constructor is a method that runs automatically when the component is invoked. Becaue we are inheriting, we also need to use super which helps us call methods that live in the parent component. 
+
+ In React there is a very particular way that we create class variables. It is called state. State is a variable that holds information as an object which can have many key value pair as needed. The values in the state object can be made available to the entire class.
 
 ```javascript
 constructor(props){
@@ -224,12 +229,16 @@ render(){
 
 We wrote one component and can call it as many times as we want and all of them maintain their own state.
 
+Each one of these component calls are a unique instance of the class, so even though we are using the same code, they are running seperatly.
+
 And that is pretty cool.
 
 #### Display vs Logic Components
 Handling state is an important part of creating React apps. But you don't want every component to have state. It is important to keep the data centralized. In this example we have one component that holds state and one that does not. This is also known as creating a logic component (that holds state) and a display component (that does not).
 
 #### Inline Styling with JSX
+To style in App.css make sure to import into App.js './App.css'
+
 One last thing, to talk about. That will help you with your challenge today. And that is inline styling in JSX.
 
 I mentioned that JSX is just like HTML most of the time. And this is one of the times it is very different. The style attribute can be added to any tag. That is the same. And just like the onClick, we need to pass JavaScript so we need our friend the curlies to escape into JavaScript. Then, once we are inside the curlies, what gets passed is key:value pairs.
