@@ -20,7 +20,7 @@
 
 ### Lecture
 - Create a branch
-- Create a React app with no spaces in the name $ yarn create react-app react-state
+- Create a React app with no spaces in the name `$ yarn create react-app react-state`
 - `cd` into the project
 - Run the app with `yarn start`
 
@@ -59,7 +59,7 @@ And what is happening here?
 For this example, I am making a very simple app that is going to log of the number of miles I run per month. I want to be able to see the current number of miles and add miles to the current number.
 
 #### Starting with Markup
-Start out with adding some basic static data. See a header, the current number of miles, and a button that can increase the miles by one.
+Let's start by adding some basic static data. See a header, the current number of miles, and a button that can increase the miles by one.
 ```javascript
 class App extends Component {
   render() {
@@ -237,14 +237,16 @@ And that is pretty cool.
 Handling state is an important part of creating React apps. But you don't want every component to have state. It is important to keep the data centralized. In this example we have one component that holds state and one that does not. This is also known as creating a logic component (that holds state) and a display component (that does not).
 
 #### Inline Styling with JSX
+One last thing, to talk about. That will help you with your challenge today.
+
 To style in App.css make sure to import into App.js './App.css'
 
-One last thing, to talk about. That will help you with your challenge today. And that is inline styling in JSX.
+ But let's talk about inline styling in JSX.
 
 I mentioned that JSX is just like HTML most of the time. And this is one of the times it is very different. The style attribute can be added to any tag. That is the same. And just like the onClick, we need to pass JavaScript so we need our friend the curlies to escape into JavaScript. Then, once we are inside the curlies, what gets passed is key:value pairs.
 
 ```html
-<button onClick={this.addMile} style={ {color: "pink"} }>Add a mile</button>
+<button onClick={this.addMile} style={ {backgroundColor: "pink"} }>Add a mile</button>
 ```
 
 The key is the styling property and the value has to be a data type that JavaScript recognizes. In this case it is a string. So this is different. And most of the time we want stylings to be in the css file, but sometimes you want inline styling and today you will want inline styling.
