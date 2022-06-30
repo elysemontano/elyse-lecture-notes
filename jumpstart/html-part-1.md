@@ -39,6 +39,8 @@ GENERAL RULE
     https://developer.mozilla.org/en-US/docs/Web/HTML
 
 
+Create a folder on desktop called jumpstart
+
 Code Editors and File Naming
 
  ** Open up Atom and create a new file called index.html ** 
@@ -61,11 +63,13 @@ Code Editors and File Naming
 
 ```html
 <!DOCTYPE html>   Ensures the most recent version of HTML
-<html lang="en" dir="ltr"> Everything You write goes between HTML tags
+<html lang="en" dir="ltr"> 
     lang="en" stands for the language is in english
     dir="ltr" stands for direction runs from left to right
+
+    
 <head> One Head / Metadata and info / Things you don’t see on the screen
-   <title>LEARN's Apple Pie</title> Shows up in tab / Helps with SEO
+   <title>LEARN's Apple Pie</title> Shows up in tab / Helps with SEO / Everything You write goes between HTML tags
 </head> 
 <body>
   	Everything we can see on the page
@@ -151,7 +155,6 @@ for each ingredient.
       <li> Pie crusts </li>
       <li> White sugar </li>
       <li> Brown sugar </li>
-      <li> Tapioca </li>
       <li> Cinnamon </li>
       <li> Nutmeg </li>
       <li> Lemon (zested and juiced) </li>
@@ -208,7 +211,7 @@ for different steps of the cooking process.
    ** Be sure to fill out the src attribute on the image tag and the alt attribute ** 
 
 
-
+** SHOW TREASURE HUNT DEMO HERE **
 _________________________________________________________________________________________
  ** TREASURE HUNT ** 
 
