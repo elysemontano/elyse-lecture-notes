@@ -26,6 +26,9 @@
   ### README
     I can also keep my README open on the side as this has all of my user stories, and I am going to keep my notes as well in here so I can track my process.  
 
+
+    Branch: grid
+
     My first user story is to create a grid, and if you remember from Jumpstart, we used a table to create that grid.  Since we are building this with React, we have some different tools that we have available now that we didn't back then that will make this more dynamic and less repetative.
 
     Our square is going to be a component which will be repeated over and over again.
@@ -34,6 +37,20 @@
 
 ### Square
     Create a div that has no inner html.  To give it styling, I am going to identify it with class square and then give the square a height and width of 200ox and a border so we can see it.
+
+```javascript
+      <>
+        <div className='square'></div>
+      </>
+```
+
+```css
+.square {
+  height: 200px;
+  width: 200px;
+  border: 2px solid black;
+}
+```
 
 ### App.js
     Import and call square component
@@ -84,7 +101,7 @@
   /* if each square is 200px and each side of the border is 2px, we need to add this up and give it some wiggle room */
   width: 620px;
   /* good first step to center is margin 0 */
-  margin: 0;
+  margin: 0 auto;
 }
 
 h1 {
@@ -106,10 +123,12 @@ h1 {
         <h1>Treasure Hunt</h1>
         <div className="gameboard">
         {this.state.board.map((value, index) => {
-          return <Square 
-            key={index}
-            value={value}
-          />
+          return(            
+            <Square 
+              key={index}
+              value={value}
+            />
+          ) 
         })}
         </div>
       </>
