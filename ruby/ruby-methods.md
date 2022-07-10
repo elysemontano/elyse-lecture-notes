@@ -159,7 +159,41 @@ p greater_num(42, 42)
 ```
 
 #### Getting User Input
-    - So as a final step, let's get the user input from the terminal rather than from our program. We can create a method that asks a user for their name and age. Then it will give a customized answer to whether the user is old enough to vote.
+    - So as a final step, let's get the user input from the terminal rather than from our program. 
+    
+Ruby has a method that will allow two-way interaction in the terminal. We are used to seeing the output of our code. In Ruby we can use the terminal to facilitate user inputs. This will make the conditional statements a little more fun.
+
+gets is a method that will stop the execution of the program and wait for you to type something and hit enter
+
+```ruby
+gets # step one - see the action in the terminal
+my_name = gets # step two - saving output in a variable
+p my_name
+```
+
+We can save whatever the user types into a variable
+
+p the variable and look at the output
+
+The \n is a character for a line break, typically we don't see these character but the computer sees them
+We need to remove the line break characters so they are not included in the variable by adding .chomp
+
+```ruby
+p 'What is your name?'
+your_name = gets.chomp
+p "Thank you for being a full stacker, #{your_name}!"
+
+my_name = gets.chomp
+p my_name
+
+if my_name == 'Sarah'
+  p 'Hey there Sarah!'
+else
+  p "Hi there, #{my_name}"
+end
+```
+
+    We can create a method that asks a user for their name and age. Then it will give a customized answer to whether the user is old enough to vote.
     - Content from the terminal is always going to be a string
     - Need to modify the the age to be a number using .to_i
 
