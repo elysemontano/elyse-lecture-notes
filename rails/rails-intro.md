@@ -64,12 +64,13 @@ When you create the database it is created on your local machine.
 - `\l ` lists all the databases which will include the new app
 
 #### Files
-- app/controllers
-- app/models
-- app/views
-- config/routes
-- db
-- Gemfile
+- Gemfile: consists of all the gems in a rails app.  Like the package.json file in React that packages together the node_modules.
+- MVC
+    - app/controllers
+    - app/models
+    - app/views
+- config/routes: describe all of the requests that we will be using to get to a particular view
+- db: stands for database
 - README
 
 ```
@@ -78,6 +79,9 @@ $ rails s
 ```
 
 The page does not automatically load. Unlike React, we have to go to the browser and navigate to localhost:3000.
+
+`$ rails db: drop`
+To get rid of the database.
 
 ### Review
 - What is a framework?

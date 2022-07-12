@@ -63,6 +63,96 @@ Generate command takes arguements
 `$ rails generate model Schedule day:string date:date event:string`
 invoked active record and created 2 files
 
+### Model 
+If we look inside our models folder, we now have a file called Schuedule.rb that is inheriting ApplicationRecord.  I did not create myself, I let rails create it when I used the generate command.
 
+### Migration
+The second thing that we got is in the db folder, with a migrate folder that has a file in it that has a really long name which is actually a timestamp of when I ran the command.  This is the file that is going to allow us to ultimately create the table.  A migration is how we interact with the database or the middle person so to speak between us and the computer's database. 
 
-Bravo 22:43
+So if look closely, we should recognize some of this code.  We can see that this is a class that inherits ActiveRecord, we have a method that is defined as change, so it is going to do something.  We have a helper method called create_table, and a Ruby block.
+
+When we run this, a table in our databse will be created.
+
+To do this, we run `$ rails db:migrate`
+
+We now have a table called schedules.
+
+### Schema
+Now that we ran our migration file, we can see that a new file has been created called schema.rb.
+
+This file is a representation of our database. This is not the database itself, so we can't go in here if we make a mistake and try to change something, this is a read only file that shows you how your databse is setup.  To modify the database, you would need to create another migration which we will get into tomorrow.  So, you don't edit this file directly, but it is great to reference and check to make sure your database is setup correctly.
+
+## Interacting With Data
+So now that we have our database setup, we now want to be able to add data into our database.
+
+To do this, we need to interact with our database directly.  Since we have the structure of our database setup in rails, we won't be needing to interact with the application itself anymore for today, but we will be interacting with our terminal for here on out.
+
+Similar to going into ruby console or postgres consoles, we are going to use something called rails console to interact with our database.
+
+`$ rails c`
+
+Looks just like irb consoles, but I can make queries using active record and interact with my database.
+
+To start, I have the class Schedule and I want to check all of my instances:
+
+```ruby
+> Schedule.all
+```
+What this is actually doing and we can see here that it is translating into a sequel query, which should look pretty familiar.  So Active Record is doing the sequel translation and we can interact using just Ruby code.
+
+Currently it returns an empty array.
+
+## Adding Data
+```ruby
+
+> Schedule.create(day: 'Thursday', date: '2022-07-14', event: 'Office hours')
+
+```
+Since all of our instances in the database needs to be unique, Active Record automatically creates an id for free or primary key.  Rails also provides created and updated at time stamps out of the box.  Don't need to worry about those or modify them ever, this is something Rails handles and can come in handy at times when we want the most recent updated instances.
+
+Let's add a few more things:
+
+```ruby
+
+> Schedule.create(day: 'Thursday', date: '2022-07-14', event: 'White board practice')
+
+> Schedule.create(day: 'Friday', date: '2022-07-15', event: 'Week 5 assessment')
+
+> Schedule.all
+# Shows all of the instances!
+```
+
+## CRUD
+So when working with data, we always want to keep in mind CRUD
+
+Create: create method and passing key value pairs
+
+Read: 
+   - .all method returns all instances in the database
+   - .first gives us the first instance in the database
+   - .second
+   - .last
+   - .find(1) returns an instance based on the primary key
+   - .where(event: 'Office hours') will find based on the key value pair that is passed in and returns a set and returns all of the instances that match it.
+
+  ** Update and delete are a little different in that they need to know exactly which instance we are working with **
+
+Update: 
+  - First I need to create a variable to store the instance that I plan on modifying.  
+
+```ruby
+> assessments = Schedule.last
+> assessments.update(event: 'Assessment')
+> assessments # returns the modified instance
+```
+  - The variable is only available until we exit out of the console.  Any modifications to the data itself though will persist.
+
+Delete: 
+  - Once again I need to set this up in the same way I just did then call on the Ruby method destroy.  
+
+```ruby
+> assessments = Schedule.last
+> assessments.destroy
+> Schedule.all # shows the last entry is gone
+```
+
