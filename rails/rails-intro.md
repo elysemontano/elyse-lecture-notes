@@ -62,6 +62,7 @@ $ rails db:create
 When you create the database it is created on your local machine.
 - To see this in the terminal type $ psql
 - `\l ` lists all the databases which will include the new app
+- exit with `q` and `exit`
 
 #### Files
 - Gemfile: consists of all the gems in a rails app.  Like the package.json file in React that packages together the node_modules.

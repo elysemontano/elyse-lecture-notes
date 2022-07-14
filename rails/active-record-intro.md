@@ -49,9 +49,12 @@ Model will allow us to store data in the form of a table
 
 We won't make this on our own because we want Rails to handle some of that background work and connecting those hidden dots for us.  So we are going to use some new rails commands to create the model.
 
+** Quickly take a look at the model section in rails app and db section before running generate **
+
 ## Rails Generate Commands
-  - Creates files and folders in a rails app the rails way
-  - Active Record Datatypes (go to rails docs on dev.to)
+We are going to be using a new command in rails to generate some things.  
+  - Generate will create files and folders in a rails app the rails way
+  - Utilizes Active Record Datatypes (go to rails docs on dev.to)
     Since we are dealing with data, we will have some specific datatypes we will need to work with that are specific to Active Record.
   - We need to decide now the structure the database and what type of data will be stored
 
@@ -146,6 +149,15 @@ Update:
 > assessments # returns the modified instance
 ```
   - The variable is only available until we exit out of the console.  Any modifications to the data itself though will persist.
+
+  ** The syllabus has a different approach to update that will also work! ** 
+```ruby
+> office_hours = Schedule.find 1
+> office_hours.event = 'Super awesome office hours!'
+> office_hours.save
+> office_hours
+```
+
 
 Delete: 
   - Once again I need to set this up in the same way I just did then call on the Ruby method destroy.  
