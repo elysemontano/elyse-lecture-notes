@@ -4,6 +4,18 @@
 ## Ruby Gems
     Package manager for Ruby.  Like yarn for javascript
 
+## RSPEC Setup
+- Ensure you are in the cohort-lecture-examples repo
+- Ensure your local is up to date and there are no stale branches
+- Create a new branch ruby-rspec
+- `$ mkdir ruby-rspec`
+- `$ cd ruby-rspec`
+- `$ touch rspec.rb`
+- `$ touch rspec_spec.rb`
+- Run the tests with `rspec rspec_spec.rb`
+
+We are going to have two files. One is going to have the Ruby code and one is going to have the tests.
+
 ## TDD
 RSpec is a Domain Specific Language which is a language that has been specialized for a particular task. In this case RSpec is specialized for testing Ruby code.
 
@@ -15,20 +27,7 @@ TDD which stands for test-driven development, is a developer philosophy of writi
 
     - Example story: Person is tasked with writing a method, decides to write a test first and finds the test passes prior to writing the code.  Turns out someone has already written a method called the same thing.  Seeing this can prevent days of extra work down the line
 
-## RSPEC Tests
-- Ensure you are in the cohort-lecture-examples repo
-- Ensure your local is up to date and there are no stale branches
-- Create a new branch ruby-rspec
-- `$ mkdir ruby-rspec`
-- `$ cd ruby-rspec`
-- `$ touch rspec_book.rb`
-- `$ touch rspec_book_spec.rb`
-- Run the tests with `rspec rspec_book_spec.rb`
-
 ### RSPEC Setup
-For this example we are going to create a class for Book. Book is going to be a template from which we can create many instances of books. The Book class will have both data and behavior. A book can have a title, an author, and pages which are all data. So we can read a book and change the current page we are on. That is an action, or a behavior, which in development we call them methods.
-
-We are going to have two files. One is going to have the Ruby code and one is going to have the tests.
 - Google: ruby gem rspec and look at the https://rubygems.org/gems/rspec/versions/3.4.0 documentation for the number of downloads for RSpec
 
 - $ `gem install rspec`
@@ -36,16 +35,20 @@ We are going to have two files. One is going to have the Ruby code and one is go
     - require 'rspec'
     - require_relative 'rubyfilename'
 
-- Add `describe` block with a do/end block
-- Add `it` block with a do/end block
-
 ```ruby
 # rspec_spec.rb
 # require the rspec tools
 require 'rspec'
 # require the file that contains the code
-require_relative 'rspec_book.rb'
+require_relative 'rspec.rb'
+```
 
+For this example we are going to create a class for Book. Book is going to be a template from which we can create many instances of books. The Book class will have both data and behavior. A book can have a title, an author, and pages which are all data. We can also read a book and change the current page we are on. That is an action, or a behavior, which in development we call them methods.
+
+- Add `describe` block with a do/end block
+- Add `it` block with a do/end block
+
+```ruby
 describe 'Book' do # reference
   it 'has to be real' do
   end
