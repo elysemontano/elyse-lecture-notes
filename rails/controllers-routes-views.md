@@ -1,13 +1,18 @@
 # Views Routes Controllers 
-### Alright in this talk we have a lot of moving parts and they all need to work in harmony for our goals to be accomplished. By the end of the day y'all will be maestro's 
 
-Today were gonna be dealing with One idea that comes to us in four parts. What do our user's see when we are working in a rails app? 
+Austin: https://www.youtube.com/watch?v=UgYXdL5pWSE
+Mina: https://www.youtube.com/watch?v=dprfcJq2xX4
 
+Today were going to be talking about Views and Controllers.  Last and yesterday we were working primarily with the Model, but now we want to explore the other 2 parts of the MVC architecture.
+
+So when you access a website, you will have a url.
+A URL is an acronym for Uniform Resource Locator
+This is basically an address for us to send and receive data to an application.
 
 1. Views - What can be seen by our user 
 2. Routes - How our user gets somewhere where they can see something
 3. Controllers - What our user will end up seeing or doing with what they see
-4. Params - How our user can see different things and interact with different things
+
  
 
 # Getting Started

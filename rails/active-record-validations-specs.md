@@ -4,13 +4,13 @@
 Create a new Rails app in the appropriate folder: $ rails new validations -d postgresql -T
 
 # Lecture
-Validations are Active Record statements that are added to the model class and will run each time you create or update the instance to validate or check the data is being given is what you want. 
+Validations are Active Record statements that are added to the model class and will run each time you create or update the instance to validate or check the data that is given is what you want. 
 
 When working with the Countries database last week, we ran into some instances where we were dealing with a lot of null values, which behaves differently than 0.  This ultimately is not a good practice to setup your database to have multiple null values in a column.
 
 When creating data and the database, we want to be thoughtful of the structure we are providing and also thoughtful of the actual data that is being provided.  We want to be cautious to prevent a user from accidently adding incorrect data, or in some cases can be malicous.
 
-Validations ensure that the data that gets passed in are what we are expecting.
+Validations ensure that the data that gets passed in is what we are expecting.
 
 $ cd validations
 Create a database: $ rails db:create
@@ -141,10 +141,89 @@ $ rails c
       This is how you access a single item from a hash.  By using the square brackets and passing in the key of the hash
       We get back an error message in the array "can't be blank"  $
 
+So realistically, writing tests has a little bit of a backwards thinking.  We have to think of the end result and then work backwards from there.
 
 
+Let's write another test.  Just like we validated name and tested that name must have some content provided, let's write a test that checks that our patients column is valid.
 
 
+```ruby
+spec/models/veteranarian_spec.rb
+
+# still inside the describe block
+  it 'is not valid without patients' do
+   # create an instance without the vets name
+    veteranarian = Veteranarian.create(name: 'Dr. Doolitle')
+    # We want to check for errors on this instance, specifically on the name column
+    expect(veteranarian.errors[:patients]).to_not be_empty
+  end
+```
+
+This test is failing, so let's write the validations
+
+
+```ruby
+app/models/veteranarian.rb
+
+class Veteranarian < ApplicationRecord
+  validates :name, :patients, presence: true
+end
+
+```
+
+And now my test passes!
+
+# More Validations
+Let's look up Active Record Validations (Go to docs)
+
+Let's use the length validation using range
+
+```ruby
+spec/models/veteranarian_spec.rb
+
+# still inside the describe block
+  it 'is not valid if name is outside 2-20 characters' do
+   # create an instance without the vets name
+    veteranarian = Veteranarian.create(name: 'D', patients: 100)
+    # We want to check for errors on this instance, specifically on the name column
+    expect(veteranarian.errors[:name]).to_not be_empty
+  end
+```
+
+Successful failure!
+
+Let's validate!
+
+```ruby
+app/models/veteranarian.rb
+
+class Veteranarian < ApplicationRecord
+  validates :name, :patients, presence: true
+  validates :name, length: { in: 2..20 }
+end
+```
+
+And we are passing!
+
+Let's add one more expect that tests the other side of the range.
+
+```ruby
+spec/models/veteranarian_spec.rb
+
+# still inside the describe block
+  it 'is not valid outside 2-20 characters' do
+   # create an instance without the vets name
+    veteranarian = Veteranarian.create(name: 'D', patients: 100)
+    # We want to check for errors on this instance, specifically on the name column
+    expect(veteranarian.errors[:name]).to_not be_empty
+     long_veteranarian = Veteranarian.create(name: 'Dr. Doolitle talks to the animals', patients: 100)
+    # We want to check for errors on this instance, specifically on the name column
+    expect(long_veteranarian.errors[:name]).to_not be_empty
+  end
+```
+
+
+The challenges are going to require you to jump between a few different lessons we have gone through recently, and the stretch challenges will require some further research that is not directly in the syllabus.  There are some resources provided though.
 
 
 # Challenges:
