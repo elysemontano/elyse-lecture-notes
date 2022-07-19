@@ -36,7 +36,8 @@ We can now see that we have a new folder in here labeled spec and this is where 
 ### Now we need some data
 
 Generate the model with appropriate columns and data types
-$ rails g model Veteranarian name:string patients:integer
+$ rails g model Veteranarian name:string patients:integer 
+$
 
 Because we setup RSpec before generating our model, Rails automatically generates a spec file for us.  If we generate RSpec after we generate the model, we will have to go in and create the files ourself.  So in this case, order does matter as it will save us time.
 
@@ -47,11 +48,11 @@ We can see that there is already a test in here.  There is a describe and a bloc
 Let's start by just checking if it is running correctly.
 
 $ Run rspec spec/models/veneranarian_spec.rb
-
+$
 This shows me a few useful things.  First I need to migrate my database, but it also shows that it is finding the file.
 
 $ rails db:migrate
-$ Run rspec spec/models/veneranarian_spec.rb
+$ rspec spec/models/veneranarian_spec.rb
 It shows I have a pending test, which is what is out of the box.
 
 We can get rid of the line with pending and write some real tests from here.
@@ -75,12 +76,18 @@ end
 This is essentially going into my rails console, creating veteranarian.  Being able to see the instance and I can also run .valid? to make sure it is valid
 
 $ rails c
+$
 > veteranarian = Veteranarian.create(name: 'Dr. Doolitle', patients: 100)
 > veteranarian
-> veteranarian 
+> veteranarian.valid? 
 => true $
 
-This is a great start, but what if I just type in my console Veteranarian.create?  My columns will have nil values, and that is not really what I want.  Currently, there is nothing in my application that says I can't do this.
+This is a great start, but what if I just type in my console Veteranarian.create? 
+
+> veteranarian = Veteranarian.create
+> veteranarian
+
+ My columns will have nil values, and that is not really what I want.  Currently, there is nothing in my application that says I can't do this.
 
 So we want to start putting some protections on the columns that specifies that we have to have some data provided or it will be rejected.
 
@@ -122,15 +129,17 @@ And now we are passing.
 Let's take a closer look at this.
 I am going to comment out the validation for just a second
 $ rails c
+$
 > veteranarian = Veteranarian.create patients:5
 > veteranarian
       Has a nil value because there is nothing saying that it can't
 > veteranarian.errors
       Will show an array of any errors that may exist. Currently this array is empty.  Our test is telling us that we want to see this array to not be empty, meaning it will have an error.  That is why the test failed $ exit
 
-No I am going to comment back in my validation
+Now I am going to comment back in my validation
 
 $ rails c
+$
 > veteranarian = Veteranarian.create patients:5
 > veteranarian
       This time around, veteranarian never got created since my id is nil.

@@ -24,25 +24,20 @@ erb
 
 
 Sarah: https://www.youtube.com/watch?v=XGQr2PnKgJU
-Austin: https://www.youtube.com/watch?v=UgYXdL5pWSE
-Mina: https://www.youtube.com/watch?v=dprfcJq2xX4
 
 # Lecture
 Today were going to be talking about Views and Controllers.  Last week and yesterday we were working primarily with the Model, but now we want to explore the other 2 parts of the MVC architecture.
 
 1. Views - What can be seen by our user 
-2. Routes - How our user gets somewhere where they can see something
-3. Controllers - What our user will end up seeing or doing with what they see
+2. Controllers - Coordinates the interaction between the user, the views, and the model.
+3. Routes - How our user gets somewhere where they can see something
 
-Specifically, the V and the C.
 We have already worked with the view before in React, which just boils down to what the user sees.  Today though we are going to think of the view as a bi-product of the controller methods and routes, so they are going to be kind of ugly for today.
 
 # Controller 
 The controller is what directs our application.  So it is going to collect data from the database and then tells our application what view to render on the page. The Rails controller is the logical center of your application. It coordinates the interaction between the user, the views, and the model.
 
 A controller is going to be a class that will have multiple methods called by the route, and then the route is the path that is given in the url
-
- The controller is responsible for routing external requests to internal actions. It handles people-friendly URL's extremely well
 
 So when you access a website, you will have a url.
 This is basically an address for us to send and receive data to an application.
@@ -58,7 +53,8 @@ So the flow is: Route calls the controller method that then pulls the correct da
 # Getting Started
 As always we are going ot need a to make a rails app
 ```
-    $ rails new food_app -d postgresql -T
+    $ rails new controllers_routes_views -d postgresql -T
+    $ cd controllers_routes_views
     $ rails db:create
 ```
 I want to spin up my server today since we will be working with this side of things today and kind of leave the model out of it for today.
@@ -96,7 +92,7 @@ The file we will add controller methods in is:
 /controllers/home_controller.rb
 ```ruby
 def greeter
-    render html: "HI!"
+    render html: 'HI!'
 end
 ```
 Currently the only job of this method is to render html that says "HI!"
@@ -117,22 +113,15 @@ get '/greeter' => 'home#greeter'
 - Now if I navigate to my url and add /greeter, I will see HI! render on the page.
 
 - Adding /greeter to the url is a request, which means if it exists in my routes, it will run the controller and go through all the motions.
+In fact, I can see that motion happening in my terminal that has my server running.
 
 
-SPEND EXTRA TIME SHOWING THIS AND HOW IT CONNECTS THE CONTROLLER TO THE URL
- - HTTP VERB  get, put, patch, post, delete
- - URL
- - Name of Controller
- - Name of Method in Controller
-
-
-
-    ### WHAT IF WE ADDED ANOTHER ROUTE TO OUR FILE WHAT WOULD WE NEED TO DO?
+** WHAT IF WE ADDED ANOTHER ROUTE TO OUR FILE WHAT WOULD WE NEED TO DO?
 
  ### Let's go back to the controller and add the necessary method in the controller. 
 ```ruby
 def joke
-    render html: "Two SQL tables are sitting at a bar. A query walks and and asks, “may I join you?”"
+    render html: 'Two SQL tables are sitting at a bar. A query walks and and asks, may I join you?'
 end
 ```
 
@@ -150,7 +139,6 @@ This time around, instead of rendering html, we are going to render a view.  We 
 
 ```ruby
 def delta_cohort
-  render 'delta_cohort.html.erb'
 end
 ```
 Currently in the view/home folder, there is nothing that lives in here just yet, because I can create a file that will correlate directly to the controller method that I am creating.  So in this case, I have a method called delta_cohort, which means I can create a file in this folder called delta_cohort.html.erb
@@ -169,6 +157,10 @@ ERB - Embedded Ruby: views can have Ruby values in them and even evaluate some R
   <li>Ricky</li>
 </ul>
 ```
+
+Since we named our view files the same as the controller method, this makes it so that Ruby will automatically look to render that file when the method is called, which means we can remove our render lines that have the file name inside of it!
+
+Rails is making some assumptions here because of how we have setup our naming and will automatically render that view if we set this up correctly.  This is some of that Rails magic I was talking about last week.  If you follow the naming conventions closely, Rails will do some of the stuff for us.
 
 Now we need a route. If I don't make a route and I try to navigate to a page caleld delta_cohort, I will get a routing error.  This will likely not be the last time you see this, and so it is good to know what this error looks like and why it comes up.
 
@@ -196,11 +188,10 @@ Let's add an instance variable to our controller method delta_cohort
 ```ruby
 def delta_cohort
   @delta = "The amazing people of Delta 2022!"
-  render 'delta_cohort.html.erb'
 end
 ```
 
-/views/food/tacos.html.erb
+/views/food/delta_cohort.html.erb
 
 ```ruby
 <p> <%= @delta %> </p>
@@ -215,8 +206,7 @@ This syntax allows us to drop Ruby code directly into html.  You can think of it
 
 ```ruby
 def delta_cohort
-  @delta = ["Ahmed", "Alex", "Alvin", "Corey", "Gene", "James", "Jojo", "Leo", "Luis", "Nicole", "Pua", "Ricky", "Samuel", "Sean", "Steven", "Venessa", "Will", "William"]
-  render 'delta_cohort.html.erb'
+  @students = ["Ahmed", "Alex", "Alvin", "Corey", "Gene", "James", "Jojo", "Leo", "Luis", "Nicole", "Pua", "Ricky", "Samuel", "Sean", "Steven", "Venessa", "Will", "William"]
 end
 ```
 
@@ -224,7 +214,7 @@ end
 app/views/ControllerName/method_name.html.erb
 ```ruby
 <ul>  
-<% @delta.each do |value|%>
+<% @students.each do |value|%>
     <li> <%= value %></li>
 <% end %>
 </ul>
@@ -237,10 +227,18 @@ Since we don't want to have to type the url as a user, cause that does not give 
 
 ```ruby
 def landing
-  render 'landing.html.erb'
 end
 ```
 
+## Root_to
+
+In routes I want to make a landing page for my user so they see what they want as soon as they navigate to my site so in my routes I am going to add my root
+```
+get '/landing' => 'home#landing'
+root to: 'home#landing'
+```
+
+# Landing View
 There is a Ruby helper method called link_to that will take 2 arguments (an anchor, and a path)
 
 /views/food/landing.html.erb
@@ -253,27 +251,6 @@ There is a Ruby helper method called link_to that will take 2 arguments (an anch
 <%= link_to "Delta Cohort", "/delta" %>
 ```
 
-## Root_to
-
-In routes I want to make a landing page for my user so they see what they want as soon as they navigate to my site so in my routes I am going to add my root
-```
-get '/landing' => 'home#landing'
-root to: 'home#landing'
-```
-
-## Refactor!
-Since we named our view files the same as the controller method, this makes it so that Ruby will automatically look to render that file when the method is called, which means we can remove our render lines that have the file name inside of it!
-
-```ruby
-def delta_cohort
-  @delta = "The amazing people of Delta 2022!"
-end
-
-def landing
-end
-```
-
-Rails is making some assumptions here because of how we have setup our naming and will automatically render that view if we set this up correctly.  This is some of that Rails magic I was talking about last week.  If you follow the naming conventions closely, Rails will do some of the stuff for us.
 
 # Recap 2
 So to recap so far we have
