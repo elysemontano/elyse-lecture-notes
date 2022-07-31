@@ -1,12 +1,18 @@
 # Valdiations 
 
-## TDD
-Write a meaningful Test
+Let's start by taking a look at our Trello card to see what is expected on this branch.  
 
+A few weeks ago, we wrote some Rspec tests for validations inside our spec/model folder.  If you remember, this was kind of the backwards thinking that we had to check that Rails is truly validating data that is being inputed by seeing if it throws an error.  In other words, we are checking that Rails is rejecting invalid data.  
+
+We are going to set up some validations for our cats, but also practice test driven development, which means we need to write our test first.  
+
+## Model Specs
+
+/spec/model/cat_spec.rb
 ```Ruby
 RSpec.describe Cat, type: :model do
   it "should validate name" do
-    cat = Cat.create
+    cat = Cat.create(age: 5, enjoys: 'snuggles and teasing the dog')
     # If cat's name field is empty throw an error
     expect(cat.errors[:name]).to_not be_empty
   end
@@ -15,20 +21,7 @@ end
 
 Watch it fail in the ways we need it too.
 
-
-```Ruby
-1 example, 1 failure
-
-Failures:
-
-  1) Cat should validate name
-     Failure/Error: expect(cat.errors[:name]).to_not be_empty
-       expected `[].empty?` to return false, got true
-```
-
-
 Then we will write the validation that checks for the presence of the symbol we are passing
-
 
 ```Ruby
 class Cat < ApplicationRecord
@@ -36,41 +29,75 @@ class Cat < ApplicationRecord
 end
 ```
 
+Cool, let's continue doing this for all the columns in our table
 
+/spec/model/cat_spec.rb
 ```Ruby
-it "doesn't create a cat without a name" do
-   cat_params = {
-     cat: {
-       age: 2,
-       enjoys: 'Walks in the park',
-       image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
-     }
-   }
-   # Send the request to the  server
-   post '/cats', params: cat_params
-   # expect an error if the cat_params does not have a name
-   expect(response.status).to eq 422
-   # Convert the JSON response into a Ruby Hash
-   json = JSON.parse(response.body)
-   # Errors are returned as an array because there could be more than one, if there are more than one validation failures on an attribute.
-   expect(json['name']).to include "can't be blank"
+  it "should have an age" do
+    cat = Cat.create(name: 'Tobey', enjoys: 'snuggles and teasing the dog')
+    # If cat's name field is empty throw an error
+    expect(cat.errors[:age]).to_not be_empty
+  end
 end
 ```
 
-
 ```Ruby
-Failures:
-
-  1) Cats does not create a cat without a name
-     Failure/Error: expect(response.status).to eq 422
-
-      expected: 422
-          got: 200
-
-      (compared using ==)
-    # ./spec/requests/cats_request_spec.rb:40:in `block (2 levels) in <main>'
+class Cat < ApplicationRecord
+  validates :name, :age, presence: true
+end
 ```
 
+And one more:
+
+/spec/model/cat_spec.rb
+```Ruby
+  it "should have an age" do
+    cat = Cat.create(name: 'Tobey', age: 5)
+    # If cat's name field is empty throw an error
+    expect(cat.errors[:enjoys]).to_not be_empty
+  end
+end
+```
+
+```Ruby
+class Cat < ApplicationRecord
+  validates :name, :age, :enjoys, presence: true
+end
+```
+
+## Request Specs
+
+Now let's write some request specs.  Our Trello card tells us that we should write a request spec that will return a 422 error if validations are not met.  
+
+So we set this up so now we have a validation, so errors will be thrown if we are missing information.  Now we need to be able to have some way for our front end to be communicated that the request is being rejected.  So instead of just ensuring that the data can't be created in this instance, we are thinking about what happens on the request when the data isn't created. So let's switch gears and go back over to our request specs.
+
+Before we wrote some request specs for our controller to make sure they work properly, but now we want to write specs that make sure we get back an error if things don't go through properly.
+
+```Ruby
+describe "cannot create a cat without valid attributes" do
+    it "doesn't create a cat without a name" do
+        cat_params = {
+            cat: {
+            age: 5,
+            enjoys: 'snuggles and teasing the dog',
+            image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
+            }
+        }
+        # Send the request to the  server
+        post '/cats', params: cat_params
+        # expect an error if the cat_params does not have a name
+        expect(response.status).to eq 422
+        # Convert the JSON response into a Ruby Hash
+        cat = JSON.parse(response.body)
+        # Errors are returned as an array because there could be more than one, if there are more than one validation failures on an attribute.
+
+        # The error that comes out of the box with presence validation is "can't be blank", so we will utilize that error.  
+        expect(cat['name']).to include "can't be blank"
+    end
+end
+```
+
+This fails, which makes sense because there is nothing currently in our controller that will provide a different action.  So let's handle that.  We can use a conditional in our controller to allow us to only render cat if it is valid, otherwise we will want some errors and provide an status of 422.
 
 ```Ruby
 def create
@@ -83,21 +110,9 @@ def create
 end
 ```
 
+This passes our test!  Let's write another test for age.
 
 ```Ruby
-describe "cannot create a cat without valid attributes" do
-    it 'cannot create a cat without a name' do
-      cat_params = {
-        cat: {
-          age: 2,
-          enjoys: 'cuddles and belly rubs'
-        }
-      }
-      post '/cats', params: cat_params
-      cat = JSON.parse(response.body)
-      expect(response).to have_http_status(422)
-      expect(cat['name']).to include "can't be blank"
-    end
     it 'cannot create a cat without an age' do
       cat_params = {
         cat: {
@@ -110,6 +125,12 @@ describe "cannot create a cat without valid attributes" do
       expect(response).to have_http_status(422)
       expect(cat['age']).to include "can't be blank"
     end
+```
+
+The rest is just following the process for the enjoys and then all of these attributes for our update controllers as well.  
+
+
+```Ruby
     it 'cannot create a cat without an enjoys' do
       cat_params = {
         cat: {
