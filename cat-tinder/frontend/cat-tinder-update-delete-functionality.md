@@ -67,6 +67,7 @@ class CatEdit extends Component{
   handleChange = (e) => {
     // destructuring form out of state
     let { form } = this.state
+    // extract the key attribute from the form called name so we know which value to assign to which key in state.
     form[e.target.name] = e.target.value
     // setting state to the updated form
     this.setState({ form: form })

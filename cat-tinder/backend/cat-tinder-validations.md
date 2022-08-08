@@ -65,11 +65,23 @@ class Cat < ApplicationRecord
 end
 ```
 
+      {** Deeper dive **
+        `$ rails c`
+        ```ruby
+        > Cat.create(age: 5, enjoys: 'snuggles', image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80')
+
+        > cat.errors
+        > cat.errors[:name]
+        ```
+      }
+
+Our Trello card has us checking for length of enjoys, but I will leave that one up to you all.  Let's move on to the request specs.
+
 ## Request Specs
 
-Now let's write some request specs.  Our Trello card tells us that we should write a request spec that will return a 422 error if validations are not met.  
+ Trello tells us that we should write a request spec that will return a 422 error if validations are not met.  
 
-So we set this up so now we have a validation, so errors will be thrown if we are missing information.  Now we need to be able to have some way for our front end to be communicated that the request is being rejected.  So instead of just ensuring that the data can't be created in this instance, we are thinking about what happens on the request when the data isn't created. So let's switch gears and go back over to our request specs.
+So we set this up so now we have a validation, and errors will be thrown if we are missing information.  Now we need to be able to have some way for our front end to be communicated that the request is being rejected.  So instead of just ensuring that the data can't be created in this instance, we are thinking about what happens on the request when the data isn't created. So let's switch gears and go back over to our request specs.
 
 Before we wrote some request specs for our controller to make sure they work properly, but now we want to write specs that make sure we get back an error if things don't go through properly.
 

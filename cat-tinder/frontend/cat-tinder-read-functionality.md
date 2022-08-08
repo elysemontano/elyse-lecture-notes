@@ -43,44 +43,9 @@
         - edit
         - new
 
-# Index
-
-  - App.js
-
-      We want to be able to pass our data from state to our index page as props, but currently we can't because we can only pass it through a component call.  Currently we have a bunch of static routes, meaning they will all look the same.  No information is being passed to change it in some way.
-
-
-``` javascript
-  <Route path="/catindex" component={CatIndex}>
-```
-
-  We need to refactor this so that this is a dynamic route that allows us to pass data to our child components.  Instead of using the component attribute, we will use the render attribute that will take an anonymous function.  The return value of the anonymous function will be the component.
-
-  ```javascript
-  <Route path="/catindex" render={(props) => <CatIndex /> } />
-  ```
-
-  We can now pass information into this component call:
-
-    ```javascript
-  <Route path="/catindex" render={(props) => <CatIndex cats={this.state.cats} /> } />
-  ```
-
-  Now that we have our cats being passed to our cat index page as props, we can go to our cat index page and work on displaying all of the cats.
-
-  - First let's check that things are being passed correctly.  We can console.log in our render section this.props.cats
-
-  - Now we need to iterate over this.props.cats and display all cats.  We can go into javascript land in JSX by using curly braces where we can map over this.props.cats
-
-  ```javascript
-  <h2>Find your purrfect match</h2>
-  {this.props.cats.map(cat => {
-    return <p key={cat.id}>{cat.name}</p>
-  })}
-  ```
-
 
 ## Testing Cat Index
+We are going to start with our CatIndex page, however let's practice some TDD.  We are going to start by writing our tests and we have to think about all of what we want out of this particular action, so in a sense we are pseudocoding with our test.
 
 - Check/update trello - see we need to test our cat index page.
 
@@ -101,42 +66,126 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe("When CatIndex renders", () => {
   it("displays a heading", () => {
-    // Shallow that we bring in from enzyme will mount the component CatIndex
     const catIndex = shallow(<CatIndex />)
     const indexHeader = catIndex.find("h2")
+    expect(catIndexHeading.length).toEqual(1)
     expect(indexHeader.text()).toEqual("Find your purrfect match")
+  })
+})
+```
+
+This fails successfully!  Let's go in and add a heading
+
+```javascript
+  <h2>Find your purrfect match</h2>
+```
+
+And it passes!  Let's write another test that is going to be a little more specific though, because we know that we want to display all of the cats, even if it is just one, but ultimately my data is not going to be handled in my index page, but all of my data is going to be stored in state on App.js.  This means, I need to pass my data down to this component as props and then display my content.  
+
+So how do I write a test for this?  Since I know I am passing props to my component, I need to setup my test to have props that is going to look like a state object.
+
+I am also going to borrow the syntax we used yesterday to setup our shallow render before each test (App.test.js).  Since I need to pass props, I will use the spread operator to pass in the props. 
+
+```javascript
+describe("When CatIndex renders", () => {
+  const props = {
+    cats: [
+      {
+        id: 1,
+        name: "Mittens",
+        age: 5,
+        enjoys: "sunshine and warm spots",
+        image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      }
+    ]
+  }
+  let catIndexRender
+  beforeEach(() => {
+    // Shallow that we bring in from enzyme will mount the component CatIndex
+    catIndex = shallow(<CatIndex {...props} />)
+  })
+  it("displays a heading", () => {
+    const catIndex = shallow(<CatIndex />)
+    const indexHeader = catIndex.find("h2")
+    expect(catIndexHeading.length).toEqual(1)
+    expect(indexHeader.text()).toEqual("Find your purrfect match")
+  })
+  it("displays a cat", () => {
+    // I want each cat to appear on a single card and that way I can check the proper amount of cats is displaying.
+    // I am going to use Reactstrap's card and since I am only passing one cat, I should have a length of 1
+    const catIndexCard = catIndex.find("Card")
+    expect(catIndexCard.length).toEqual(1)
   })
 })
 ```
 
 This is giving us a failing test...
 
-We are getting back undefined method for map because our component is not rendering correctly.  In this case, what does it mean if we get this error?
-- We get undefined method for map if there is something wrong with the array we are trying to iterate upon.  While it may seem like things are moving through our pages instantaneously, they are not and so what is happening is our test is trying to mount CatIndex before our props have been passed completely to our component.
-- We need our user to not see a broken page if cats have not been passed just yet, because they will get cats.  So let's add some conditional rendering on our CatIndex component to tell our component to not render until cats are fully ready to be displayed.
+So let's go ahead and make this test pass now.
 
-```javascript
-import React,  Component } from 'react'
+# Index
 
-class CatIndex extends Component {
-  render() {
-    return(
-      <>
-        <h2>Find your purrfect match</h2>
-        // this.props.cats will be undefined at first making it a falsy value, and then will become defined which will be truthy and will toggle between the two.
+  - App.js
 
-        {this.props.cats && this.props.cats.map(cat => {
-          return <p key={cat.id}>{cat.name}</p>
-        })}
-      </>
-    )
-  }
-}
-export default CatIndex
+      We want to be able to pass our data from state to our index page as props, but currently we can't because we can only pass it through a component call.  Currently we have a bunch of static routes, meaning they will all look the same.  No information is being passed to change it in some way.
+
+
+``` javascript
+  <Route path="/catindex" component={CatIndex}>
 ```
 
-This now makes our test pass.
+  We need to refactor this so that this is a dynamic route that allows us to pass data to our child components.  Instead of using the component attribute, we will use the render attribute that will take an anonymous function.  The return value of the anonymous function will be the component.
 
+  ```javascript
+  <Route path="/catindex" render={() => <CatIndex /> } />
+  ```
+
+  We can now pass information into this component call:
+
+    ```javascript
+  <Route path="/catindex" render={() => <CatIndex cats={this.state.cats} /> } />
+  ```
+
+  Now that we have our cats being passed to our cat index page as props, we can go to our cat index page and work on displaying all of the cats.
+
+  - First let's check that things are being passed correctly.  We can console.log in our render section this.props.cats
+
+  - Now we need to iterate over this.props.cats and display all cats.  We can go into javascript land in JSX by using curly braces where we can map over this.props.cats
+
+  ```javascript
+  import React from 'react';
+  import { Card, CardImg, CardText, CardBody,
+    CardTitle, Button } from 'reactstrap';
+
+  class CatIndex extends Component {
+
+  render() {
+    const { cats } = this.props
+    return(  
+    <>
+      <h2>Find your purrfect match</h2>
+      <div>
+      // this.props.cats will be undefined at first making it a falsy value, and then will become defined which will be truthy and will toggle between the two.
+        {cats && cats.map(cat => {
+          return(
+            <Card key={cat.id}>
+              <CardImg top width="100%" src={cat.image} alt="Card image cap" />
+              <CardBody>
+                <CardTitle>Hi, my name is {cat.name}</CardTitle>
+                <CardSubtitle>{cat.age}</CardSubtitle>
+                  <Button>More info here</Button>
+              </CardBody>
+            </Card>
+          )
+        })}
+        </div> 
+      )}
+    }
+  export default CatIndex
+  ```
+
+## Conditional Rendering
+this.props.cats &&
 The && is basically writing:
 ```javascript
 if(undefined && true)
@@ -146,7 +195,42 @@ The code block will not run until it becomes:
 if(true && true)
 ```
 
+This now makes our test pass.
 
+## Cat Show Test
+
+If we look at Trello, we also need to cover our CatShow page in our Read functionality.  Let's start by writing some tests.
+
+I am going to create a file called CatShow.test.js and copy my tests from CatIndex.test.js and refactor some of this.
+
+Since I only will be passing a single cat (hence why it's on Tinder), I can refactor it so I am only passing cat into the component shallow render and no longer need props, I can simply set a variable of a single cat.
+
+```javascript
+import React from 'react'
+import Enzyme, { shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import CatShow from './CatShow.js'
+Enzyme.configure({ adapter: new Adapter() })
+
+describe("When CatShow Renders", () => {
+  const cat = {
+        id: 1,
+        name: "Mittens",
+        age: 5,
+        enjoys: "sunshine and warm spots",
+        image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      }
+  
+  let catShowRender
+  beforeEach(() => {
+    catShowRender = shallow(<CatShow cat={cat} />)
+  })
+  it("Displays a profile for the cat being passed it", ()=>{
+    const cardRender = catShowRender.find("Card")
+    expect(cardRender.length).toEqual(1)
+  })
+})
+```
 
 ## Cat Show App.js
 
@@ -164,7 +248,7 @@ We have some refactoring on App.js to do because we have the same dilema as befo
   <Route 
     path="/catshow/:id" 
     render={(props) => {
-      // match.params.id is in the documentation and the syllabus but is some built in functionality that is giving us access to the id being passed in our path where we are not assigning it to a variable called id.  I want to console log it to see what is happening.
+      // match.params.id is in the documentation and the syllabus but is some built in functionality that is giving us access to the id being passed in our path where we are assigning it to a variable called id.  I want to console log it to see what is happening.
       let id = props.match.params.id
       console.log(id)
       return <CatShow />
@@ -226,11 +310,18 @@ class CatShow extends Component {
     let { cat } = this.props
     return(
       <>
-        <h2>Cat Show</h2>
-        <p>{cat.name}</p>
-        <p>{cat.age}</p>
-        <p>{cat.enjoys}</p>
-        <img src={cat.image} width="200px">
+        {cat && 
+            <Card body className="card-show">
+              <CardImg top width="100%" src={cat.image} />
+              <CardBody>
+                <CardTitle>Hi, my name is {cat.name}</CardTitle>
+                <CardSubtitle>{cat.age}</CardSubtitle>
+                <CardText>{cat.enjoys}</CardText>
+                <br />
+                <NavLink to="/catindex">
+              </CardBody>
+            </Card>
+          }
       </>
     )
   }
@@ -247,7 +338,7 @@ Check trello! We still don't have routing to this page setup.
 - NavLink ultimately is an a tag
 
 ```javascript
-import React,  Component } from 'react'
+import { React,  Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 class CatIndex extends Component {
@@ -294,31 +385,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals(); -->
-
-
-## Cat Show Testing?
-
-```javascript
-import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import CatShow from './CatShow'
-
-Enzyme.configure({ adapter: new Adapter()})
-
-describe("When CatShow renders", () => {
-  let cat = {
-    id: 3,
-    name: "Toast",
-    age: 1,
-    enjoys: "getting all the attention",
-    image: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-  }
-  it("displays a header", () => {
-    const catShow = shallow(<CatShow cat={cat} />)
-    const showHeading = catShow.find("h2")
-    expect(showHeading.text()).toEqual("Cat Show")
-  })
-
-})
-```

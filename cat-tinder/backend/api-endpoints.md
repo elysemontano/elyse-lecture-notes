@@ -18,7 +18,7 @@ An endpoint is one end of a communication channel. So when an API interacts with
 If I want to get a list of all the cats or objects off of my table I need to create a specific endpoint for index. The end point is where the request turns into the response. 
 
 The end result of our request response cycle is a page that our user can see- where as the end result of the API is the JSON package being delivered to us via our API
-The routes that get us the right controller method and the controller method that perform the right action to interact with our API.
+The routes get us the right controller method and the controller method that perform the right action to interact with our API.
 
 
 ## Routes
@@ -28,7 +28,7 @@ $ rails routes
 $
 
 ## Endpoints
-We need to create endpoints for the actions in our React application. For the time being we can stub these routes.
+We are going need to create endpoints for the actions in our Rails application, but for the time being we can stub these routes.
 
 stub: A method stub or simply stub in software development is a piece of code used to stand in for some other programming functionality. A stub may simulate the behavior of existing code or be a temporary substitute for yet-to-be-developed code. In this case, we will stub our controller methods.
 
@@ -81,7 +81,12 @@ RSpec.describe "Cats", type: :request do
     $ \l
 
 ```ruby
-      Cat.create name: 'Tobey', age: 5, enjoys: 'snuggles and teasing dogs'
+      Cat.create(
+        name: 'Felix',
+        age: 2,
+        enjoys: 'Walks in the park',
+        image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
+      )
       # create an active record query to the database
 
       # Make a request to the specific endpoint
@@ -99,6 +104,8 @@ end
 ```
 
 When we run that spec, it fails of course, because we don't have any code in the controller to respond to the request correctly. Yay failure!
+
+To see more clearly, I can run $ rspec spec/requests/cats_spec.rb -f d
 
 Now we can write the controller code to make it pass:
 
@@ -122,10 +129,11 @@ describe "POST /create" do
     # The params we are going to send with the request
     cat_params = {
       cat: {
-          name: 'Tobey',
-          age: 5,
-          enjoys: 'snuggles and teasing dogs'
-        }
+        name: 'Buster',
+        age: 4,
+        enjoys: 'Meow Mix, and plenty of sunshine.',
+        image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
+      }
     }
 
     # Send the request to the server and pass params which are cat_params
@@ -138,9 +146,9 @@ describe "POST /create" do
     cat = Cat.first
 
     # Assure that the created cat has the correct attributes
-    expect(cat.name).to eq 'Tobey'
-    expect(new_cat.age).to eq 5
-    expect(new_cat.enjoys).to eq 'snuggles and teasing dogs'
+    expect(cat.name).to eq 'Buster'
+    expect(new_cat.age).to eq 4
+    expect(new_cat.enjoys).to eq 'Meow Mix, and plenty of sunshine.'
   end
 end
 ```
@@ -159,7 +167,7 @@ And once again, this fails because we have no code in the controller to make it 
   def cat_params
     #              Table        Columns
     #              v                v
-    params.require(:cat).permit(:name, :age, :enjoys)
+    params.require(:cat).permit(:name, :age, :enjoys, :image)
   end
 ```
 
@@ -182,24 +190,26 @@ end
     it 'updates a cat' do
 
       # create the cat
-      cat_params = {
-        cat: {
-          name: 'Tobey',
-          age: 5,
-          enjoys: 'snuggles and teasing dogs'
-        }
+    cat_params = {
+      cat: {
+        name: 'Buster',
+        age: 4,
+        enjoys: 'Meow Mix, and plenty of sunshine.',
+        image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
       }
+    }
       post '/cats', params: cat_params
       cat = Cat.first
 
       # update the cat
-      updated_cat_params = {
-        cat: {
-          name: 'Tobey',
-          age: 6,
-          enjoys: 'snuggles and teasing dogs'
-        }
+    updated_cat_params = {
+      cat: {
+        name: 'Buster',
+        age: 5,
+        enjoys: 'Meow Mix, and plenty of sunshine.',
+        image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
       }
+    }
         #   While cat is the only item in our databse we dont know its id. It's id will be dynamic to each time we run our tests. so we will have to use some string interporlation to call on it's id and pass it the updated params 
 #   p cat
       patch "/cats/#{cat.id}", params: updated_cat_params
@@ -207,8 +217,8 @@ end
    # cat = Cat.first
       updated_cat = Cat.find(cat.id)
       expect(response).to have_http_status(200)
-    # expect(cat.age).to eq 8
-      expect(updated_cat.age).to eq 6
+    # expect(cat.age).to eq 5
+      expect(updated_cat.age).to eq 5
     end
   end
 
@@ -231,9 +241,10 @@ end
       # create the cat
       cat_params = {
         cat: {
-          name: 'Tobey',
-          age: 5,
-          enjoys: 'snuggles and teasing dogs'
+          name: 'Buster',
+          age: 4,
+          enjoys: 'Meow Mix, and plenty of sunshine.',
+          image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80'
         }
       }
       post '/cats', params: cat_params
