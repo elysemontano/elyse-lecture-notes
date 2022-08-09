@@ -65,6 +65,8 @@ Rails.application.routes.draw do
 end
 ```
 
+Add a tag to App.js to make sure we are displaying something
+
 This should get us setup initially so we can fire up our server.  
 `$ rails s`
 
@@ -98,7 +100,7 @@ A side note on this view that we get for sign up and sign in is that anytime we 
 
 ## Using Devise
 
-So let's go ahead and create a user by using the sign up page.
+So let's go ahead and create a user by using the sign up page. (/users/sign_up)
 When I sign up, I am routed back to whatever I have set to my landing page.
 
 I can also go into the Rails console and see that I have create a user in my database.
@@ -122,7 +124,7 @@ Inside here, we are going to pass an object over to React.  The object keys are 
 } %>
 ```
 
-We can now utilize these values inside our react side, so let's try console logging some of these.
+We can now utilize these values inside our react side, so let's try console logging some of these.  The object is being passed into React as props, so we will need to utilize our friend this.props.
 
 App.js
 ```javascript
