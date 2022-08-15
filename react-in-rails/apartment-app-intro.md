@@ -33,3 +33,7 @@ Let's take a look at our Trello board
 - We will now ALL go through the first Trello card together as this will ensure everyone is up and running and ready to work.  This is the time to work through any blockers.
 
 - Once every person has initial environment setup running, send everyone off into breakout rooms to work on the second card.  The second card is mobbed, so there is only one driver!  Once this PR has been submitted, PM will assign each team member their tasks.
+
+# Standup
+
+- We will meet as a group twice a day and talk about what you are working on and if you have any blockers.  We will meet at the beginning of the day and after lunch as a team.
