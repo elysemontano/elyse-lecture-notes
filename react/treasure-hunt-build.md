@@ -61,16 +61,15 @@
     Instead, we can map over square a certain number of times and this is where our board array on App.js comes in handy.  We know that each value is representative of what we want displayed in the square, and we can update each value at any given time.  This array is whee the logic is going to be controlled, and can be passed to our component to display.
 
 ```javascript
-  render() {
     return(
       <>
         <h1>Treasure Hunt</h1>
-        {this.state.board.map(value => {
+        {board.map(value => {
           return <Square />
         })}
       </>
     )
-  }
+
 
 ```
 
@@ -79,18 +78,16 @@
     Each div is a block level that is taking the width of the whole screen.  Since each one has that, we need to contain all of this into another div.  So in this case, we will wrap all of the squares with another div and give it a class to identify it.  In other words, we have created a parent that is around the children.
 
 ```javascript
-  render() {
     return(
       <>
         <h1>Treasure Hunt</h1>
         <div className="gameboard">
-        {this.state.board.map(value => {
+        {board.map(value => {
           return <Square />
         })}
         </div>
       </>
     )
-  }
 
 ```
 
@@ -117,12 +114,11 @@ h1 {
 ```javascript
 // App.js
 
-  render() {
     return(
       <>
         <h1>Treasure Hunt</h1>
         <div className="gameboard">
-        {this.state.board.map((value, index) => {
+        {board.map((value, index) => {
           return(            
             <Square 
               key={index}
@@ -133,18 +129,16 @@ h1 {
         </div>
       </>
     )
-  }
+
 
 // Square.js
-render() {
   return(
     <>
       <div className="square">
-      {this.props.value}
+      {props.value}
       </div>
     </>
   )
-}
 
 ```
 
@@ -171,7 +165,7 @@ render() {
 ```javascript
 // App.js
 
-        {this.state.board.map((value, index) => {
+        {board.map((value, index) => {
           return <Square 
             key={index}
             value={value}
@@ -189,20 +183,18 @@ render() {
 
 // Square.js
 
-handleClick = () => {
-  alert(this.props.index)
+const handleClick = () => {
+  alert(props.index)
 }
 
-render() {
-  console.log(this.props.index)
+  console.log(props.index)
   return(
     <>
-      <div className="square" onClick={this.handleClick}>
-      {this.props.value}
+      <div className="square" onClick={handleClick}>
+      {props.value}
       </div>
     </>
   )
-}
 
 ```
 
@@ -213,7 +205,7 @@ render() {
     Let's call this method in App.js handleGamePlay and inside this, we will take an arguement.  Let's call this index for our param, and for right now just setup an alert.
 
 ```javascript
-handleGamePlay = (index) => {
+const handleGamePlay = (index) => {
   alert(index)
 }
 ```
@@ -223,21 +215,21 @@ handleGamePlay = (index) => {
 ```javascript
 // App.js
 
-        {this.state.board.map((value, index) => {
+        {board.map((value, index) => {
           return <Square 
             key={index}
             value={value}
             index={index}
-            handleGamePlay={this.handleGamePlay}
+            handleGamePlay={handleGamePlay}
           />
         })}
 
 
 // Square.js
 
-handleClick = () => {
-  // alert(this.props.index)
-  this.props.handleGamePlay(this.props.index)
+const handleClick = () => {
+  // alert(props.index)
+  props.handleGamePlay(props.index)
 }
 
 ```
@@ -255,11 +247,14 @@ handleClick = () => {
     Emoji keyboard is control + command + space
 
 ```javascript
-handleGamePlay = (index) => {
+const App = () => {
+  
+  const [board, setBoard] = useState(["?", "?", "?", "?", "?", "?", "?", "?", "?"])
+
+const handleGamePlay = (index) => {
   // alert(index)
-  const { board } = this.state
   board[index] = "🌴"
-  this.setState({board: board})
+  setBoard(board)
 }
 ```
     User story complete - push code and PR
@@ -276,29 +271,22 @@ handleGamePlay = (index) => {
     - componentDidMount() is right after that and will run whatever we tell it to.
 
 ```javascript
-  this.state = {
-    board: ["?", "?", "?", "?", "?", "?" , "?" ,"?" ,"?"],
-    treasureLocation: null
-  }
-
-  componentDidMount() {
-    let randomNumber = Math.floor(Math.random() * this.state.board.length)
-    // console.log(randomNumber)
-    this.setState({treasureLocation: randomNumber})
-  }
+  const App = () => {
+  
+  const [board, setBoard] = useState(["?", "?", "?", "?", "?", "?", "?", "?", "?"])
+   const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random() * board.length))
 ```
 
     Now that we have this setup, we need to compare this random number to the box we are clicking.  We already have a method that is being called when we click something, and so this seems like a valid place to use a conditional to check for a winner.
 
 ```javascript
-handleGamePlay = (index) => {
-  const { board, treasureLocation } = this.state
+const handleGamePlay = (index) => {
   if(index === treasureLocation) {
     board[index] = "💎"
-    this.setState({board: board})
+    setBoard(board)
   } else {
     board[index] = "🌴"
-    this.setState({board: board})
+    setBoard(board)
   }
 }
 
@@ -312,30 +300,20 @@ handleGamePlay = (index) => {
     This will look very similar to the scenario we just setup for treasure.  
 
 ```javascript
-  this.state = {
-    board: ["?", "?", "?", "?", "?", "?" , "?" ,"?" ,"?"],
-    treasureLocation: null,
-    bombLocation: null
-  }
+    setBoard(["?", "?", "?", "?", "?", "?", "?", "?", "?"])
+    setTreasureLocation(Math.floor(Math.random() * board.length))
+    setBombLocation(Math.floor(Math.random() * board.length))
 
-  componentDidMount() {
-    let treasure = Math.floor(Math.random() * this.state.board.length)
-    this.setState({treasureLocation: treasure})
-    let bomb = Math.floor(Math.random() * this.state.board.length)
-    this.setState({bombLocation: bomb})
-  }
-
-  handleGamePlay = (index) => {
-  const { board, treasureLocation, bomb } = this.state
+ const handleGamePlay = (index) => {
   if(index === treasureLocation) {
     board[index] = "💎"
-    this.setState({board: board})
+    setBoard(board)
   } else if(index === bomb) {
     board[index] = "💣"
-    this.setState({board: board})
+    setBoard(board)
   } else {
     board[index] = "🌴"
-    this.setState({board: board})
+    setBoard(board)
   }
 }
 ```
@@ -347,106 +325,76 @@ handleGamePlay = (index) => {
 ### Completed App.js:
 
 ```javascript
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Square from './components/Square'
 import './App.css'
 
-class App extends Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      // the spaces array represents the 9 squares on the board
-      board: ["?", "?", "?", "?", "?", "?", "?", "?", "?"],
-      // can also be written as:
-      // board: Array(9).fill("?"),
-      treasureLocation: null,
-      bombLocation: null,
-      counter: 5,
-      gameOver: false
-    }
-  }
+const App = () => {
+  const [board, setBoard] = useState(["?", "?", "?", "?", "?", "?", "?", "?", "?"])
+  const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+  const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length))
+  const [counter, setCounter] = useState(5)
+  const [gameOver, setGameOver] = useState(false)
 
-  componentDidMount(){
-    // componentDidMount is a react life cycle method that is called on creation of the component
-    // call the method that assigns the values for bomb and treasure
-    this.gameSet()
-  }
-
-  gameSet = () => {
-    // setting random numbers for treasure and bomb location
-    let treasure = Math.floor(Math.random() * this.state.board.length)
-    let bomb = Math.floor(Math.random() * this.state.board.length)
-    // if the treasure and bomb location are the same, reassign the bomb
-    if(treasure === bomb){
-      bomb = Math.floor(Math.random() * this.state.board.length)
-    }
-    this.setState({ treasureLocation: treasure, bombLocation: bomb })
-  }
-
-  restartGame = () => {
+  const restartGame = () => {
     // sets the initial state values
-    this.setState({
-      board: ["?", "?", "?", "?", "?", "?", "?", "?", "?"],
-      treasureLocation: null,
-      bombLocation: null,
-      counter: 5,
-      gameOver: false
-    })
-    // calls the method that sets the bomb and treasure values
-    this.gameSet()
+    setBoard(["?", "?", "?", "?", "?", "?", "?", "?", "?"])
+    setTreasureLocation(Math.floor(Math.random() * board.length))
+    setBombLocation(Math.floor(Math.random() * board.length))
+    setCounter(5)
+    setGameOver(false)
   }
 
-  handleGamePlay = (index) => {
-    // destructures values out of state
-    const { board, treasureLocation, bombLocation, counter, gameOver } = this.state
+  const handleGamePlay = (index) => {
     // decrements the counter for every click
     let count = counter - 1
     if(index === treasureLocation && !gameOver && counter > 0){
       board[index] = "💎"
-      this.setState({ board: board, gameOver: "winner" })
+      setBoard(board)
+      setGameOver("winner")
     } else if(index === bombLocation && !gameOver && counter > 0){
       board[index] = "💣"
-      this.setState({ board: board, gameOver: "lose" })
+      setBoard(board)
+      setGameOver("lose")
     } else if(!gameOver && counter > 0 && board[index] === "?"){
       board[index] = "🌴"
-      this.setState({ board: board, counter: count })
+      setBoard(board)
+      setCounter(count)
     }
   }
 
-  render() {
     // logging the treasure and bomb location during development
-    console.log("treasure:", this.state.treasureLocation, "bomb:", this.state.bombLocation)
+    console.log("treasure:", treasureLocation, "bomb:", bombLocation)
     return(
-      <React.Fragment>
+      <>
         <h1>Treasure Hunt</h1>
-        <h3>Counter: { this.state.counter }</h3>
+        <h3>Counter: {counter}</h3>
         <div id="gameBoard">
-          { this.state.board.map((value, index) => {
+          { board.map((value, index) => {
             return (
               <Square
                 value={ value }
                 key={ index }
                 index={ index }
-                handleGamePlay={ this.handleGamePlay }
+                handleGamePlay={ handleGamePlay }
               />
             )
           }) }
         </div>
-        { this.state.gameOver === "winner" &&
+        { gameOver === "winner" &&
           <div className="endGameMessage">
             <h3>Woo hoo!  You found the treasure!</h3>
-            <button onClick={ this.restartGame }>Start Again</button>
+            <button onClick={ restartGame }>Start Again</button>
           </div>
         }
-        { (this.state.gameOver === "lose" || this.state.counter === 0)  &&
+        { (gameOver === "lose" || counter === 0)  &&
           <div className="endGameMessage">
             <h3>Oh no!  You lost the game!!</h3>
-            <button onClick={ this.restartGame }>Start Again</button>
+            <button onClick={ restartGame }>Start Again</button>
           </div>
         }
-      </React.Fragment>
+      </>
     )
-  }
 }
 
 export default App

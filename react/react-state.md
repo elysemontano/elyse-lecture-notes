@@ -31,16 +31,14 @@ We are going to rewrite the boiler plate code given which currently renders the 
 
 ```javascript
 // To gain access to the foundational React code to make it all work, we have to import react
-import React, { Component } from 'react'
+import React from 'react'
 
-class App extends Component {
-  render() {
+const App = () => {
     return(
       <>
         <h2>Hello World</h2>
       </>
     )
-  }
 }
 export default App
 ```
@@ -61,8 +59,7 @@ For this example, I am making a very simple app that is going to log of the numb
 #### Starting with Markup
 Let's start by adding some basic static data. See a header, the current number of miles, and a button that can increase the miles by one.
 ```javascript
-class App extends Component {
-  render() {
+const App = () =>  {
     return(
       <>
         <h2>Mile Tracker</h2>
@@ -70,7 +67,6 @@ class App extends Component {
         <button>Add a mile</button>
       </>
     )
-  }
 }
 ```
 
@@ -82,26 +78,27 @@ Class variables are stored in the constructor. We know the constructor is a meth
  In React there is a very particular way that we create class variables. It is called state. State is a variable that holds information as an object which can have many key value pair as needed. The values in the state object can be made available to the entire class.
 
 ```javascript
-constructor(props){
-  super(props)
-  this.state = {
+import React, { useState } from 'react'
 
-  }
+const App = () => {
+  const [miles, setMiles] = useState(0)
+
+  return (
+    <>
+        <h2>Mile Tracker</h2>
+        <p>Miles: 0</p>
+        <button>Add a mile</button>
+    </>
+  )
 }
+
+export default App
 ```
 
 This setup is exactly, exactly what you will write when you are adding state to a component. The keys and values that get added to state will depend on what your application needs. Our application needs to store miles. So we will create a key:value pair of miles and set an initial value of 0.
 
 Now if I want to log the value of our state object what would I need to write in this console log to access the value.
 
-```javascript
-constructor(props){
-  super(props)
-  this.state = {
-    miles: 0
-  }
-}
-```
 `this.state` is the name of the object and `miles` is the key that holds the value of 0.
 
 To see this value in action we can log `this.state.miles` inside the render before the return. Inspecting the page will show the value.
@@ -110,29 +107,36 @@ To see this value in action we can log `this.state.miles` inside the render befo
 Instead of hard coding the value of 0 in our JSX we can reference the state value. We have `this.state.miles` logged in JavaScript. We need to reference it down in JSX land. If I put `this.state.miles` inside the JSX tag it just treats those characters like innerHTML.
 
 ```javascript
-render() {
-  console.log(this.state.miles)
-  return(
+import React, { useState } from 'react'
+
+const App = () => {
+  const [miles, setMiles] = useState(0)
+
+console.log(miles)
+  return (
     <>
-      <p>Miles: this.state.miles</p>
-      <button>Add a mile</button>
+        <h2>Mile Tracker</h2>
+        <p>Miles: miles</p>
+        <button>Add a mile</button>
     </>
   )
 }
+
 ```
 
 This isn't what we want. We need to tell our program to read this as JavaScript. So to do that I have to wrap this variable name in curly braces. The curly brace indicate that we are escaping out of JSX and using passing in JavaScript code.
 
 ```javascript
-render() {
-  console.log(this.state.miles)
-  return(
+console.log(miles)
+  return (
     <>
-      <p>Miles: {this.state.miles}</p>
-      <button>Add a mile</button>
+        <h2>Mile Tracker</h2>
+        <p>Miles: {miles}</p>
+        <button>Add a mile</button>
     </>
   )
-}
+
+
 ```
 
 So now I see 0 but it is coming from state rather than from a hard coded 0 in the JSX. And if I change the value in state, I get a repaint that updates the DOM and changes the view.
@@ -146,7 +150,7 @@ Our function is going to take the current value of miles and add one. We need to
 
 ```javascript
 addMile = () => {
-  this.setState()
+  setMiles()
 }
 ```
 
@@ -154,7 +158,7 @@ addMile = () => {
 
 ```javascript
 addMile = () => {
-  this.setState({miles: this.state.miles + 1})
+  setMiles({miles + 1})
 }
 ```
 
@@ -166,14 +170,13 @@ Just like any function, it is not doing anything until it gets called. And we wa
 Button is a JSX tag that is almost exactly like an HTML button tag. And the HTML button tag can take attributes. Meaning we can add information inside the opening tag that modifies the behavior of the tag. `onClick` is the attribute and it is followed with an equal sign and a value. But in this case the value is JavaScript, so we need our curlies. And inside the curlies we need to call the function here that belongs to the class and we are inside the context of our class, so we need to use `this`
 
 ```javascript
-render() {
   return(
     <>
-      <p>Miles: {this.state.miles} </p>
-      <button onClick={this.addMile}>Add a mile</button>
+      <p>Miles: {miles} </p>
+      <button onClick={addMile}>Add a mile</button>
     </>
   )
-}
+
 ```
 
 Now we have a working app!
@@ -190,17 +193,15 @@ Cut everything and move it over.
 To do that, we need two things. One is a component call.
 
 ```javascript
-import React, { Component } from 'react'
+import React from 'react'
 
-class App extends Component {
-  render() {
-    return(
-      <>
-        <h1>Mile Tracker</h1>
-        <Tracker />
-      </>
-    )
-  }
+const App = () => {
+  return(
+    <>
+      <h1>Mile Tracker</h1>
+      <Tracker />
+    </>
+  )
 }
 export default App
 ```
@@ -212,7 +213,6 @@ import Tracker from './components/Tracker'
 Now we are back to where we started, but now we have options.
 
 ```javascript
-render(){
   return(
     <>
       <h1>Mile Tracker</h1>
@@ -224,7 +224,6 @@ render(){
       <Tracker />
     </>
   )
-}
 ```
 
 We wrote one component and can call it as many times as we want and all of them maintain their own state.
@@ -254,24 +253,19 @@ The key is the styling property and the value has to be a data type that JavaScr
 One final hint about styling. The value has to be a data type JavaScript recognizes, but that can be stored in a variable. So I can also do this:
 
 ```javascript
-class Tracker extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      miles: 0,
-      color: "pink"
-    }
-  }
+const App = () => {
+  const [miles, setMiles] = useState(0)
+  const [color, setColor] = useState("pink")
 
   addMile = () => {
-    this.setState({miles: this.state.miles + 1})
+    setMiles({miles + 1})
   }
 
   render() {
     return(
       <>
-        <p>Miles: {this.state.miles} </p>
-        <button onClick={this.addMile} style={ {color: this.state.color} }>Add a mile</button>
+        <p>Miles: {miles} </p>
+        <button onClick={addMile} style={ {color: color} }>Add a mile</button>
       </>
     )
   }
