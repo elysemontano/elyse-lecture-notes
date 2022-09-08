@@ -13,7 +13,7 @@
 <footer> </footer>
 ```
 
-    - In this tag I can put a copyright logo © which is "& copy" with no space between and add the names in my team
+    - In this tag I can put a copyright logo © which is &copy with no space between and add the names in my team
       
 ```html
  <footer>

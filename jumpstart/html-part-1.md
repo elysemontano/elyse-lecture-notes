@@ -105,9 +105,9 @@ Code Editors and File Naming
 
 
 ## Planning
-- Let’s plan out what we want our meatball page to look like. Pieces of the page… 
+- Let’s plan out what we want our page to look like. Pieces of the page… 
 
- ** look at a recipe online either google or use this link) (https://www.cookingclassy.com/meatball-recipe/ ** 
+ ** look at a recipe online either google or use this link) (https://littlespoonfarm.com/apple-pie-recipe/ ** 
 
 - While looking over the recipe, explain each of the basic parts that we will want to bring into our site. 
 ```html
@@ -132,7 +132,7 @@ Code Editors and File Naming
   <body>
     <h1> LEARN's Apple Pie </h1>
     <h2> A spoonful or forkful will make your worries go bye! </h2>
-    <hr>
+    <hr> -- Creates a line
     <div>
       <p> Go to your kitchen and grab your utensils. Let them know they are about to do something spectacular. Tell your tastebuds to get ready for a splendid occurence because you are about to bake some Learn Apple Pie! </p>
 
@@ -145,7 +145,7 @@ Code Editors and File Naming
 ```html
 <ul>:
 ingredients
-    A UL tag creates an unordered list which is perfect for setting out a list of ingredients needed for the meatballs
+    A UL tag creates an unordered list which is perfect for setting out a list of ingredients 
 
 <li>:
 for each ingredient.
