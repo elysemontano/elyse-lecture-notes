@@ -64,11 +64,11 @@ Your tests speak volumes about you as a developer, as much or more than the actu
 ### Process
 1: Write the test first! 
 
-Prompt:  Create a function called greeter that returns a string that says Hi, Delta 2022!!!
+Prompt:  Create a function called greeter that returns a string that says Hi, <Cohort> 2022!!!
 
 Before writing a test, I like to determine any inputs and my expected output
 Input: none
-Output: "Hi, Delta 2022!!!"
+Output: "Hi, <Cohort> 2022!!!"
 
 #### Explanation of Testing Syntax with Jest (use this explanation while pseudocoding in the text editor)
 Jest uses a method called describe() that runs other nested methods. First we invoke the describe method, providing the argument of "greeter" which is our function name, followed by a comma, a set of parentheses, arrow syntax and an opening curly brace to allow us to nest more code within its block scope. (place pseudocode above the describe method)
@@ -82,14 +82,14 @@ describe("greeter", () => {
 
   ```javascript
   // a test/it method, nested within the describe block, that in plain words, describes that the function does.
-  it("returns a string that says Hi, Delta 2022!!!", () => {
+  it("returns a string that says Hi, Cohort 2022!!!", () => {
   ```
 
     Third we then invoke the expect method, providing it an argument of the function call, and then chain a matcher to the end of it, in this case we use toEqual(), which will check that the return of the function to be a string that says hi.
   
     ```javascript  
     // expect will invoke the function and compare the result to a predetermined expected output using .toEqual matcher
-    expect(greeter()).toEqual("Hi, Delta 2022!!!")
+    expect(greeter()).toEqual("Hi, Cohort 2022!!!")
   })
 })
     ```
@@ -108,7 +108,7 @@ It's important that we read our fail/error messages thoroughly, as it won't alwa
 
 ```javascript
 const greeter = () => {
-  return "Hi, Alpha 2022!!!"
+  return "Hi, Cohort 2022!!!"
 }
 ```
 Notice: There is no console.log() or function call. Jest handles all of that in the expect method. Our function name AND the return must exactly match what we provided our expect and matcher methods.
@@ -144,6 +144,14 @@ describe("doYouUnderstand", () => {
   })
 })
 
+// Pseudocode
+// Create a function called doYouUnderstand that takes in a string as an arguement
+  // One parameter: string
+  // Write a conditional to evaluate if string equals "yes"
+    // return "help others"
+  // Otherwise evaluate if string equals "no"
+    // return "ask questions"
+
 const doYouUnderstand = (string) => {
   if(string === "yes"){
     return "help others"
@@ -166,7 +174,7 @@ Prompt: Create a function that takes in an array and a string and appends the st
 
 // Prompt: Create a function that takes in an array and a string and appends the string to the end of the array
 
-// Input: ["take notes", "pay attention", "practice", "take breaks"]
+// Input: ["take notes", "pay attention", "practice", "take breaks"], "ask questions"
 // Output: ["take notes", "pay attention", "practice", "take breaks", "ask questions"]
 
 describe("becomeADeveloper", () => {
