@@ -51,10 +51,9 @@
           -Play around with a few different types from the W3School docs: password will block characters, checkbox, submit will create a button, etc
 
 ```javascript
-    import React, { Component } from 'react'
+    import React from 'react'
 
-class App extends Component {
-  render() {
+const App = () => {
     return(
       <>
         <h1>Greeter App</h1>
@@ -66,7 +65,7 @@ class App extends Component {
       </>
     )
   }
-}
+
 export default App
 ```
 
@@ -80,24 +79,22 @@ export default App
 
       
   ``` javascript 
-import React, { Component } from 'react'
+import React from 'react'
 
-class App extends Component {
+const App = () => {
 
-  handleChange = () => {
+  const handleChange = () => {
   }
 
-  render() {
     return(
       <>
         <h1>Greeter App</h1>
         <input 
           type="text" 
-          onChange={this.handleChange} 
+          onChange={handleChange} 
         /> // ** Start here! **
       </>
     )
-  }
 }
 export default App
 ```
@@ -107,9 +104,9 @@ export default App
       - It is common practice for event to be shortened to e
 
 ``` javascript 
-import React, { Component } from 'react'
+import React from 'react'
 
-class App extends Component {
+const App = () => {
 
   handleChange = (e) => {
     console.log(e) // first step
@@ -124,15 +121,13 @@ class App extends Component {
           // - Displays the value inside the input
   }
 
-  render() {
     return(
     <>
       <h1>Greeter App</h1>
-      <input type="text" onChange={this.handleChange} />
+      <input type="text" onChange={handleChange} />
     </>
     )
-    }
-    }
+   }
 export default App
 ```
           
@@ -157,29 +152,23 @@ export default App
 
 
 ``` javascript
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: ""
-    }
-  }
+const App = () => {
+  const [name, setName] = useState("")
 
   handleChange = (e) => {
     this.setState({name: e.target.value})
   }
 
-  render() {
-    console.log(this.state.name)
+    console.log(name)
     return(
       <>
         <h1>Greeter App</h1>
             // first step: show a hardcoded value
         <input
           type="text"
-          onChange={this.handleChange}
+          onChange={handleChange}
           value="placeholder"
         />
 
@@ -187,12 +176,11 @@ class App extends Component {
             // second step: change the value to reflect the current value of state
         <input
           type="text"
-          onChange={this.handleChange}
-          value={this.state.name}
+          onChange={handleChange}
+          value={name}
         />
       </>
     )
-  }
 }
 export default App
 ```
@@ -213,50 +201,41 @@ export default App
 
 ``` javascript
 // src/App.js
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Yelling from './components/Yelling'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: ""
-    }
-  }
+const App = () => {
+  const [name, setName] = useState("")
 
   handleChange = (e) => {
-    this.setState({name: e.target.value})
+    setName(e.target.value)
   }
 
-  render() {
     return(
       <>
         <h1>Greeter App</h1>
         <input
           type="text"
-          onChange={this.handleChange}
-          value={this.state.value}
+          onChange={handleChange}
+          value={name}
         />
-        <Yelling name={this.state.name}/>
+        <Yelling name={name}/>
       </>
     )
-  }
 }
 export default App
 
 // src/components/Yelling.js
 
-import React, { Component } from 'react'
+import React from 'react'
 
-class Yelling extends Component {
-  render() {
+const Yelling = (props) => {
     return(
       <>
         <h3>HELLO, I SEE YOUR NAME IS:</h3>
-        <p>{this.props.name}</p>
+        <p>{props.name}</p>
       </>
     )
-  }
 }
 export default Yelling
 ```
@@ -272,21 +251,19 @@ export default Yelling
 
 
 ```javascript
-import React, { Component } from 'react'
+import React from 'react'
 
-class Yelling extends Component {
-  yelling = (userInput) => {
+const Yelling = (props) => {
+  const yelling = (userInput) => {
     return userInput.toUpperCase()
   }
 
-  render() {
     return(
       <>
         <h3>HELLO, I SEE YOUR NAME IS:</h3>
-        <p>{this.yelling(this.props.name)}</p>
+        <p>{yelling(props.name)}</p>
       </>
     )
-  }
 }
 export default Yelling
 ```
