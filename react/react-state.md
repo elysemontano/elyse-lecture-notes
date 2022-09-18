@@ -7,16 +7,16 @@
 
 ### Goals
 - Modeling git workflow putting a React app inside a shared repo
-- Review of basic React class components structure
-- Adding a constructor and state object
-- Adding logic to a React class component
+- Review of basic React functional components structure
+- Adding a state object using useState()
+- Adding logic to a React functional component
 - Invoking a component multiple times creating multiple instances of a single class that operate independently
 - Discuss the syntax differences of inline styling in JSX vs HTML
 
 ### Major Takeaways
-- Constructor and state object syntax
-- Placement of constructor, logic, and render inside a React class component
-- `setState()` method
+- useState() and state object syntax
+- Placement of logic, and render inside a React functional component
+- `useState()` method
 
 ### Lecture
 - Create a branch
@@ -45,19 +45,18 @@ export default App
 
 And what is happening here?
 - We have an import that gives us the good stuff from mother React
-- We have a class that is inheriting from React Component
-- We have a render, which is a method that is specific to React class components
-- We have a return from that render method, just like any other method in JavaScript, we want to return something
+- We have a function called App 
+- We have a return (because every function needs a return)
 - But in React what we return is exactly one item of JSX
 - And it is a great practice to have that one thing that gets returned be a React Fragment which are noted by empty opening and closing tags
 - Nested between the empty tags we can add as many additional tags as we want
-- Then we have an export that makes this class findable to the rest of the project
+- Then we have an export that makes this function findable to the rest of the project
 
 #### Running App Example
-For this example, I am making a very simple app that is going to log of the number of miles I run per month. I want to be able to see the current number of miles and add miles to the current number.
+For this example, I am making a very simple app that is going to keep a log of the number of miles I run per month. I want to be able to see the current number of miles and add miles to the current number.
 
 #### Starting with Markup
-Let's start by adding some basic static data. See a header, the current number of miles, and a button that can increase the miles by one.
+Let's start by adding some basic static data. See a header, the current number of miles, and a button that can increase the miles by one.  Whenever we are using a button, we need to be thinking about some kind of logic, because the button will always be performing some type of action.
 ```javascript
 const App = () =>  {
     return(
@@ -70,18 +69,20 @@ const App = () =>  {
 }
 ```
 
-#### State Object
+#### State
 We need a place to store the miles. We need to maintain a running total of miles that can be updated every time we click the button. Right now I have a hard coded 0. Eventually we are going to replace that 0 with a class variable that can reflect the changes in the miles.
 
-Class variables are stored in the constructor. We know the constructor is a method that runs automatically when the component is invoked. Becaue we are inheriting, we also need to use super which helps us call methods that live in the parent component. 
+State is a special variable that we can utilize in React components which can affect how our page is rendered. 
 
- In React there is a very particular way that we create class variables. It is called state. State is a variable that holds information as an object which can have many key value pair as needed. The values in the state object can be made available to the entire class.
+State is a variable that holds information within your application that belongs to the React component.  State gives us 2 things, we have a variable that can be displayed and a method that will update that variable.  
 
 ```javascript
 import React, { useState } from 'react'
 
 const App = () => {
+  // Display will be what I want to call it, the method to update which conventions has us using the same name of the variable but with the word set before it.
   const [miles, setMiles] = useState(0)
+  // useState is a built in piece of React functionality called a state hook. (A method that belongs to React, so we need to add this in our import)
 
   return (
     <>
@@ -95,16 +96,11 @@ const App = () => {
 export default App
 ```
 
-This setup is exactly, exactly what you will write when you are adding state to a component. The keys and values that get added to state will depend on what your application needs. Our application needs to store miles. So we will create a key:value pair of miles and set an initial value of 0.
+ Our application needs to store miles. So we will set an initial value of 0.
 
-Now if I want to log the value of our state object what would I need to write in this console log to access the value.
-
-`this.state` is the name of the object and `miles` is the key that holds the value of 0.
-
-To see this value in action we can log `this.state.miles` inside the render before the return. Inspecting the page will show the value.
 
 #### Passing Class Variables in JSX
-Instead of hard coding the value of 0 in our JSX we can reference the state value. We have `this.state.miles` logged in JavaScript. We need to reference it down in JSX land. If I put `this.state.miles` inside the JSX tag it just treats those characters like innerHTML.
+Instead of hard coding the value of 0 in our JSX we can reference the state value.  If I put `miles` inside the JSX tag it just treats those characters like innerHTML.
 
 ```javascript
 import React, { useState } from 'react'
@@ -112,7 +108,6 @@ import React, { useState } from 'react'
 const App = () => {
   const [miles, setMiles] = useState(0)
 
-console.log(miles)
   return (
     <>
         <h2>Mile Tracker</h2>
@@ -144,9 +139,9 @@ So now I see 0 but it is coming from state rather than from a hard coded 0 in th
 #### Updating State with Logic
 The button needs to add a mile every time it gets clicked. Updating the number of miles is an action. The button will have behavior. And in order to create behavior means we need to create a function.
 
-The functions we write that produce behavior specific to our app live between the constructor and the render. Think of your class components as having three parts. Constructor at the top, custom logic function in the middle, render at the bottom. The only one that is vital to put content on the page is the render. The other parts are for preforming logic.
+The functions we write that produce behavior specific to our app lives after our state variable. 
 
-Our function is going to take the current value of miles and add one. We need to update the value of that particular key in state. We also need to ensure React recognizes the change and updates its view appropriately. So because of this React has a hard and fast rule: you don't update state directly. React has a special method called `setState()` whose job is to set and update the values in the state object. And since it is a method that is being called in the context of the class, we will use our old friend 'this'.
+Our function is going to take the current value of miles and add one. We need to update the value in state. We also need to ensure React recognizes the change and updates its view appropriately.  This is where we are going to use the method in state called setMiles.  
 
 ```javascript
 addMile = () => {
@@ -154,7 +149,7 @@ addMile = () => {
 }
 ```
 
-`setState()` is designed interact with the state object. Inside `setState()` we are passing an object with the key we want to update, in our case miles. And the new value. In our case, we want to increase the value by one. So if I want to reference the value, we will do that the same way we did it other places in the app and add one.
+Inside `setMiles()` we can pass in here whatever we want our variable to be updated to when this function is called. In this case, we want to increase the value by one. So if I want to reference the value, we will do that the same way we did it other places in the app and add one.
 
 ```javascript
 addMile = () => {
@@ -162,12 +157,10 @@ addMile = () => {
 }
 ```
 
-`setState()` is the output of our function. So we can think of `setState()` as the return in a React function. Just like return there should only be one `setState()` and when we hit that line the function action is done.
-
 #### Adding the Button Action
 Just like any function, it is not doing anything until it gets called. And we want to call our function when the button gets clicked. So we need an onClick attribute.
 
-Button is a JSX tag that is almost exactly like an HTML button tag. And the HTML button tag can take attributes. Meaning we can add information inside the opening tag that modifies the behavior of the tag. `onClick` is the attribute and it is followed with an equal sign and a value. But in this case the value is JavaScript, so we need our curlies. And inside the curlies we need to call the function here that belongs to the class and we are inside the context of our class, so we need to use `this`
+Button is a JSX tag that is almost exactly like an HTML button tag. And the HTML button tag can take attributes. Meaning we can add information inside the opening tag that modifies the behavior of the tag. `onClick` is the attribute and it is followed with an equal sign and a value. But in this case the value is JavaScript, so we need our curlies. And inside the curlies we need to call the function.
 
 ```javascript
   return(
@@ -184,13 +177,13 @@ Now we have a working app!
 #### Creating Multiple Trackers
 But If I want to keep track of my miles run per month, I need more than one tracker. We are going to do a big refactor here. So take this in, take a screen shot, whatever you want to do. We are going to tear this apart. We are going to move all this logic into another component.
 
-App.js is the highest level component. It is the class that puts everything else on the page. We are going to group all the other components we create into another folder. This is just a convention to keep our files organized. Inside of `src` we are going to create a new folder called components. And inside of components, we will create a file called Tracker.js
+App.js is the highest level component. It is the component that puts everything else on the page. We are going to group all the other components we create into another folder. This is just a convention to keep our files organized. Inside of `src` we are going to create a new folder called components. And inside of components, we will create a file called Tracker.js
 
-Tracker.js is uppercase because it is a nice convention to name the file exactly the same as the class. Just like App.js is the name of the file and the name of the class.
+Tracker.js and any other components will use the Pascal naming convention.
 
 Cut everything and move it over.
 
-To do that, we need two things. One is a component call.
+Now, that we have all of this brought over into our new file, we want to be able to display it.  To do that, we need two things. One is a component call.
 
 ```javascript
 import React from 'react'
@@ -232,9 +225,6 @@ Each one of these component calls are a unique instance of the class, so even th
 
 And that is pretty cool.
 
-#### Display vs Logic Components
-Handling state is an important part of creating React apps. But you don't want every component to have state. It is important to keep the data centralized. In this example we have one component that holds state and one that does not. This is also known as creating a logic component (that holds state) and a display component (that does not).
-
 #### Inline Styling with JSX
 One last thing, to talk about. That will help you with your challenge today.
 
@@ -273,10 +263,9 @@ const App = () => {
 ```
 
 ### Review
-- What is the constructor?
 - What is JSX?
 - What is state?
-- What is `setState()`?
+- How do we update our state variable?
 - What is an attribute?
 - When do we need to use curly braces in the JSX section?
 - Where do git commands happen vs yarn commands
