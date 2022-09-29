@@ -11,6 +11,11 @@ History of HTML
 - Some of the most basic formatting added included:  Headers, bold text or important italicized, bullet points, bigger and smaller text, etc
 
 - Eventually, HTML moved onto more broad uses. Remember myspace? Probably used HTML/CSS to edit your page
+ 
+
+What is a tag
+- Just a wrapper that tells our browser how to display content in a certain way. That means, generally, it has a starting tag that happens before our content and a closing tag, after the content.  
+- I want to mention that sometimes, some tags do NOT need a closing tag, but don’t worry about that for right now, we’ll get to that later. 
 
 
 
@@ -35,6 +40,8 @@ GENERAL RULE
 
     https://www.w3schools.com/tags/default.asp
     https://developer.mozilla.org/en-US/docs/Web/HTML
+    
+    
 
 
 Create a folder on desktop called jumpstart
@@ -61,12 +68,13 @@ In order to create a file in Atom we need to go to the top of our screen where i
 - This is the underlying structure that every HTML document will always have.
 
 ```html
-<!DOCTYPE html>   Ensures the most recent version of HTML
+<!DOCTYPE html> 
 <html lang="en" dir="ltr"> 
    ( lang="en" stands for the language is in english
     dir="ltr" stands for direction runs from left to right)
 
 <head> One Head / Metadata and info / Things you don’t see on the screen
+
    <title>LEARN's Apple Pie</title> Shows up in tab / Helps with SEO / Everything You write goes between HTML tags
 </head> 
 <body>
