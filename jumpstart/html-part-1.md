@@ -2,8 +2,6 @@
 
  **  no screen share  ** 
 
-What is computer programming?
-
 History of HTML
 
 - Hyper Text Markup Language: structure and content of a page. Not the styling, not the functionality. Basically the skeleton.Whenever you have looked at the internet and read something on a web page you have been looking at HTML. 
@@ -12,17 +10,13 @@ History of HTML
 
 - Some of the most basic formatting added included:  Headers, bold text or important italicized, bullet points, bigger and smaller text, etc
 
-- Eventually moved onto more broad uses. Remember myspace? Probably used HTML/CSS to edit your page
-
-Let’s look at some HTML through Chrome!
-
- **  yes screen share  ** 
-
-What is a tag
-- Just a wrapper that tells our browser how to display content in a certain way. That means, generally, it has a starting tag that happens before our content and a closing tag, after the content.  
-- I want to mention that sometimes, some tags do NOT need a closing tag, but don’t worry about that for right now, we’ll get to that later. 
+- Eventually, HTML moved onto more broad uses. Remember myspace? Probably used HTML/CSS to edit your page
 
 
+
+# HTML
+- HTML is made up of many tags. 
+- A tag is just a wrapper that tells our browser how to display content in a certain way. That means, generally, it has a starting tag that happens before our content and a closing tag, after the content.  
 
  **  Send in slack  **  
 ```
@@ -31,6 +25,10 @@ GENERAL RULE
       ^		                		^                                  
  Opening tag			      Closing tag
 ```
+
+- I want to mention that sometimes, some tags do NOT need a closing tag, but don’t worry about that for right now, we’ll get to that later. 
+
+
 
  ** yes screen share ** 
 - Look at W3 schools or MDN for all types of elements/tags
@@ -45,11 +43,12 @@ Code Editors and File Naming
 
  ** Open up Atom and create a new file called index.html ** 
 
-- In order to create a file in Atom we need to go to the top of our screen where it says file and scroll down to where it says “Save As” and we want to name this file index.html.
-"Index" is a specific word that the browser understands to mean "the first page".
+In order to create a file in Atom we need to go to the top of our screen where it says file and scroll down to where it says “Save As” and we want to name this file index.html.
 
-- We can use different words to create an html file, but for starters we'll stick with index.
-.html (dot html) is to signify the extension or type of file. Similar to how you might have worked with Word documents that end with .doc
+
+  - "Index" is a specific word that the browser understands to mean "the first page". We can use different words to create an html file, but for starters we'll stick with index.
+
+  - .html (dot html) is to signify the extension or type of file. Similar to how you might have worked with Word documents that end with .doc.  It basically says what this file is all about
 
 - It's important to indicate the extension of a file because not all programs can process all kinds of files. Your web browser knows how to process an html file.
 
@@ -64,10 +63,9 @@ Code Editors and File Naming
 ```html
 <!DOCTYPE html>   Ensures the most recent version of HTML
 <html lang="en" dir="ltr"> 
-    lang="en" stands for the language is in english
-    dir="ltr" stands for direction runs from left to right
+   ( lang="en" stands for the language is in english
+    dir="ltr" stands for direction runs from left to right)
 
-    
 <head> One Head / Metadata and info / Things you don’t see on the screen
    <title>LEARN's Apple Pie</title> Shows up in tab / Helps with SEO / Everything You write goes between HTML tags
 </head> 
@@ -206,7 +204,6 @@ for different steps of the cooking process.
       - <img src="img_girl.jpg">
       - <p style="color:red">This is a paragraph.</p>
       ```
-  - Show how to create simple styles for different tags 
 
    ** Be sure to fill out the src attribute on the image tag and the alt attribute ** 
 

@@ -30,9 +30,6 @@ Let's start out by heading to App.js. App.js is the component that gets rendered
 We are going to rewrite the boiler plate code given which currently renders the cool react logo that we don't need.
 
 ```javascript
-// To gain access to the foundational React code to make it all work, we have to import react
-import React from 'react'
-
 const App = () => {
     return(
       <>
@@ -44,7 +41,6 @@ export default App
 ```
 
 And what is happening here?
-- We have an import that gives us the good stuff from mother React
 - We have a function called App 
 - We have a return (because every function needs a return)
 - But in React what we return is exactly one item of JSX
@@ -56,7 +52,7 @@ And what is happening here?
 For this example, I am making a very simple app that is going to keep a log of the number of miles I run per month. I want to be able to see the current number of miles and add miles to the current number.
 
 #### Starting with Markup
-Let's start by adding some basic static data. See a header, the current number of miles, and a button that can increase the miles by one.  Whenever we are using a button, we need to be thinking about some kind of logic, because the button will always be performing some type of action.
+Let's start by adding some basic static data. See a header, the current number of miles, and a button.  Whenever we are using a button, we need to be thinking about some kind of logic, because the button will always be performing some type of action.
 ```javascript
 const App = () =>  {
     return(
@@ -70,7 +66,7 @@ const App = () =>  {
 ```
 
 #### State
-We need a place to store the miles. We need to maintain a running total of miles that can be updated every time we click the button. Right now I have a hard coded 0. Eventually we are going to replace that 0 with a class variable that can reflect the changes in the miles.
+We need a place to store the miles to maintain a running total of miles that can be updated every time we click the button. Right now I have a hard coded 0. Now we need to replace that 0 with a variable that can reflect the changes in the miles.
 
 State is a special variable that we can utilize in React components which can affect how our page is rendered. 
 
@@ -119,10 +115,9 @@ const App = () => {
 
 ```
 
-This isn't what we want. We need to tell our program to read this as JavaScript. So to do that I have to wrap this variable name in curly braces. The curly brace indicate that we are escaping out of JSX and using passing in JavaScript code.
+This isn't what we want. We need to tell our program to read this as JavaScript. So to do that I have to wrap this variable name in curly braces. The curly brace indicate that we are escaping out of JSX and  passing in JavaScript code.
 
 ```javascript
-console.log(miles)
   return (
     <>
         <h2>Mile Tracker</h2>
@@ -144,15 +139,15 @@ The functions we write that produce behavior specific to our app lives after our
 Our function is going to take the current value of miles and add one. We need to update the value in state. We also need to ensure React recognizes the change and updates its view appropriately.  This is where we are going to use the method in state called setMiles.  
 
 ```javascript
-addMile = () => {
+const addMile = () => {
   setMiles()
 }
 ```
 
-Inside `setMiles()` we can pass in here whatever we want our variable to be updated to when this function is called. In this case, we want to increase the value by one. So if I want to reference the value, we will do that the same way we did it other places in the app and add one.
+Inside `setMiles()` we can pass in here whatever we want our variable to be updated to when this function is called. In this case, we want to increase the value by one. 
 
 ```javascript
-addMile = () => {
+const addMile = () => {
   setMiles({miles + 1})
 }
 ```
@@ -221,7 +216,7 @@ Now we are back to where we started, but now we have options.
 
 We wrote one component and can call it as many times as we want and all of them maintain their own state.
 
-Each one of these component calls are a unique instance of the class, so even though we are using the same code, they are running seperatly.
+Each one of these component calls are a unique instance, so even though we are using the same code, they are running seperatly.
 
 And that is pretty cool.
 
@@ -247,7 +242,7 @@ const App = () => {
   const [miles, setMiles] = useState(0)
   const [color, setColor] = useState("pink")
 
-  addMile = () => {
+  const addMile = () => {
     setMiles({miles + 1})
   }
 
