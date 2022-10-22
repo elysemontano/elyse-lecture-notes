@@ -138,36 +138,36 @@ Obviously, having a method display a single line of html is going to be very lim
 This time around, instead of rendering html, we are going to render a view.  We already have a view that has been created when we ran the controller method that is setup automatically to communicate with this particular controller.
 
 ```ruby
-def delta_cohort
+def current_cohort
 end
 ```
-Currently in the view/home folder, there is nothing that lives in here just yet, because I can create a file that will correlate directly to the controller method that I am creating.  So in this case, I have a method called delta_cohort, which means I can create a file in this folder called delta_cohort.html.erb
+Currently in the view/home folder, there is nothing that lives in here just yet, because I can create a file that will correlate directly to the controller method that I am creating.  So in this case, I have a method called current_cohort, which means I can create a file in this folder called current_cohort.html.erb
 This references the name of the method in the controller
 
 ERB - Embedded Ruby: views can have Ruby values in them and even evaluate some Ruby logic!
-> view/home/delta_cohort.html.erb
+> view/home/current_cohort.html.erb
 
 ```html
 <h1>Hello!</h1>
 
-<h2>Delta is a pretty awesome group!</h2>
+<h2>Cohort is a pretty awesome group!</h2>
 <ul>
-  <li>Jojo</li>
-  <li>Gene</li>
-  <li>Ricky</li>
+  <li>Student 1</li>
+  <li>Student 1</li>
+  <li>Student 1</li>
 </ul>
 ```
 
-Since we named our view files the same as the controller method, this makes it so that Ruby will automatically look to render that file when the method is called, which means we can remove our render lines that have the file name inside of it!
+Since we named our view files the same as the controller method, this makes it so that Ruby will automatically look to render that file when the method is called.
 
 Rails is making some assumptions here because of how we have setup our naming and will automatically render that view if we set this up correctly.  This is some of that Rails magic I was talking about last week.  If you follow the naming conventions closely, Rails will do some of the stuff for us.
 
-Now we need a route. If I don't make a route and I try to navigate to a page caleld delta_cohort, I will get a routing error.  This will likely not be the last time you see this, and so it is good to know what this error looks like and why it comes up.
+Now we need a route. If I don't make a route and I try to navigate to a page called current_cohort, I will get a routing error.  This will likely not be the last time you see this, and so it is good to know what this error looks like and why it comes up.
 
 config/routes.rb
 ```ruby
  # HTTP verb, url (location),  hashrocket,  controller, methods 
-get '/delta' => 'home#delta_cohort'
+get '/current' => 'home#current_cohort'
 ```
 
 # Recap 1
@@ -184,17 +184,17 @@ So to recap so far we have
 # The View
 Inside the file we are going to have new syntax to learn which is how we embed our ruby.  Before we jump in there, let's give our method something that our view would like to display that is in Ruby.
 
-Let's add an instance variable to our controller method delta_cohort
+Let's add an instance variable to our controller method current_cohort
 ```ruby
-def delta_cohort
-  @delta = "The amazing people of Delta 2022!"
+def current_cohort
+  @current = "The amazing people of current cohort 2022!"
 end
 ```
 
-/views/food/delta_cohort.html.erb
+/views/food/current_cohort.html.erb
 
 ```ruby
-<p> <%= @delta %> </p>
+<p> <%= @current %> </p>
 ```
 
 We can call on this instance variable now in our new ruby tags inside the html.erb associated with this method.
@@ -205,8 +205,8 @@ This syntax allows us to drop Ruby code directly into html.  You can think of it
 
 
 ```ruby
-def delta_cohort
-  @students = ["Ahmed", "Alex", "Alvin", "Corey", "Gene", "James", "Jojo", "Leo", "Luis", "Nicole", "Pua", "Ricky", "Samuel", "Sean", "Steven", "Venessa", "Will", "William"]
+def current_cohort
+  @students = ["list", "of", "students"]
 end
 ```
 
@@ -248,7 +248,7 @@ There is a Ruby helper method called link_to that will take 2 arguments (an anch
 <br/> 
 <%= link_to "Joke", "/joke" %>
 <br/>
-<%= link_to "Delta Cohort", "/delta" %>
+<%= link_to "current Cohort", "/current" %>
 ```
 
 
