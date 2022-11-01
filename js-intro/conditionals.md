@@ -118,8 +118,13 @@ if()
 - What is inside the curly braces is the executable code, the action
 
 ```javascript
-if(true){
-  console.log("I'm true!")
+if(condition is true){
+  do this action
+}
+
+
+if(true) {
+  console.log("I'm true")
 }
 ```
 
@@ -127,9 +132,9 @@ There may be times where we may want more than two possible outcomes. So let's a
 
 ```javascript
 if(false){
-  console.log("I'm false!")
+  console.log("You can't see me cause I am false")
 } else {
-  console.log("here is the else")
+  console.log("Here is the else")
 }
 ```
 

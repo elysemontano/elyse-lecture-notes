@@ -30,9 +30,15 @@ Jest is a JavaScript testing framework. The framework is a collection of files t
 #### yarn
 - Code is shared through something called a package. A package contains all the code being shared. Yarn is a package manager for your code. It allows you to use and share code with other developers from around the world. Yarn does this quickly, securely, and reliably so you don't ever have to worry. Yarn allows you to use other developers' solutions to different problems, making it easier for you to develop your software.
 
-A package manager for javascript that contains code being shared from other developers
+** for notes: A package manager for javascript that contains code being shared from other developers **
 
+
+To install dependencies that make up the framework of jest:
 - $ yarn add jest
+
+- node_modules is thousands of folders and files that make up the the framework we are using
+- package.json holds metadata about a project, contains information about dependencies
+- yarn. lock is the main source of information about the current versions of dependencies in a project.
 
 
 #### TDD
@@ -78,7 +84,7 @@ Jest uses a method called describe() that runs other nested methods. First we in
 describe("greeter", () => {
 ```
 
-  Second we invoke the test or it method, providing it an argument that in plain words explains what the function does, followed by a comma, a set of parentheses, arrow syntax and its own opening curly brace allowing us to nest more code within its block scope. 
+  Second we invoke the it method, providing it an argument that in plain words explains what the function does, followed by a comma, a set of parentheses, arrow syntax and its own opening curly brace allowing us to nest more code within its block scope. 
 
   ```javascript
   // a test/it method, nested within the describe block, that in plain words, describes that the function does.

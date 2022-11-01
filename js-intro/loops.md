@@ -25,15 +25,7 @@
 ### Lecture
 One of the most fundamental concepts in coding is being able to repeat a process over and over again. This is called iteration. Computers are really great at iteration. There are many ways to create iteration. Today we will look specifically at how for loops can interact with arrays. The array data type is basically a list. Developers use arrays to group data. We will often need to look each item in an array or make a decision about each item in the array.
 
-#### Anatomy of a Loop
-For loops don't innately connect to arrays. But they are really good at counting. And we can match up the counting action of a for loop to match to the indexes of an array.
-
-To create a for loop we need three pieces of information.
-- Where to start counting
-- Where to stop counting
-- How to get from the start to the stop
-
-We are going to need to use a variable to keep track of our count.  To do this though, I want to talk briefly about the different types of variables and their different purposes:
+Before we dive into for loops though, I want to talk briefly about the different types of variables and their different purposes as understanding the types and when to use them will be important moving forward.
 
 ## Var
   - var is available anywhere (function scoped).  Can be defined in a block (if/else, loops) and accessed outside of the block
@@ -56,7 +48,7 @@ We are going to need to use a variable to keep track of our count.  To do this t
 
 // Why const is not reassingable:
 let myCat = "Tobey"
-myName = "Nala"
+myCat = "Nala"
 
 console.log(myName)
 
@@ -66,12 +58,20 @@ myDog = "Kodi"
 console.log(myDog) // Will throw an error
 ```
 
+#### Anatomy of a Loop
+For loops don't innately connect to arrays. But they are really good at counting. And we can match up the counting action of a for loop to match to the indexes of an array.  We are going to need to use a variable to keep track of our count
+
+To create a for loop we need three pieces of information.
+- Where to start counting
+- Where to stop counting
+- How to get from the start to the stop
+
 
 
 Since we often use for loops on arrays, it is a convention to use the variable name `index` to store the current count. This is often shorted to `i`. This is the longhand way to write the three pieces.
 
 ```javascript
-for(let index = 0; index < 10; index = index + 1)
+for(let index = 0; index < 10; index++)
 ```
 
 Shorthand version of the same code.
@@ -111,7 +111,19 @@ for(let i = 0; i < numsArray.length; i++) {
     console.log(`${numsArray[i]} is an odd number!`)
   }
 }
+
+
+// Strings and Arrays have some similarities.  Both are are zero indexed and have a length property.  So we can also iterate on a string with a for loop.
+const myString = "Hey there <Cohort>!"
+let count = 0
+for(let i = 0; i < myString.length; i++) {
+  if(myString[i].toLowerCase() === "e") {
+    count ++
+  }
+}
+console.log(count)
 ```
+
 
 ### Review
 - For loops are really great at creating a series of numbers
@@ -135,15 +147,5 @@ for(let i = 0; i < numsArray.length; i++) {
 }
 
 
-const myString = "Hey there Delta!"
-let count = 0
-for(let i = 0; i < myString.length; i++) {
-  let splitString = myString.split("")
-  if(splitString[i].toLowerCase() === "e") {
-    count ++
-  }
-}
-console.log(count)
-```
 
 
