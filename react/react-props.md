@@ -25,156 +25,155 @@
 - Keep the data and behavior centralized in the application
 
 ### Lecture
-React is a collection of components. The power of this is components can be called as many times we need. Each component call instantiates that component class. And each instance of the class is a unique instance that will act independently from any other instance. This is wonderful but at this point every instance of that class component is exactly identical. We can create dynamic components that will accept additional information as props in the same way that a function will accept more information via arguments.
+React is a collection of components. The power of this is components can be called as many times we need. Each component call invokes that component function and each function is unique and will act independently from any other function. This is wonderful but at this point our components are behaving exactly identical. We can create dynamic components that will accept additional information as props.
 
-#### Saving App Buildout
-For this example we are going to create an app that is going to draw a card and then keep track of the card that was previously drawn. Since we are just prototyping the app we are going to start with a single suit. Once the app is working we can add the full deck of cards.
+So what are props?
+Props are short for properties and we assign these to components.  Essentially, we are passing information from a parent component (example App.js) to a child component
+
+`$ yarn create react-app react-props`
+
+#### Saving App Build out
+For this example we are going to create an app that is going to draw a card and then keep track of the card that was previously drawn. 
 - Set up App.js with a header
 - Ensure App.js renders to the browser
 
 ```javascript
-import React, { Component } from 'react'
-
-class App extends Component {
-  render() {
+const App = () => {
     return(
       <>
         <h1>Card Draw</h1>
       </>
     )
-  }
 }
 export default App
 ```
 
-#### Adding Card Logic
-Now that the app is working we can add a state object that will hold our mini card deck and a method that will pick a random card from the deck.
-- Add a state object
-- Add an array of cards to state
-- Add a currentCard to state
-- Add a method that generates a random number to access a card from the array
-- Set the currentCard to state
-- Log currentCard in the render
-- Add a button to call the drawCard method
-
-```javascript
-import React, { Component } from 'react'
-
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      cardDeck: ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"],
-      currentCard: ""
-    }
-  }
-
-  drawCard = () => {
-    let randomCard = Math.floor(Math.random() * this.state.cardDeck.length)
-    this.setState({currentCard: this.state.cardDeck[randomCard]})
-  }
-
-  render() {
-    console.log(this.state.currentCard)
-    return(
-      <>
-        <h1>Card Draw</h1>
-        <button onClick={this.drawCard}>Draw a Card</button>
-      </>
-    )
-  }
-}
-export default App
-```
-
-### Card Component
-Now that the logic is working, we want to create a separate component to display the card. So the first step is making sure we can see the component.
+Let's also make a card component.
 - Create a components folder in `src`
 - Create a file in the components folder called `Card.js`
 - Add a header to Card
 - Import Card to App.js
 - Call the Card component
 
+
 ```javascript
-// src/App.js
-import React, { Component } from 'react'
-import Card from './components/Card'
-
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      cardDeck: ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"],
-      currentCard: ""
-    }
-  }
-
-  drawCard = () => {
-    let randomCard = Math.floor(Math.random() * this.state.cardDeck.length)
-    this.setState({currentCard: this.state.cardDeck[randomCard]})
-  }
-
-  render() {
-    console.log(this.state.currentCard)
+const Card = () => {
     return(
       <>
-        <h1>Card Draw</h1>
-        <button onClick={this.drawCard}>Draw a Card</button>
-        <Card />
+        <h1>This is a card</h1>
       </>
     )
-  }
-}
-export default App
-
-// src/components/Card.js
-import React, { Component } from 'react'
-
-class Card extends Component {
-  render() {
-    return(
-      <>
-        <h3>Card Component</h3>
-      </>
-    )
-  }
 }
 export default Card
 ```
 
-#### Passing Props
-Now we want the Card component to display the current card. To do this, we can pass information to the Card component through the component call. This component doesn't have its own state. It is a display component. Its job is to just take data and display it.
-- Inside the component call, create a variable, equal sign, then curly braces, inside the curlies pass a value
-- The variable is passed to the Card component
-- The variable being passed to the Card component can be accessed in the Card component as props
-- The variable can be dropped into the JSX using curly braces
+We can call on the card component many times in App.js
 
 ```javascript
-// src/App.js
-render() {
-  return(
+const App = () => {
+    return(
+      <>
+        <h1>Card Draw</h1>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </>
+    )
+}
+export default App
+```
+
+While this is great because we can reuse this component however many times we want, it is very static currently.  Meaning, I have hardcoded something inside my card component and that will be the same always.  This is great for a button, but what if I want to display something that can be updated?  I need to now make this Component dynamic by passing info to it.
+
+#### Adding Card Logic
+Since app is working we can add a state variable that will hold our mini card deck and a function that will pick a random card from the deck.
+- Add a state variable
+- Add an array of cards to state
+- Add a currentCard to state
+- Add a function that generates a random number to access a card from the array
+- Set the currentCard to state
+- Add a button to call the drawCard function
+
+
+```javascript
+import React, { useState } from 'react'
+
+const App = () => {
+    const [cards, setCards] = useState(["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"])
+    const [randomIndex, setRandomIndex] = useState(null)
+
+
+  const drawCard = () => {
+    let randomCard = Math.floor(Math.random() * cards.length)
+    setRandomIndex(randomCard)
+  }
+
+    return(
+      <>
+        <h1>Card Draw</h1>
+        <Card />
+        <button onClick={drawCard}>Draw a Card</button>
+      </>
+    )
+}
+export default App
+```
+
+
+#### Passing Props
+Now that we have App set up, how do we get the the information of the randomized card from state in App.js to our Card component?  We will pass props.  We pass down from parent (App) to child (Card).
+
+ The Card component doesn't have its own state. It is a display component. Its job is to just take data and display it.  So we want the Card component to display the current card.  To do this, we can pass information to the Card component through the component call. 
+
+
+So we are setting up a name (creating a variable or alias) that we want to call props in our child component and assigning it to the value that currently lives in state, in this case cards. 
+
+Since we only want to display one card, I can pick out from my array using bracket notation the card I want to pass to this component.
+
+App.js
+```javascript
+<Card card={cards[randomIndex]}>
+```
+
+Then we want to display this in our Card component.  So we need to specify that we are bringing props in as a parameter in our function.  We then have access to props.  Since props is an object, we can use dot notation to access the information passed.
+
+- Console log props to show object
+
+```javascript
+const Card = (props) => {
+    return(
     <>
-      <h1>Card Draw</h1>
-      <button onClick={this.drawCard}>Draw a Card</button>
-      <Card card={this.state.currentCard} />
+      <p>{props.card}</p>
+    </>
+    )
+}
+export default Card
+```
+
+### Passing Methods as Props
+We can also pass methods down to child components.  So I am going to take my button that I have in App.js and add it to it's own component, so that I could reuse it if I so choose.
+- Create DrawButton component
+
+```javascript
+import React from 'react'
+
+const DrawButton = (props) => {
+  return (
+    <>
+      <button onClick={props.drawCard}>Draw a Card</button>
     </>
   )
 }
 
-// src/components/Card.js
-import React, { Component } from 'react'
+export default DrawButton
+```
 
-class Card extends Component {
-  render() {
-    return(
-      <>
-        <h3>Card Component</h3>
-        <p>{this.props.card}</p>
-      </>
-    )
-  }
-}
-export default Card
+Call component in App.js:
+
+```javascript
+<DrawButton drawCard={drawCard} />
 ```
 
 #### Tracking Previously Played Cards
@@ -183,132 +182,123 @@ Now that the cards variable is working, we want to be able to track all the prev
 - Update the drawCard method to add cards to the previousCards array using the rest syntax
 - Start with logging the previousCards values in the render of App.js
 
+#### Passing the Previous Cards to Card Component
+We already have a component that will display an individual card. Since we have an array here, we can iterate on this array and use this component for each value in the array.
+
 ```javascript
 // src/App.js
-import React, { Component } from 'react'
-import Card from './components/Card'
+import React, { useState } from 'react'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      cardDeck: ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"],
-      currentCard: "",
-      previousCards: []
-    }
+const App = () => {
+    const [cards, setCards] = useState(["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"])
+    const [randomIndex, setRandomIndex] = useState(null)
+    const [previousCards, setPreviousCards] = []
+
+
+  const drawCard = () => {
+    let randomCard = Math.floor(Math.random() * cards.length)
+    setRandomIndex(randomCard)
+    setPreviousCards([...previousCards, cards[randomCard]])
   }
 
-  drawCard = () => {
-    let randomCard = Math.floor(Math.random() * this.state.cardDeck.length)
-    this.setState({
-      currentCard: this.state.cardDeck[randomCard],
-      previousCards: [...this.state.previousCards, this.state.cardDeck[randomCard]]
-    })
-  }
-
-  render() {
-    console.log(this.state.previousCards)
     return(
       <>
         <h1>Card Draw</h1>
-        <button onClick={this.drawCard}>Draw a Card</button>
-        <Card card={this.state.currentCard} />
+        <DrawButton drawCard={drawCard}/>
+        <h2>Current Card</h2>
+        <Card card={cards[randomIndex]} />
+        <h2>Previous Cards:</h2>
+        {previousCards.map((card, index) => {
+          return <Card card={card} key={index}/>
+        })}
       </>
     )
-  }
 }
 export default App
 ```
 
-#### Passing the Previous Cards to Another Components
-Just like we did with the Card component, we can have another component handle the display of our previous cards. Do do this we can create another component and pass the data from state. Then the previousCards component can have access to that data as props. This component doesn't have its own state. It is a display component. Its job is to just take data and display it.
-- Create a file in the components folder called `PreviousCards.js`
-- Add a header to PreviousCards
-- Import PreviousCards to App.js
-- Call the PreviousCards component
-- Ensure the component renders
-- Inside the component call, create a variable, equal sign, then curly braces, inside the curlies pass a value
-- The variable is passed to the previousCards component
-- The variable being passed to the previousCards component can be accessed in the previousCards component as props
-- Console log the props
 
-```javascript
-// src/App.js
-import PreviousCards from './components/PreviousCards'
+- Look at the terminal and see the warning for `Each child in a list should have a unique "key" prop.` 
 
-render() {
-  return(
-    <>
-      <h1>Card Draw</h1>
-      <button onClick={this.drawCard}>Draw a Card</button>
-      <Card card={this.state.currentCard} />
-      <PreviousCards previousCards={this.state.previousCards} />
-    </>
-  )
-}
-
-// src/components/PreviousCards.js
-import React, { Component } from 'react'
-
-class PreviousCards extends Component {
-  render() {
-    console.log(this.props.previousCards)
-    return(
-      <>
-        <h3>Previous Cards</h3>
-      </>
-    )
-  }
-}
-export default PreviousCards
-```
-
-#### Mapping the Array
-Now that we have access to the previous cards array as props, we want to be able to display it. But we can't just pass an array into the JSX. We need to map over the array and pass each item. Map is a JavaScript tool and when we are in JSX land, we need to use curly braces to access JavaScript.
-- The return value of the map function is a JSX tag
-- Look at the terminal and see the warning for `Each child in a list should have a unique "key" prop.`
-
-React needs each JSX tag to have a unique identifier. In this case that can be achieved by referencing the index.
-
-```javascript
-// src/components/PreviousCards.js
-import React, { Component } from 'react'
-
-class PreviousCards extends Component {
-  render() {
-    return(
-      <>
-        <h3>Previous Cards</h3>
-        {this.props.previousCards.map(card => {
-          return <p>{card}</p>
-        })} // step one - map, look at console and see error code
-
-        {this.props.previousCards.map((card, index) => {
-          return <p key={index}>{card}</p>
-        })} // step two - fix error code with the key
-      </>
-    )
-  }
-}
-export default PreviousCards
-```
 
 ### Review
 - Data can be passed to other components through the component call.
 - If you pass data to another component, how is it referenced?
 - What is the syntax for referencing JavaScript inside of JSX?
-- What is the method for updating values in the state object?
 - What is the difference between state and props?
 - Can props be updated?
 - What is the difference between a display component and a logic component? Why is it important to have a distinction?
 
-### Next Steps
-- Open the syllabus section and briefly run through the challenges and expectations
-- Remind the student to use the `javascript-foundations-challenges` repo
-- Remind the students of the appropriate naming conventions for their branch and file
-- Post pairs in Slack
-- Open breakout rooms with ability for participants to choose their room
+
+# Notes:
+Props are short for properties
+  - information passed from parent(App.js) to child component through the component call
+  <Card card={card} key={index}/>
+  - Props are objects, where values can be accessed through dot notation
+  - State can be updated however props is read only
+  - We can pass methods as props as well as data
 
 
----
-[Back to Syllabus](../README.md#unit-two-introduction-to-react)
+```javascript
+  // App.js
+import { useState } from 'react'
+import './App.css';
+import Card from './components/Card'
+import DrawButton from './components/DrawButton'
+
+const App = () => {
+  const [cards, setCards] = useState(["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"])
+  const [randomIndex, setRandomIndex] = useState(null)
+  const [previousCards, setPreviousCards] = useState([])
+
+  const drawCard = () => {
+    let randomCard = Math.floor(Math.random() * cards.length)
+    setRandomIndex(randomCard)
+    setPreviousCards([...previousCards, cards[randomIndex]])
+  }
+
+
+  return (
+    <>
+      <h1>Card Draw</h1>
+      <DrawButton drawCard={drawCard}/>
+      <h2>Current Card</h2>
+      <Card card={cards[randomIndex]} />
+      <h2>Previous Cards:</h2>
+      {previousCards.map((card, index) => {
+        return <Card card={card} key={index}/>
+      })}
+    </>
+  );
+}
+
+export default App;
+
+
+// Card.js - passing data to component
+import React from 'react'
+
+const Card = (props) => {
+  return (
+    <>
+      <p>{props.card}</p>
+    </>
+  )
+}
+
+export default Card
+
+
+// DrawButton.js - Passing method to component
+import React from 'react'
+
+const DrawButton = (props) => {
+  return (
+    <>
+      <button onClick={props.drawCard}>Draw a Card</button>
+    </>
+  )
+}
+
+export default DrawButton
+```
