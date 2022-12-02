@@ -24,6 +24,39 @@
 - Passing props to a component is a similar concept to passing arguments to a function
 - Keep the data and behavior centralized in the application
 
+
+## Revisit CSS colors from State
+
+JSX is just like HTML most of the time. And this is one of the times it is very different. The style attribute can be added to any tag. That is the same. And just like the onClick, we need to pass JavaScript so we need our friend the curlies to escape into JavaScript. Then, once we are inside the curlies, what gets passed is an object with key:value pairs.
+
+```html
+<button onClick={this.addMile} style={ {backgroundColor: "pink"} }>Add a mile</button>
+```
+
+The key is the styling property and the value has to be a data type that JavaScript recognizes. In this case it is a string. So this is different. And most of the time we want stylings to be in the css file, but sometimes you want inline styling and today you will want inline styling.
+
+One final hint about styling. The value has to be a data type JavaScript recognizes, but that can be stored in a variable. So I can also do this:
+
+```javascript
+const App = () => {
+  const [miles, setMiles] = useState(0)
+  const [color, setColor] = useState("pink")
+
+  const addMile = () => {
+    setMiles({miles + 1})
+  }
+
+  render() {
+    return(
+      <>
+        <p>Miles: {miles} </p>
+        <button onClick={addMile} style={ {color: color} }>Add a mile</button>
+      </>
+    )
+  }
+}
+```
+
 ### Lecture
 React is a collection of components. The power of this is components can be called as many times we need. Each component call invokes that component function and each function is unique and will act independently from any other function. This is wonderful but at this point our components are behaving exactly identical. We can create dynamic components that will accept additional information as props.
 
@@ -130,11 +163,11 @@ Now that we have App set up, how do we get the the information of the randomized
 
 So we are setting up a name (creating a variable or alias) that we want to call props in our child component and assigning it to the value that currently lives in state, in this case cards. 
 
-Since we only want to display one card, I can pick out from my array using bracket notation the card I want to pass to this component.
+We are also going to need to pass an index so that we can use bracket notation to display the card that has been drawn randomly.
 
 App.js
 ```javascript
-<Card card={cards[randomIndex]}>
+<Card cards={cards} index={randomIndex}>
 ```
 
 Then we want to display this in our Card component.  So we need to specify that we are bringing props in as a parameter in our function.  We then have access to props.  Since props is an object, we can use dot notation to access the information passed.
@@ -145,7 +178,8 @@ Then we want to display this in our Card component.  So we need to specify that 
 const Card = (props) => {
     return(
     <>
-      <p>{props.card}</p>
+      <h2>Current Card</h2>
+      <p>{props.cards[props.index]}</p>
     </>
     )
 }
@@ -180,10 +214,9 @@ Call component in App.js:
 Now that the cards variable is working, we want to be able to track all the previously played cards. We can start in App.js and create the logic to store an array of cards in state.
 - Add perviousCards to the state object
 - Update the drawCard method to add cards to the previousCards array using the rest syntax
-- Start with logging the previousCards values in the render of App.js
 
-#### Passing the Previous Cards to Card Component
-We already have a component that will display an individual card. Since we have an array here, we can iterate on this array and use this component for each value in the array.
+#### Passing the Previous Cards to Previous Cards component
+We are going to create a component that will display all previous cards (PreviousCards.js). Since we have an array here, we need to pass the array to our component and then iterate on this array and display each value in the array.
 
 ```javascript
 // src/App.js
@@ -202,21 +235,36 @@ const App = () => {
   }
 
     return(
-      <>
-        <h1>Card Draw</h1>
-        <DrawButton drawCard={drawCard}/>
-        <h2>Current Card</h2>
-        <Card card={cards[randomIndex]} />
-        <h2>Previous Cards:</h2>
-        {previousCards.map((card, index) => {
-          return <Card card={card} key={index}/>
-        })}
-      </>
+    <>
+      <h1>Card Draw</h1>
+      <DrawButton drawCard={drawCard}/>
+      <Card cards={cards} index={randomIndex} />
+      <PreviousCards prevCards={previousCards} />
+    </>
     )
 }
 export default App
-```
 
+
+// PreviousCards.js
+import React from 'react'
+
+const PreviousCards = (props) => {
+  return (
+    <>
+      <h2>Previous Cards:</h2>
+        {props.prevCards.map((card, index) => {
+          return(
+            <p key={index}>{card}</p>
+          )
+        })}
+    </>
+  )
+}
+
+export default PreviousCards
+
+```
 
 - Look at the terminal and see the warning for `Each child in a list should have a unique "key" prop.` 
 

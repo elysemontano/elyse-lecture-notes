@@ -44,10 +44,10 @@ Javascript recognizes numbers.  Let's check this out.  To do so, we need a way t
 Before we get into syntax, etc. let’s look at the JS console in chrome.
 Chrome is a really valuable developer tool to run javascript code.
 
-If you don't have chrome installed, please take a minute to install it.  If you do have it installed, please open up a browswer.
+If you don't have chrome installed, please take a minute to install it.  If you do have it installed, please open up a browser.
 
 
-** Chrome browswer -> right click -> inspect -> console **
+** Chrome browser -> right click -> inspect -> console **
 
 Inside the console, we can type javascript directly into here.  This will be our way of talking to the computer for today.
 
@@ -107,8 +107,8 @@ Variables come with four parts
     - DATA
  
 ```javascript
-    var catName = "Raisins"
-    var age = 3
+    var catName = "Tobey"
+    var age = 6
     var isCute = true
 ```
 
@@ -117,7 +117,7 @@ String interpolation allows variables to be embedded in a string.
 
 ```javascript
     `Have you met ${catName}?`
-    `In 5 years, she will be ${ age + 5 }`
+    `In 5 years, he will be ${ age + 5 }`
 
 ```
 

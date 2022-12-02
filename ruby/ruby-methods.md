@@ -47,7 +47,7 @@
     - Every `def` needs a corresponding `end`
 
 #### Method Syntax
-    - Give the method a name
+    - Give the method a name (snake_case)
     - end the method with the word end
         - end is like the closing curly in javascript
     - Indention is super important because we are not reliant on curly braces to show us the start and end places, our indentation is really going help us see if something is missing.
@@ -78,10 +78,6 @@ end
 p greeter  # step three - invoke the method
 ```
     - Note that there isn't a return. In JavaScript if we didn't use the keyword return, we would get back undefined. While there is a `return` keyword in Ruby, we don't have to use it. Ruby will automatically return the last line of every method unless we say otherwise. That is called an implicit return.
-
-
-
-
 
 
 #### Methods with Arguments
@@ -161,7 +157,7 @@ p greater_num(42, 42)
 #### Getting User Input
     - So as a final step, let's get the user input from the terminal rather than from our program. 
     
-Ruby has a method that will allow two-way interaction in the terminal. We are used to seeing the output of our code. In Ruby we can use the terminal to facilitate user inputs. This will make the conditional statements a little more fun.
+Ruby has a method that will allow two-way interaction in the terminal.  In Ruby we can use the terminal to facilitate user inputs. This will make the conditional statements a little more fun.
 
 gets is a method that will stop the execution of the program and wait for you to type something and hit enter
 

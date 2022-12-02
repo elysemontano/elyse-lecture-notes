@@ -32,8 +32,6 @@
               * yarn create react-app events-inputs-elyse-otherinstructors
               * While creating, discuss events
           - cd into the project
-            * Convert App.js to a class component
-            * Add a heading an ensure the app is rendering
 
 
     -  Events
@@ -41,7 +39,7 @@
 
         - Big data is able to analyze what you click, how often you click, where you click, what you look at, and how you interact with those things. 
         
-        -While onclick is often used for button click events, we are going to talk about onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
+        -While onclick is often used for button click events, we are going to talk about another type of event called onChange which is used to capture text in an input field. Inputs are an HMTL/JSX tag
 
         * Google "JavaScript inputs", select "HTML Input Types - W3Schools"
 
@@ -145,7 +143,7 @@ export default App
   ## Setting State
     - Now that we are capturing the values from the input we can set them to state.
 
-    - Create a state object.
+    - Create a state variable.
     - Remove console.log and replace with this.setState()
     - Adding a value attribute to connect the state object with what is showing up in the input field
     - With several attributes it is best practice to drop the attributes onto additional lines
@@ -157,8 +155,8 @@ import React, { useState } from 'react'
 const App = () => {
   const [name, setName] = useState("")
 
-  handleChange = (e) => {
-    this.setState({name: e.target.value})
+  const handleChange = (e) => {
+    setName(e.target.value)
   }
 
     console.log(name)
@@ -191,23 +189,23 @@ export default App
     - I want to use this component to see the input value shown on the page so it will be my display or dumb component
 
     - Create a folder called components
-    - Create a file called Yelling.js
+    - Create a file called UpperCased.js
     - Create a class component with a heading
     - Import the component to App.js
     - Call the component and see the heading render
-    - Pass the state value into the Yelling component
+    - Pass the state value into the UpperCased component
     - Call the value as props
 
 
 ``` javascript
 // src/App.js
 import React, { useState } from 'react'
-import Yelling from './components/Yelling'
+import UpperCased from './components/UpperCased'
 
 const App = () => {
   const [name, setName] = useState("")
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     setName(e.target.value)
   }
 
@@ -219,17 +217,17 @@ const App = () => {
           onChange={handleChange}
           value={name}
         />
-        <Yelling name={name}/>
+        <UpperCased name={name}/>
       </>
     )
 }
 export default App
 
-// src/components/Yelling.js
+// src/components/UpperCased.js
 
 import React from 'react'
 
-const Yelling = (props) => {
+const UpperCased = (props) => {
     return(
       <>
         <h3>HELLO, I SEE YOUR NAME IS:</h3>
@@ -237,35 +235,35 @@ const Yelling = (props) => {
       </>
     )
 }
-export default Yelling
+export default UpperCased
 ```
 
 
   ## Manipulating the Prop Values
-    Inside the Yelling component we can use JavaScript logic to manipulate the output. We don't need state, just a good ol' fashion class method.
+    Inside the UpperCased component we can use JavaScript logic to manipulate the output. We don't need state, just a good ol' fashioned function.
 
     Create a method with a parameter
     Return the parameter in all uppercase letters
     Call the method and pass in the argument of the props values
-    // src/components/Yelling.js
+    // src/components/UpperCased.js
 
 
 ```javascript
 import React from 'react'
 
-const Yelling = (props) => {
-  const yelling = (userInput) => {
+const UpperCased = (props) => {
+  const changeToUpperCase = (userInput) => {
     return userInput.toUpperCase()
   }
 
     return(
       <>
         <h3>HELLO, I SEE YOUR NAME IS:</h3>
-        <p>{yelling(props.name)}</p>
+        <p>{changeToUpperCase(props.name)}</p>
       </>
     )
 }
-export default Yelling
+export default UpperCased
 ```
 
 

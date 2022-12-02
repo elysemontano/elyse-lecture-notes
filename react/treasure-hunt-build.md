@@ -14,14 +14,12 @@
   ### App.js
     When we start working on an application that we have stuff provided, the first place I like to go is App.js as this is really where all things will come together.
 
-    We can see that App.js is already written as a class componenet, where we have a state object with the key of board which has an array.
+    We can see that App.js already has a state variable called board which has an array of question marks.
 
     We also have a header on this page as well.
 
   ### components/Square.js
     It looks like we already have a components folder made and so let's take a look in here and we find we have a component called Square.js.  Let's explore that component.
-
-    We can see that it is also setup as a class component
 
   ### README
     I can also keep my README open on the side as this has all of my user stories, and I am going to keep my notes as well in here so I can track my process.  
@@ -33,24 +31,27 @@
 
     Our square is going to be a component which will be repeated over and over again.
 
-    Let's start with building a single component
+    **** May not need 
 
-### Square
-    Create a div that has no inner html.  To give it styling, I am going to identify it with class square and then give the square a height and width of 200ox and a border so we can see it.
+                Let's start with building a single component
 
-```javascript
-      <>
-        <div className='square'></div>
-      </>
-```
+                ### Square
+                    Create a div that has no inner html.  To give it styling, I am going to identify it with class square and then give the square a height and width of 200ox and a border so we can see it.
 
-```css
-.square {
-  height: 200px;
-  width: 200px;
-  border: 2px solid black;
-}
-```
+                ```javascript
+                      <>
+                        <div className='square'></div>
+                      </>
+                ```
+
+                ```css
+                .square {
+                  height: 200px;
+                  width: 200px;
+                  border: 2px solid black;
+                }
+                ``` 
+    *****
 
 ### App.js
     Import and call square component
@@ -58,7 +59,7 @@
 ### Add more squares
     While we can call our square component as many times as we want, that would mean that we need to pass information to each component individually which kind of takes away from some of the dynamicness that we want to use here.  
 
-    Instead, we can map over square a certain number of times and this is where our board array on App.js comes in handy.  We know that each value is representative of what we want displayed in the square, and we can update each value at any given time.  This array is whee the logic is going to be controlled, and can be passed to our component to display.
+    Instead, we can map over square a certain number of times and this is where our board array on App.js comes in handy.  We know that each value is representative of what we want displayed in the square, and we can update each value at any given time.  This array is where the logic is going to be controlled, and can be passed to our component to display.
 
 ```javascript
     return(
@@ -242,7 +243,7 @@ const handleClick = () => {
 
     Since we know which square we are clicking on, we now need to update the corresponding value in the array.
 
-    I am going to destructure board from state so that I have an instance of state that is not exactly state at this point but allows me to do something with it until I decide to setState.
+    Single instances in state do not like to be directly modified, so I need to create a duplicate of this array that I can modify a single instance and then set the entire array to state.
 
     Emoji keyboard is control + command + space
 
@@ -253,73 +254,49 @@ const App = () => {
 
 const handleGamePlay = (index) => {
   // alert(index)
-  board[index] = "🌴"
-  setBoard(board)
+  let updatedBoard = [...board]
+  updatedBoard[index] = "🌴"
+  setBoard(updatedBoard)
 }
 ```
     User story complete - push code and PR
 
 ### Winning Square
-    Branch: treasure
+    Branch: winner-loser
 
     We need to think about the fact that there is only one square per game to be the winner.  If we create a randomized number, then it is information that will be important to our entire application, so we will need to store this somewhere like state.  We also need to make a decision on whether or not we clicked on the right square.  If we did, then we need to update our UI to show that they won.
 
-    First, let's start by creating the random location. We want the random number to be generated only when the user initially loads the game, but not everytime the user clicks a box, otherwise they will be chasing a ghost.  We will use a React lifecycle method called componentDidMount().  React lifecycle methods are out of the box methods that run automatically without us having to say so (such as render(), constructor()) and componentDidMount() will too.  
+    First, let's start by creating the random location. We want the random number to be generated only when the user initially loads the game, but not everytime the user clicks a box, otherwise they will be chasing a ghost.  So we will set our default value in state to a random location for treasure and one for bomb.
 
-    - render() is the first method that is ran so the page displays something.  Getting content on the screen is the highest priority to React.
-    - constructor() is next because the data associated with our app is right in line and we want this to come into existence.
-    - componentDidMount() is right after that and will run whatever we tell it to.
 
 ```javascript
   const App = () => {
   
   const [board, setBoard] = useState(["?", "?", "?", "?", "?", "?", "?", "?", "?"])
    const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+   const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length))
 ```
 
-    Now that we have this setup, we need to compare this random number to the box we are clicking.  We already have a method that is being called when we click something, and so this seems like a valid place to use a conditional to check for a winner.
+    Now that we have this setup, we need to compare this random number to the box we are clicking.  We already have a method that is being called when we click something, and so this seems like a valid place to use a conditional.
 
 ```javascript
 const handleGamePlay = (index) => {
-  if(index === treasureLocation) {
-    board[index] = "💎"
-    setBoard(board)
-  } else {
-    board[index] = "🌴"
-    setBoard(board)
-  }
-}
+  // Makes a copy of the board in state so that we can modify a single instance inside the array
+    let updatedBoard = [...board]
+    if(index === treasureLocation) {
+      updatedBoard[index] = "💎"
+      setBoard(updatedBoard)
+    } else if(index === bombLocation) {
+      updatedBoard[index] = "💣"
+      setBoard(updatedBoard)
+    } else {
+      updatedBoard[index] = "🌴"
+      setBoard(updatedBoard)
+    }
 
 ```
 
     User story complete - push and PR
-
-### Bomb
-    Branch: bomb
-
-    This will look very similar to the scenario we just setup for treasure.  
-
-```javascript
-    setBoard(["?", "?", "?", "?", "?", "?", "?", "?", "?"])
-    setTreasureLocation(Math.floor(Math.random() * board.length))
-    setBombLocation(Math.floor(Math.random() * board.length))
-
- const handleGamePlay = (index) => {
-  if(index === treasureLocation) {
-    board[index] = "💎"
-    setBoard(board)
-  } else if(index === bomb) {
-    board[index] = "💣"
-    setBoard(board)
-  } else {
-    board[index] = "🌴"
-    setBoard(board)
-  }
-}
-```
-
-    User story complete - push and PR
-
 
 
 ### Completed App.js:
