@@ -28,7 +28,7 @@ First, let's start with a method
 ```
 
 Let's create a new file that follows the naming convention in our controller.
-/app/views/food.html.erb
+/app/views/home/food.html.erb
 
 ```ruby
 <h1> We like food!</h1>
@@ -108,9 +108,9 @@ url: http://localhost:3000/food/spagetti
 When we look in the terminal, we can break this down and to see what is happening.
 We have our information passing into our program as a HASH.  An important note, is that params will always be passed as strings since it is an easy way to wrap up information and pass it.  This will be important later on when we are working with these params and perhaps will need to modify the datatype to a number.
 
-Started GET "/food/spagetti" for ::1 at 2022-01-18 19:40:07 -0800
-Processing by Home#food as HTML
-  Parameters: {"my_fav"=>"spagetti"}
+    Started GET "/food/spagetti" for ::1 at 2022-01-18 19:40:07 -0800
+    Processing by Home#food as HTML
+      Parameters: {"my_fav"=>"spagetti"}
 
 
 In fact, let's try passing numbers and do something with them!
@@ -132,14 +132,14 @@ I need to set up a view that will connect to this method
 
 We also need to setup a route
 ```
-get '/order/:number/' => 'food#order'
+get '/order' => 'home#order'
 ```
 url: http://localhost:3000/order
 
 Great!  This displays something, but now let's update so that we can pass information in our param.
 
 ```ruby
-get '/order/:number/' => 'food#order'
+get '/order/:number/' => 'home#order'
 ```
 
 Let's say we want to display our quantity differently if the amount is over 100.  We can use a conditional statement to change our output and store that in an instance variable we can call on in our view.
@@ -188,7 +188,7 @@ def order
 
 We need to update our routes so we can accept all of these parameters
 ```
-get '/order/:number/:item' => 'food#order'
+get '/order/:number/:item' => 'home#order'
 ```
 
 Now we can display these instance variables
