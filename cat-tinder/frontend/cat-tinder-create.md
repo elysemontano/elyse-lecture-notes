@@ -15,7 +15,7 @@
 
 
 # Lecture
-Today we will be working on our create functionality.  To see what our task requiremtents are for this, we will start by heading over to trello and bringing the card over to in progress.
+Today we will be working on our create functionality.  To see what our task requirements are for this, we will start by heading over to trello and bringing the card over to in progress.
 
 I also want to head to the syllabus and bring in the developer stories and place them in my notes so I can keep track of what I am doing.
 

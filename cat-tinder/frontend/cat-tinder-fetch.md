@@ -278,3 +278,36 @@ const updateCat = (cat, id) => {
 }
 ```
 
+# Delete
+
+```javascript
+// src/pages/CatShow.js
+<NavLink to="/catindex">
+  <Button>Delete Cat Profile</Button>
+</NavLink>
+```
+
+
+```javascript
+// App.js
+deleteCat = (id) => {
+  fetch(`http://localhost:3000/cats/${id}`, {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method: "DELETE"
+  })
+    .then((response) => response.json())
+    .then((payload) => readCat())
+    .catch((errors) => console.log("delete errors:", errors))
+}
+
+
+
+<Route
+  path="/catshow/:id"
+  element={<CatShow cat={cat} deleteCat={deleteCat} />}
+/>
+
+```
+
