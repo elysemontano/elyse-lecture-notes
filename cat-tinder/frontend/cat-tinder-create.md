@@ -15,7 +15,7 @@
 
 
 # Lecture
-Today we will be working on our create functionality.  To see what our task requiremtents are for this, we will start by heading over to trello and bringing the card over to in progress.
+Today we will be working on our create functionality.  To see what our task requirements are for this, we will start by heading over to trello and bringing the card over to in progress.
 
 I also want to head to the syllabus and bring in the developer stories and place them in my notes so I can keep track of what I am doing.
 
@@ -206,7 +206,7 @@ Now that we have information being passed to App.js, how can we show our user th
 
 We can redirect our user to our index page so they can see their new cat on the list of cats.
 
-First we need to import useNavigate
+First we need to import useNavigate which is a React hook that helps us to navigate programmatically (such as a redirect on a form)
 
 `import { useNavigate } from "react-router-dom"`
 
@@ -236,15 +236,15 @@ Let's write two different tests, one to check that the page renders like normal,
 
 ```javascript
 describe("<CatNew/>", () => {
+  // Arrange
+  beforeEach(() => {
+    render(
+      <BrowserRouter>
+        <CatNew />
+      </BrowserRouter>
+    )
+  })
   test("renders the CatNew page for the user", () => {
-    // Arrange
-    beforeEach(() => {
-      render(
-        <BrowserRouter>
-          <CatNew />
-        </BrowserRouter>
-      )
-    })
     // Act - 
       // Can be interactions like clicking
       // can be passive actions like seeing something
@@ -260,23 +260,23 @@ There is another matcher we can use instead of toBeInTheDocument.  Both will be 
     expect(element).toHaveTextContent("CatNew")
 ```
 
-We can also use `screen.debug(heading)` to see what the test is recognizing.
+We can also use `screen.debug(element)` to see what the test is recognizing.
 
 ```javascript
 test("has a form with entries for name, age, enjoys and image", () => {
-  const formName = screen.getBytext(/name/i)
-  // We need to grab the attribute for to make the test pass
-  // screen.debug(formName)
-  expect(formName.getAttribute("for")).toEqual("name")
+    const formName = screen.getByText(/name/i)
+    expect(formName.getAttribute("For")).toEqual("name")
 
-  const formAge = screen.getAllByText(/age/i)
-  expect(formAge.getAttribute("for")).toEqual("age")
+    const formAge = screen.getByText("Age")
+    expect(formAge.getAttribute("For")).toEqual("age")
 
-  const formEnjoys = screen.getByText(/enjoys/i)
-  expect(formEnjoys.getAttribute("for")).toEqual("enjoys")
+    const formEnjoys = screen.getByText(/enjoys/i)
+    expect(formEnjoys.getAttribute("For")).toEqual("enjoys")
 
-  const formImage = screen.getByText(/image/i)
-  expect(formImage.getAttribute("for")).toEqual("image")
+    const formImage = screen.getByText(/image/i)
+    expect(formImage.getAttribute("For")).toEqual("image")
 })
 
 ```
+
+Testing it exists and that the content matches
