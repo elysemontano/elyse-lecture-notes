@@ -77,6 +77,8 @@ For each is similar to map in a sense, however it does not actually return anyth
 
 Map is great for modifying or displaying each of the values in an array
 
+** Show github and how we are displaying a mapped array **
+
 
 ```javascript
 const myArray = [3, 4, 5, 6]

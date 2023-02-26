@@ -22,38 +22,22 @@ Code
 Example: 
     
     const myFunction = () => {
-        return this code block
+      return "output"
     }
 
     To call the function: myFunction()
 
 
-```javascript
-const makeCoffee
-```
-
-Functions are used for action in our code.
-- Equal sign for variable declaration
-- Parentheses
-- Arrow syntax
-- Executable block of code
-
-
-```javascript
-const makeCoffee = () => {
-
-}
-```
-
 #### Output and Invocation
-Every function must output something. The output is defined by the keyword `return`.
-- Run the file, see nothing in the terminal
+So let's set up a working example.  We are going to make a coffee maker with a function.
 
 ```javascript
 const makeCoffee = () => {
   return "Coffee is made!"
 }
 ```
+Every function must output something. The output is defined by the keyword `return`.
+- Run the file, see nothing in the terminal
 
 Functions don't do anything at all until we tell them run. Telling a function to run is called an invocation, or invoking the function.
 - Show the invocation, run the file, see nothing
@@ -86,14 +70,24 @@ console.log(makeCoffee())
 Functions are designed to be reusable and dynamic.
 - Functions can take inputs
 - Functions are encapsulated so the only outside influence in a function should be through the designated inputs
+    Encapsulation - code should only have access to information that the developer decides, predictable behavior
+    Functions should only have data that have been passed into the code via the argument 
 - The inputs are special variables called parameters
 - The parameters should be relatively neutral
-- The value of a parameter gets defined in the function invocation called an argument
+
+        const myFunction = (parameter) => {
+          return "output"
+        }
+        myFunction(argument)
 
 ```javascript
 const makeCoffee = (coffeeType) => {
  return `Enjoy your ${coffeeType}.`
 }
+```
+
+- The value of a parameter gets defined in the function invocation called an argument
+```javascript
 console.log(makeCoffee()) // will return undefined since the parameter is a variable without an assignment
 console.log(makeCoffee("latte"))
 console.log(makeCoffee("espresso"))
@@ -101,7 +95,7 @@ console.log(makeCoffee("chai"))
 ```
 
 #### Pseudo Code
-As the code we are creating gets more complex, more work is required to break down the problem. Pseudo coding is the term for writing process notes in plain English. When pseudo coding functions it is important to think about the inputs and outputs.
+As the code we are creating gets more complex, more work is required to break down the problem. Pseudo coding is the term for writing process notes in plain English. When pseudo coding functions it is important to think about the inputs and outputs and the steps in between to get to that output.
 - Build out a function that takes a coffeeType and a size and returns a statement with the appropriate price
 - Functions have to return something
 - Only one output in an conditional statement will ever be executed
@@ -115,7 +109,7 @@ As the code we are creating gets more complex, more work is required to break do
 // if the size evaluates to small, it will cost $3
 // if none of the above are true, return an error message
 
-const makeCoffee = (coffeeType, size) => {
+const orderCoffee = (coffeeType, size) => {
   if(size === "large") {
     return `Your ${size} ${coffeeType} is $5`
   } else if(size === "medium") {
@@ -129,9 +123,6 @@ const makeCoffee = (coffeeType, size) => {
 ```
 
 
-
-Encapsulation - code should only have access to information that the developer decides, predictable behavior
-Functions should only have data that have been passed into the code via the argument 
 
 ### Next Steps
 - Open the syllabus section and briefly run through the challenges and expectations

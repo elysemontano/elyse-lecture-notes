@@ -49,14 +49,14 @@ To start off in this file, I want to write in here a header or a bold text.  Hea
 ** Write some headers in file **
 
 ## Configurations
-To do this next step, let's have our syllabus open and head to the section that sats Git and GitHub Intro and Configurations.
+To do this next step, let's have our syllabus open and head to the section that says Git and GitHub Intro and Configurations.
 
 `$ git --version` - Informational command that tells us what version we are on.
+
+** Get a volunteer student to do the following steps **
 `$ git config --global user.name "Your name"` - Won't give an output, but make sure you don't get an error.
 `$ git config --global user.email "youremail@email.com"`
 `$ git config --global credential.helper osxkeychain` - How we want to save our credentials on the computer.  In this case, we are using osx key chain.
-
-** Get a volunteer student to do the following steps **
 `$ git config -l` - Informational command that shows us what we just entered.  Make sure everything is correct.
 
 - Head to GitHub > Settings > Developer Settings > Personal Access Tokens

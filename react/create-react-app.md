@@ -37,7 +37,7 @@ Currently our App.js is a functional component. Which is great, but I like to mo
 const App = () => {
   return(
     <>
-      <h1>A Basic Class Component</h1>
+      <h1>Hello World!</h1>
     </>
   )
 }

@@ -1,10 +1,13 @@
 # GitHub Workflow
 First off, in understanding the workflow we are going to utilize in class, it is important for us to distiguish the difference between Git and GitHub.  
 
+** Git Workflow slide **
+
 Git:
 - Version control software
 - Lives on your individual machine
 
+** space ** 
 GitHub:
 - Cloud service where we store git repositories
 
@@ -17,6 +20,8 @@ We can also access changes that our coworkers have made by bringing those change
 We have already explored the idea of having a folder in GitHub (repo) and made a copy of it (cloning) onto our local machine.  Taking a folder/repo from remote to local is cloning.
 
 Inside that folder is where we will create our code.  So I can add some content, but when I do this, git is recognizing that there is a diff.  I have changes that I have made, but GitHub does not know about those changes yet.  To reconcile that diff, I need to push up my changes and anyone who wants to contribute would need to pull my changes to their local.  Push and pull is reconciling a diff.
+
+** Stop Slideshow **
 
 
 ## Pushing Code to GitHub
@@ -78,12 +83,16 @@ Other Commands
 
 I can also see on GitHub my history of each commit I have made.
 
+** Give some time to practice ** 
+
 ## Collaborating on GitHub with Branches
 ** Create a blank google doc and share with class **
 
 I would like everyone to write what you learned about GitHub.
 
 If we all try to push to GitHub at the same time, this is exactly what is going to happen.  To help solve this problem, we are going to talk about branching.
+
+** Slide show starting **
 
 Everytime we push and pull on GitHub, we are doing it on a specific pathway.  That pathway is called a branch.  A branch connects the remote to local.
 
@@ -94,6 +103,8 @@ The default branch is called main.  Main is considered the source of truth.  Mai
 But if we all try to push to main, we are going to run into the same problem as the google doc.  Along with that, if your main branch is the source of truth and in production, and you need to work on code, how do you do that safely without potentially damaging your main branch?
 
 So you are always on a branch, and by default you are on main, but we can create other branches or additional pathways that allow us to push and pull and it won't interfere with main.  We can create as many of those as we need to.  
+
+** End Slideshow **
 
 Let's go through this process together.  On GitHub, I have created a repo called <cohort-first-repo> on our shared organization that we are going to collaborate on.  Inside here, I currently have a README file that has a lot of the commands that we have just learned and/or are going to be learning about shortly.  
 
@@ -138,7 +149,7 @@ Now to send these changes up to GitHub, I can do the git trio
 This time around since I am on a different branch than main, I want to push up to the branch and NOT to main.
 
 
-Now if I head to GitHub, I don't see my changes because I am only showing main currently.  There is a drop down menu that I can view the different branches, and also I see this banner that shows I just pushed some work to a branch.  Let's follow this banner to *compare and pull request*, I am prompted to submit a pull request.  We are going to hold of on that step for right now.  
+Now if I head to GitHub, I don't see my changes because I am only showing main currently.  There is a drop down menu that I can view the different branches, and also I see this banner that shows I just pushed some work to a branch.  Let's follow this banner to *compare and pull request*, I am prompted to submit a pull request.  We are going to hold off on that step for right now.  
 
 ## Switching Drivers
 So now that I have made these changes, but I am pair programming and it is time for us to switch roles.  My partner is going to need accesss to this code I just wrote.
@@ -147,8 +158,8 @@ So now that I have made these changes, but I am pair programming and it is time 
 ** Make sure they have cloned the repo and check branch, navigate to main **
 
 Create a new branch
-`$ git checkout -b <branchname-initials>`
-`$ touch <filename-first-names>`
+`$ git checkout -b <branching-initials>`
+`$ touch <branching-first-names.md>`
 
 Git trio
 
@@ -171,9 +182,15 @@ Both myself and my partner are on the same branch, however their branch is not u
 ## Pull requests
 So far, we have successfully cloned a repo, worked on code, pushed it up to GitHub, collaborated on the code with a partner and have been able to switch back and forth as drivers.  This is going to be our daily workflow when working on challenges after lectures.  There is one last step however that we will want to cover.
 
+** Slide show **
+
 Up to now, we have been working on a branch that is not main to collaborate.  Eventually when we have completed our work on that task, we are going to want to have the changes on our branch to become part of the source of truth (main).
 
 To do this, we are going to need to submit a pull request (pr).  A pull request is a way to submit contributions to the main branch and update main.  When submitting a pull request, we are asking for GitHub to compare the changes between main and my branch and allow my changes to become a part of this.  Part of this process will include a review of the code prior to merging, or updating main with your code.  This is a very standard practice in development where you will have other developers review code to keep each other accountable.  In class, myself and Nicole will review your pull requests and upon approval you can than merge your work to main.
+
+** End Slide show **
+
+** Submit a PR for branch **
 
 Once your branch is merged to main, you will want to delete the branch since that task is complete.  To delete the branch, we are going to have to do this process in two places, on GitHub and our local machine.
 

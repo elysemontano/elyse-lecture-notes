@@ -1,6 +1,8 @@
 # HTML and CSS
 In Jumpstart we explored HTML and CSS and were able to build a website and even a treasure hunt game.  Since at this point you have a working knowledge of these concepts, we are going to do a quick review of HTML and CSS.
 
+** Next slide *** 
+
 - HTML stands for hypertext markup language
     - HTML is going to be the content that displays on a page
 - CSS stands for cascading style sheets

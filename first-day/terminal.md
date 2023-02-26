@@ -43,7 +43,7 @@ This box is our wonderful terminal who we are going to become very good friends 
   - Will open the folder you are currently in the finder
 
 
-When writing code, we will be using text editors.  Many of you became familiar with atom or possibly VS Code in Jumpstart, but the text editor is where we will store and work on code.  To open the text editor in the terminal:
+When writing code, we will be using text editors.  Many of you became familiar with VS Code in Jumpstart, but the text editor is where we will store and work on code.  To open the text editor in the terminal:
 `$ code <filename>` - opens just that file
 `$ atom .` - opens that folder
 `$ code .` - opens folder
@@ -54,6 +54,8 @@ When writing code, we will be using text editors.  Many of you became familiar w
 - Up arrow will cycle through the commands you have ran
 - Down arrow will cycle down through the commands you have run to the most recent
 - Right and left will allow you to modify command that is written but not executed yet.
+
+(option click will allow you to select a location on the command to type)
 
 `$ clear`
   - Clears the content currently being displayed on terminal.  (Does not clear history)
