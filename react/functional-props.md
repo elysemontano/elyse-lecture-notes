@@ -132,14 +132,14 @@ We now are displaying MenuItem for each object in my menu state variable, but in
 const MenuItem = (props) => {
   return (
     <>
-      <p key={props.key}>{props.item.name}</p>
+      <p>{props.item.name}</p>
     </>
   )
 }
 ```
 
 ## Conditional Rendering
-Now that I am displaying my menu items, let's say if I were to order something, I want to display that I have.  To do this, I am going to conditionally render based on the ordered status in state.
+Now that I am displaying my menu items, let's say if I were to order something, I want to display that I have ordered it.  To do this, I am going to conditionally render based on the ordered status in state.
 
 ```javascript
 // component/MenuItem.js
@@ -147,7 +147,138 @@ const MenuItem = (props) => {
   return (
     <>
       <p key={props.key}>{props.item.name}</p>
+      {/* Conditional rendering allows us to render something based on a condition being true
+      If item ordered is true (props.item.ordered === true), display "ordered" */}
+      {props.item.ordered &&
+        <p>Ordered</p>
+      }
+      <button>Order</button>
     </>
   )
 }
 ```
+
+Currently my button is not going to do anything because I have not setup an onClick.  So let's do this next so when I click on my ordered button, I am updating the status of my item to ordered.  
+
+But here is the dilema, my state is being managed in App.js, but my button is on my MenuItem component.  So I need a way to send the information from my component back up to App.js or up the river so to speak.
+
+To do this, I am going to head back over to App.js and create a function that I can pass down as props to my MenuItem component and will take an argument of which item I am clicking on and update state for that item to ordered.
+
+```javascript
+// App.js
+import './App.css'
+import React, { useState } from 'react'
+import MenuItem from './component/MenuItem'
+
+const App = () => {
+
+  const [menu, setMenu] = useState([
+    { name: "item1", ordered: false},
+    { name: "item2", ordered: false},
+    { name: "item3", ordered: false},
+    { name: "item4", ordered: false},
+  ])
+
+  // Create a function with an argument of which item I clicked on that I can pass to MenuItem and be called when the button is clicked
+  const orderItem = (selectedItem) => {
+    console.log('clicked')
+  }
+
+  return (
+    <>
+      <h1>Cohort BBQ</h1>
+      <h2>Menu</h2>
+      {menu.map((item, index) => {
+        return (
+        <MenuItem 
+          item={item} 
+          key={index} 
+          orderItem={orderItem} 
+          index={index} 
+        />)
+      })}
+    </>
+  )
+} 
+```
+
+So I am passing my orderItem function as props, along with index so I can know which item I am clicking in MenuItem.
+
+Now let's setup the onClick in MenuItem
+
+```javascript
+// component/MenuItem.js
+const MenuItem = (props) => {
+  return (
+    <>
+      <p key={props.key}>{props.item.name}</p>
+      {// when the item ordered is true (ordered === true) display "ordered"}
+      {props.item.ordered &&
+        <p>Ordered</p>
+      }
+      <button onClick={props.orderItem}>Order</button>
+    </>
+  )
+}
+```
+
+So currently, we are invoking the function, but when we setup an onclick on a button like this, React will immediately invoke the function which can be problematic down the line and has the potential to create a stack overflow.
+
+To resolve this issue, we are going to use an anonymous function in here to control when the function is invoked.
+
+```javascript
+// component/MenuItem.js
+      <button onClick={() => props.orderItem}>Order</button>
+```
+
+The anonymous function is basically saying don't run the function until I click on it.
+
+Now, I need to pass some information when this function is invoked.
+
+
+```javascript
+// component/MenuItem.js
+<button onClick={() => props.orderItem(props.index)}>Order</button>
+```
+
+And I can update my function in App.js to display the selected item as well.
+
+```javascript
+// App.js
+
+  const orderItem = (selectedItem) => {
+    console.log(selectedItem)
+  }
+
+```
+
+So now we are seeing in the console which item is selected!  Awesome!  
+
+Next we need to update that item to have a status of ordered.  For this, we need to first extract the item from menu and then reasign the value for ordered to be true.
+
+```javascript
+// App.js
+
+  const orderItem = (selectedItem) => {
+    console.log(selectedItem)
+    // finding the item by index[selectedItem] in the menu array, then accessing the ordered property and reassigning the value to true
+    menu[selectedItem].ordered = true
+  }
+
+```
+
+What we have though is not changing state yet, it is just setting us up so we know what we want state to change to.  To update state, we need to use setMenu.  When setting menu though, we want to essentially make a copy of menu with this selected item being changed to ordered.  So we are going to use the spread operator to make a copy of menu.  This takes all the values of menu, duplicates it, and with the changes made right before.
+
+```javascript
+// App.js
+
+  const orderItem = (selectedItem) => {
+    console.log(selectedItem)
+    // finding the item by index[selectedItem] in the menu array, then accessing the ordered property and reassigning the value to true
+    menu[selectedItem].ordered = true
+    // Spread operator makes a copy of menu with the updated value
+    setMenu([...menu])
+  }
+
+```
+
