@@ -148,7 +148,7 @@ Inside `setMiles()` we can pass in here whatever we want our variable to be upda
 
 ```javascript
 const addMile = () => {
-  setMiles({miles + 1})
+  setMiles(miles + 1)
 }
 ```
 
@@ -243,7 +243,7 @@ const App = () => {
   const [color, setColor] = useState("pink")
 
   const addMile = () => {
-    setMiles({miles + 1})
+    setMiles(miles + 1)
   }
 
   render() {
