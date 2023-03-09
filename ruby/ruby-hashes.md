@@ -17,7 +17,7 @@ So a hash has a custom key value pair, and the key is a symbol which is that dat
 There are two ways to write hashes.  The first way is to create key:value pairs in curlies.
 
 ```ruby
-{ first_name: "Elyse", last_name: "Montano", title: "Lead Instructor"}
+{ cat1: "Tobey", cat2: "Nala", dog1: "Bruno", dog2: "Kodi"}
 ```
 
 So we set up key value pairs, alot like how we setup objects in Javascript.
@@ -25,9 +25,9 @@ So we set up key value pairs, alot like how we setup objects in Javascript.
 Now let's take a look at how we can access the data in here.  To start, let's assign this hash to a variable, then we can print out the variable.
 
 ```ruby
-cohort = { first_name: "Elyse", last_name: "Montano", title: "Lead Instructor"}
+my_pets = { cat1: "Tobey", cat2: "Nala", dog1: "Bruno", dog2: "Kodi"}
 
-p cohort # {:first_name=>"Elyse", :last_name=>"Montano", :title=>"Lead Instructor"}
+p my_pets # {:cat1=>"Tobey", :cat2=>"Nala", :dog1=>"Bruno", :dog2=>"Kodi"}
 ```
 
 So what I get back is a bit different than what I wrote, but still the same data, just different syntax.  This is showing an older syntax of Ruby hashes.  This older syntax will have the symbol or key with a colon prior to it and the value is seperated with what looks like a fat arrow, but it is known in Ruby as a hash rocket.  Both are exactly the same thing, just a different syntax.
@@ -54,13 +54,13 @@ These four things come together to what is known as CRUD (Create, Read, Update, 
 Read returns all of the data in the hash
 
 ```ruby
-p cohort 
+p my_pets
 ```
 
 I can also return a specific value in the hash.  In Javascript objects, we would use dot notation to access a value, but in Ruby hashes, we need to use bracket notation and call on the symbol which will have a colon before the key name.
 
 ```ruby
-p cohort[:first_name]
+p my_pets[:cat1]
 ```
 
 So with Read, the goal is to not make any modifications, we are only accessing information.
@@ -77,34 +77,34 @@ p people
 We can add content in the hash
 
 ```ruby
-cohort[:cohort]="Alpha"
+my_pets[:hamster]="Neo"
 
-p cohort # {:first_name=>"Elyse", :last_name=>"Montano", :title=>"Lead Instructor", :cohort=>"Alpha"}
+p my_pets
 
-cohort[:year]=2021
-p cohort # {:first_name=>"Elyse", :last_name=>"Montano", :title=>"Lead Instructor", :cohort=>"Alpha", :year=>2021}
+my_pets[:turtle]="Harley"
+p my_pets
 ```
 
 I can also use this same syntax to update content or value in the hash as well
 
 ```ruby
-cohort[:title]="Instructor"
-p cohort # {:first_name=>"Elyse", :last_name=>"Montano", :title=>"Instructor", :cohort=>"Alpha", :year=>2021}
+my_pets[:turtle]="Harlee"
+p my_pets
 ```
 
 But what if I want to update the key because I realize that my key is not doing a great job describing the data inside, I can.
 
 ```ruby
-cohort[:position] = cohort.delete(:title)
-p cohort # {:first_name=>"Elyse", :last_name=>"Montano", :position=>"Instructor", :cohort=>"Alpha", :year=>2021}
+my_pets[:rodent] = my_pets.delete(:hamster)
+p my_pets
 ```
 
 ### Delete
 So lastly, we can delete content
 
 ```ruby
-cohort.delete(:last_name)
-p cohort # {:first_name=>"Elyse", :position=>"Instructor", :cohort=>"Alpha", :year=>2021}
+my_pets.delete(:turtle)
+p my_pets
 ```
 
 ## Enumerables and Duck Typing
