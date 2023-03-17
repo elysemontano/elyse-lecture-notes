@@ -1,7 +1,7 @@
 # Rails Associations
 Up to this point, we have been working with databases that have a structure of rows and columns, like an excel spreadsheet.  There will always be an id for one of the columns that Rails automatically generates for us when we create our models. Otherwise, all other columns we setup needs to be given a name and we define the data type for that specific column.  
 
-In Rails, we can also define the relationship between related tables by something called Associations.  Let's take a look at how his works.
+In Rails, we can also define the relationship between related tables by something called Associations.  Let's take a look at how this works.
 
 ** Use Slideshow **
 
@@ -32,7 +32,7 @@ We know that Aaron and Brandon are in Alpha
 
 - To do this, we can link link the students to their cohorts using something called a foreign key. Just like how we have a primary key as a unique identifier for each instance, we have a foreign key to setup the connection.  
 
-The naming convention of the foreign key is the model you are referring to, an underscore, and id.  Unlike primary keys, Rails will not automatically name this column for you.  The foreign key will be the primary key of the instance you are connecting to.  In this case, Aaron and Brandon will have a foreign key of 2 since that is the primary key for the Alpha cohort instance.
+- The naming convention of the foreign key is the model you are referring to, an underscore, and id.  Unlike primary keys, Rails will not automatically name this column for you.  The foreign key will be the primary key of the instance you are connecting to.  In this case, Aaron and Brandon will have a foreign key of 2 since that is the primary key for the Alpha cohort instance.
 
 - This relationship in Rails is known as has_many belongs_to relationship.  The cohort has_many students and students belongs_to a cohort.  The foreign key is always on the belongs_to model and it's data will be the primary key of the has_many model you are referencing.
 
