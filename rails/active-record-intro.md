@@ -58,6 +58,7 @@ We are going to be using a new command in rails to generate some things.
     Since we are dealing with data, we will have some specific datatypes we will need to work with that are specific to Active Record.
   - We need to decide now the structure the database and what type of data will be stored
 
+In this case, I am going to be creating a schueduler where I will need day date and event.
 
 Generate command takes arguements
   - Class name will be in Pascal case and singular (Rails is very particular here!)
