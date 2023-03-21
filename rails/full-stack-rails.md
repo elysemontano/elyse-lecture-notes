@@ -393,6 +393,32 @@ So, on the Rails documentation, there is a section called 'Dealing with Model Ob
 
 So we can see the form, but we still won't be adding it to our database just yet because we need the create method to handle that side of things.  
 
+Lastly, let's add some navigation to this page from our index page.  I need to add an alias to my route.
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+    # HTTP verb, url (location),  hashrocket,  controller, methods 
+    get 'books' => 'book#index', as: 'books'
+    get 'books/new' => 'book#new', as: 'new_book'
+    get 'books/:id' => 'book#show', as: 'book'
+    # root "article#index"
+end
+```
+
+Then I can create a link on my index page.
+
+```ruby
+<h2>My Reading Tracker</h2>
+<ul>
+    <% @books.each do |book|%>
+        <li><%= link_to book.name, book_path(book.id) %> </li>
+    <% end %>
+</ul>
+<p><%= link_to 'Add New Book', new_book_path %></p>
+```
+
 ** Push to GitHub **
 
 ## Create
@@ -406,7 +432,9 @@ Let's work on create now.
 
 Let's take a look at our controller first. 
 
-We want to allow our user to be able to add information to our database, but we have to protect what is being put into our database.  Validations is certainly one layer of protection that we can setup, but Rails requires us to add an additional protection for any content handed to our database by a user. 
+We want to allow our user to be able to add information to our database, but we have to protect what is being put into our database.  Validations is certainly one layer of protection that we can setup, but Rails requires us to add an additional protection for any content handed to our database by a user. What we want to do in the controller is make sure that the user can only interact with the model they are contributing to, and can only provide information to the set collumns we have setup for that model.
+
+To do this, we need something called strong params.  Strong params is a method with the naming convention of the model_params, in this case book_params.  Inside the method, we will put params.require(:book).permit(:name, :read)
 
 ```ruby
 # app/controllers/book_controller.rb
@@ -427,5 +455,454 @@ class BookController < ApplicationController
     def create
         @book = Book.create()
     end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+``` 
+
+Now that we have setup our strong params, we need to invoke this method somewhere.  So if we look at our create method, we want to create a new Book, so inside the parenthesis we can pass our strong params.
+
+
+```ruby
+# app/controllers/book_controller.rb
+
+class BookController < ApplicationController
+    def index
+        @books = Book.all
+    end
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
+    def new
+        @book = Book.new
+    end
+
+    def create
+        @book = Book.create(book_params)
+    end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+``` 
+
+Now that we have our controller setup, let's look at our routes:
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+    # HTTP verb, url (location),  hashrocket,  controller, methods 
+    get 'books' => 'book#index', as: 'books'
+    get 'books/new' => 'book#new'
+    get 'books/:id' => 'book#show', as: 'book'
+    post 'books' => 'book#create'
+    # root "article#index"
 end
 ```
+
+And this should make it so we are actually adding content into the database, however, we still dont have any navigation happening once we submit a new book.  Oftentimes when submiting a form, as a user you will be redirected to the index page. We can use a conditional in our controller that can help us redirect our user if they successfully submitted a book.
+
+```ruby
+# app/controllers/book_controller.rb
+
+class BookController < ApplicationController
+    def index
+        @books = Book.all
+    end
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
+    def new
+        @book = Book.new
+    end
+
+    def create
+        @book = Book.create(book_params)
+        if @book.valid?
+          redirect_to books_path
+        end
+    end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+```
+
+There is one last thing I want to add in my controller.  Our method book_params is currently available everywhere in my application, however, the only time I ever want this to be invoked is in my create and later update methods.  To create this extra layer of protection and lock this particular method from being used anywhere outside this file, I need to add private just above this method.
+
+```ruby
+# app/controllers/book_controller.rb
+
+private
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+```
+
+It is important to make sure that only strong params are placed under private, because any method after this keyword cannot be invoked outside of this file.
+
+** Push up code to GitHub **
+
+## Destroy
+With destroy, we do need to know which instance in our database we want to remove, so we will need to set this up in a similar way to show in our controller.
+
+
+```ruby
+# app/controllers/book_controller.rb
+
+class BookController < ApplicationController
+    def index
+        @books = Book.all
+    end
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
+    def new
+        @book = Book.new
+    end
+
+    def create
+        @book = Book.create(book_params)
+        if @book.valid?
+          redirect_to books_path
+        end
+    end
+
+    def destroy
+      @book = Book.find(params[:id])
+      @book.destroy
+    end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+```
+
+Let's setup our route next.  In this, I am also going to give this route an alias so that I know what route to call on my view.
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+    # HTTP verb, url (location),  hashrocket,  controller, methods 
+    get 'books' => 'book#index', as: 'books'
+    get 'books/new' => 'book#new'
+    get 'books/:id' => 'book#show', as: 'book'
+    post 'books' => 'book#create'
+    delete 'books/:id' => 'book#destroy', as: 'delete_book'
+    # root "article#index"
+end
+```
+
+Since destroy won't need it's own view, we do need a place that we can delete an item.  When we are on the show page, we already know the id of the instance we are on, and so adding a delete button on this view sounds like a good user experience.
+
+Once again, Rails has a helper for a button as well that we can use called button_to.  One thing to keep in mind is that most web browsers will default to get and post requests, so in our button, we need to specify that we will be doing a delete request.
+
+```ruby
+# app/views/book/show.html.erb
+
+<% if @book.read? %>
+    <h3>I have read <%= @book.name %></h3>
+<% else %>
+    <h3>I have not read <%= @book.name %></h3>
+<% end %>
+
+<p><%= link_to 'All the Books', books_path %></p>
+<p><%= button_to 'Remove Book', delete_book_path, method: :delete %></p>
+```
+
+As of right now, this works when I go back to my index page, but as a user, it is really helpful to have some kind of an action to show that I have successfully done the action.  Let's head back to our controller and add a redirect.
+
+```ruby
+# app/controllers/book_controller.rb
+
+class BookController < ApplicationController
+    def index
+        @books = Book.all
+    end
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
+    def new
+        @book = Book.new
+    end
+
+    def create
+        @book = Book.create(book_params)
+        if @book.valid?
+          redirect_to books_path
+        end
+    end
+
+    def destroy
+      @book = Book.find(params[:id])
+      if @book.destroy
+        redirect_to books_path
+      end
+    end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+```
+
+# Edit
+Next up is edit, which is a form much like new, but this time we need to know which instance we are updating, so like show and destroy I will need params.
+
+```ruby
+# app/controllers/book_controller.rb
+
+class BookController < ApplicationController
+    def index
+        @books = Book.all
+    end
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
+    def new
+        @book = Book.new
+    end
+
+    def create
+        @book = Book.create(book_params)
+        if @book.valid?
+          redirect_to books_path
+        end
+    end
+
+    def destroy
+      @book = Book.find(params[:id])
+      if @book.destroy
+        redirect_to books_path
+      end
+    end
+
+    def edit
+      @book = Book.find(params[:id])
+    end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+```
+
+Next, let's update our routes.  Edit is a get request, since it is only getting a form.
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+    # HTTP verb, url (location),  hashrocket,  controller, methods 
+    get 'books' => 'book#index', as: 'books'
+    get 'books/new' => 'book#new', as: 'new_book'
+    get 'books/:id' => 'book#show', as: 'book'
+    post 'books' => 'book#create'
+    get 'books/:id/edit' => 'book#edit', as: 'edit_book'
+    delete 'books/:id' => 'book#destroy', as: 'delete_book'
+    # root "article#index"
+end
+```
+
+Since we need params to know which instance we want to setup a form for, a good place to add this button is on the show page.
+
+```ruby
+# app/views/book/show.html.erb
+
+<% if @book.read? %>
+    <h3>I have read <%= @book.name %></h3>
+<% else %>
+    <h3>I have not read <%= @book.name %></h3>
+<% end %>
+
+<p><%= link_to 'All the Books', books_path %></p>
+<p><%= button_to 'Edit Book', edit_book_path %></p>
+<p><%= button_to 'Remove Book', delete_book_path, method: :delete %></p>
+```
+
+So we have our navigation setup to get there, but we need a view.  So we need to create a new file in our views/book folder called edit.html.erb and can copy over the content from our new form.
+
+```ruby
+# app/views/book/edit.html.erb
+
+<h2>Edit book</h2>
+
+<%= form_with model: @book do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :read %>
+  <%= form.check_box :read %>
+  <%= form.submit "Add Book" %>
+<% end %>
+```
+
+We do need to update that we are doing something other than the default requests of get or post.  So we will specify that this method will be a patch request.
+
+```ruby
+# app/views/book/edit.html.erb
+
+<h2>Edit book</h2>
+
+<%= form_with model: @book, method: :patch do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :read %>
+  <%= form.check_box :read %>
+  <%= form.submit "Update Book" %>
+<% end %>
+
+<p><%= link_to 'All the Books', books_path %></p>
+```
+
+And when we go to edit a book, it is actually showing the content in the inputs.  Because this is exisiting data, Rails knows the flow of information and will display it for us.  Pretty cool!
+
+If we make a change and try to submit though, we still aren't seeing the changes being reflected.  This is because we have one more thing to cover and that is update.
+
+** Push up code to GitHub **
+
+## Update
+Last step to being FULL STACKERS officially!!
+
+In our controller, we are once again going to need to get the id, but we are also sending information to the database like we did for create, so we need to pass in some book params.
+
+```ruby
+# app/controllers/book_controller.rb
+
+class BookController < ApplicationController
+    def index
+        @books = Book.all
+    end
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
+    def new
+        @book = Book.new
+    end
+
+    def create
+        @book = Book.create(book_params)
+        if @book.valid?
+          redirect_to books_path
+        end
+    end
+
+    def destroy
+      @book = Book.find(params[:id])
+      if @book.destroy
+        redirect_to books_path
+      end
+    end
+
+    def edit
+      @book = Book.find(params[:id])
+    end
+
+    def update
+      @book = Book.find(params[:id])
+      @book.update(book_params)
+    end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+```
+
+Let's work on our route.  We can set this up as a patch or a put request. 
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+    # HTTP verb, url (location),  hashrocket,  controller, methods 
+    get 'books' => 'book#index', as: 'books'
+    get 'books/new' => 'book#new', as: 'new_book'
+    get 'books/:id' => 'book#show', as: 'book'
+    post 'books' => 'book#create'
+    get 'books/:id/edit' => 'book#edit', as: 'edit_book'
+    patch 'books/:id' => 'book#update'
+    delete 'books/:id' => 'book#destroy', as: 'delete_book'
+    # root "article#index"
+end
+```
+
+Lastly, we can add a redirect so that when we update successfully, we are brought back to our show page.
+
+```ruby
+# app/controllers/book_controller.rb
+
+class BookController < ApplicationController
+    def index
+        @books = Book.all
+    end
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
+    def new
+        @book = Book.new
+    end
+
+    def create
+        @book = Book.create(book_params)
+        if @book.valid?
+          redirect_to books_path
+        end
+    end
+
+    def destroy
+      @book = Book.find(params[:id])
+      if @book.destroy
+        redirect_to books_path
+      end
+    end
+
+    def edit
+      @book = Book.find(params[:id])
+    end
+
+    def update
+      @book = Book.find(params[:id])
+      @book.update(book_params)
+      if @book.valid?
+        redirect_to book_path(@book.id)
+      end
+    end
+
+    # strong params
+    def book_params
+      params.require(:book).permit(:name, :read)
+    end
+end
+```
+
+And that's FULL STACK!!!
