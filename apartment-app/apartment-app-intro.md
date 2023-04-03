@@ -1,121 +1,125 @@
 # Apartment App
 Apartment app is a full stack application that we will be building in small groups, essentially as dev teams.  In this project, you will build the application, work through CRUD actions on both front and back end, test your work using React testing library and Rspec, style the components as you work through them, and work together as a team to complete this task.  We will be utilizing Trello as a project management software to help keep track of what is in progress and the tasks that are needed to be completed.  
 
+Since we will be working in groups of fours, there will be a little different dynamic when it comes to our project management.  Each team will be responsible for communication and be in agreement with each other on who is working on what tasks.  While you it is up to you on how you want to work in your teams, many groups find that splitting off into two pairs is helpful, just make sure each pair is still communicating with the other half of the team on blockers or progress made.  
+
+As instructors, we will be around to help wherever and whenever possible and will also be reviewing PR's as they come through.  We will periodically check on your Trello board and will ask questions if something seems out of place.
+
 We are going to go through a few of the initial steps together, starting with our Trello cards.
 
 ## Trello
-We used Trello with Cat Tinder, where you were provided cards with specific tasks.  This time, together we are going to collectively think about the content that we are going to need as a class, and priortize these items accordingly.
+We used Trello with Cat Tinder, where you were provided cards with specific tasks.  This time, together we are going to collectively think about the content that we are going to need as a class, and prioritize these items accordingly.  
 
-- Initial Setup 
-  - Installs
-  - Devise
-  - React in Rails
-  - Reactstrap
-  - Everyone is cloned down and has no errors when running `$ rails s`
-  - Everyone should be able to run rspec spec
+- Initial Setup (Located in apartment-app section in syllabus)
+    - Installs
+    - Devise
+    - React in Rails
+    - Reactstrap
+    - Apartment Resource
+    - Associations (User has_many Apartments, Apartment belongs_to User)
+    - React setup with devise info
+    - Frontend Structure
+        - Components, Pages, Test Files
+        - Routes setup on App.js for each page
+    - Seeds
+    - Everyone is cloned down and has no errors when running `$ rails s`
+    - Everyone should be able to run rspec spec
 
-- 
+- Backend Endpoints + Request specs for each
+    - Index 
+        - Controller method for index exists
+        - Rspec test for index method
+    - Create
+        - Controller method for create exists
+        - Strong params have been created in controller
+        - Rspec request spec for create method
+    - Update
+        - Controller method for update exists
+        - Rspec test for update method
+    - Delete
+        - Controller method for destroy exists
+        - Rspec test for destroy method
 
-## Initial Setup
-```
-$ rails new apartment-app -d postgresql -T
-$ cd apartment-app
-$ rails db:create
-$ bundle add rspec-rails
-$ rails generate rspec:install
-$ bundle add webpacker
-$ bundle add react-rails
-$ rails webpacker:install
-$ rails webpacker:install:react
-$ yarn add @babel/preset-react
-$ yarn add @rails/activestorage
-$ yarn add @rails/ujs
-$ rails generate react:install
-$ rails generate react:component App
-$ bundle add devise
-$ rails generate devise:install
-$ rails generate devise User
-$ rails db:migrate
-$ rails generate controller Home index
-```
+- Validations
+    - Model specs ensure an incomplete apartment throws an error
+    - Appropriate model validations are set to ensure the user submits all columns
+    - 422 error is thrown if validations are not met
 
-### Devise Config
-config/environments/development.rb
-```
-This line added:
-config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-```
+- Navigation 
+    As an unregistered user, I can see the navigation options for a page with all the apartment listings, a page where I can create an account, and always get back to the home page. 
+    As a registered user, I can see the navigation options for a page to add an apartment, a page with all apartments user has added, a page with all the apartment listings, and always get back to the home page.
 
-config/initializers/devise.rb
-```
-# This line replaced:
-config.sign_out_via = :delete
-# With this line:
-config.sign_out_via = :get
-```
+    - Link to Home (both for logged in and logged out user)
+    - Link to all apartments (both for logged in and logged out user)
+    - Link to my apartments when logged in
+    - Link to create an apartment when logged in
+    - Jest test for NavLink
 
-Add this code into the following file:
+- Header/Footer
+    - Add navigation as needed
+    - Basic styling
+    - Jest test
 
-app/views/home/index.html.erb
-```ruby
-<%= react_component 'App', {
-  logged_in: user_signed_in?,
-  current_user: current_user,
-  new_user_route: new_user_registration_path,
-  sign_in_route: new_user_session_path,
-  sign_out_route: destroy_user_session_path
-} %>
-```
+- Home Page
+    - Welcome and description of application is displayed
+    - Jest test to confirm page is rendering
+    - Basic styling
 
-### React in Rails Config
-app/views/layouts/application.html.erb
-```
-# This line replaced:
-<%= javascript_importmap_tags %>
-# With this line:
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-```
+- Unprotected Index
+    - Refactor route to dynamically pass all apartments
+    - Render list of cards with each apartment displaying information for price, location, bath, bed, and image.
+    - Jest test for the index page
+    - Basic styling
 
-config/routes.rb
-```
-# These lines added:
-get '*path', to: 'home#index', constraints: ->(request){ request.format.html? }
-root 'home#index'
-```
+- Protected Index
+    - Refactor route to dynamically pass only current users apartments
+    - ProtectedApartmentIndex only displays all apartments created by the current user
+    - Jest test for ProtectedApartmentIndex
+    - Basic styling
 
-### React Routing Config
+- Unprotected Show
+    - Refactor route to dynamically pass apartment
+    - Render page that shows all that apartment's details
+    - Provide link to show page on individual card
+    - Link back to index
+    - Jest test for Show page
+    - Basic styling
 
-`$ yarn add react-router-dom`
+- Protected Create
+    - Form is added to ApartmentNew and inputs are setting state on component
+    - createApartment method console logs the state object that will be sent to the database.
+    - Jest test for ApartmentNew page
+    - Basic styling
 
-app/javascript/components/App.js
+- Protected Update
+    - Form is added to ApartmentUpdate and inputs are setting state on component
+    - updateApartment method console logs apartment id and state object that will be sent to the database.
+    - Link to update page from show
+    - Jest test for ApartmentUpdate page
+    - Basic styling
 
-```javascript
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-```
+- Protected Delete
+    - deleteApartment method is created in App.js and console logs the apartment id that will be removed
+    - deleteApartment method is passed to protected index
+    - Button on card allows user to delete only apartments they have created
+    - Basic styling
 
-### Reactstrap Config
+- Not Found
+    - Basic Styling
+    - Jest testing for Not Found page
 
-```
-$ bundle add bootstrap
-$ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
-$ yarn add reactstrap
-```
+- Fetch
+    - Index: Fetch call is created for index method to pull from database
+    - Create: Fetch call is created for create method to pull from database
+    - Update: Fetch call is created for update method to pull from database
+    - Delete: Fetch call is created for delete method to pull from database
 
-app/assets/stylesheets/application.scss
-```javascript
-@import "bootstrap";
-```
+- Additional Styling
+    - Devise styling
 
-### Add Testing
 
-`$ yarn add jest`
+** Duplicate Trello board after completing the cards for each group **
 
-Add script to package.json
 
-```javascript
-  "scripts": {
-    "test": "jest",
-    "test-watch": "jest --watch"
-  }
-```
+
 
