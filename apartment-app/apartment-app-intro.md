@@ -8,47 +8,31 @@ As instructors, we will be around to help wherever and whenever possible and wil
 We are going to go through a few of the initial steps together, starting with our Trello cards.
 
 ## Trello
-We used Trello with Cat Tinder, where you were provided cards with specific tasks.  This time, together we are going to collectively think about the content that we are going to need as a class, and prioritize these items accordingly.  
+We used Trello with Cat Tinder, where you were provided cards with specific tasks.  This time, together we are going to collectively think about the content that we are going to need as a class, and prioritize these items accordingly.
+
+(Each first dash - is a trello cards, the following dashes are checklists inside the trello card)  
 
 - Initial Setup (Located in apartment-app section in syllabus)
     - Installs
     - Devise
     - React in Rails
     - Reactstrap
+    - Add jest
+
+- Application Structure    
     - Apartment Resource
-    - Associations (User has_many Apartments, Apartment belongs_to User)
-    - React setup with devise info
-    - Frontend Structure
+        - Associations (User has_many Apartments, Apartment belongs_to User)
+    - React setup
+        - Devise props
         - Components, Pages, Test Files
         - Routes setup on App.js for each page
     - Seeds
-    - Everyone is cloned down and has no errors when running `$ rails s`
-    - Everyone should be able to run rspec spec
-
-- Backend Endpoints + Request specs for each
-    - Index 
-        - Controller method for index exists
-        - Rspec test for index method
-    - Create
-        - Controller method for create exists
-        - Strong params have been created in controller
-        - Rspec request spec for create method
-    - Update
-        - Controller method for update exists
-        - Rspec test for update method
-    - Delete
-        - Controller method for destroy exists
-        - Rspec test for destroy method
-
-- Validations
-    - Model specs ensure an incomplete apartment throws an error
-    - Appropriate model validations are set to ensure the user submits all columns
-    - 422 error is thrown if validations are not met
 
 - Navigation 
     As an unregistered user, I can see the navigation options for a page with all the apartment listings, a page where I can create an account, and always get back to the home page. 
     As a registered user, I can see the navigation options for a page to add an apartment, a page with all apartments user has added, a page with all the apartment listings, and always get back to the home page.
 
+    - Props passed through Header to Navigation
     - Link to Home (both for logged in and logged out user)
     - Link to all apartments (both for logged in and logged out user)
     - Link to my apartments when logged in
@@ -65,10 +49,15 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
     - Jest test to confirm page is rendering
     - Basic styling
 
+- Backend Index
+    - Rspec test for index method
+    - Controller method for index exists
+
 - Unprotected Index
     - Refactor route to dynamically pass all apartments
     - Render list of cards with each apartment displaying information for price, location, bath, bed, and image.
     - Jest test for the index page
+    - Fetch call is created for index method to pull from database
     - Basic styling
 
 - Protected Index
@@ -77,7 +66,7 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
     - Jest test for ProtectedApartmentIndex
     - Basic styling
 
-- Unprotected Show
+- Show
     - Refactor route to dynamically pass apartment
     - Render page that shows all that apartment's details
     - Provide link to show page on individual card
@@ -85,34 +74,49 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
     - Jest test for Show page
     - Basic styling
 
-- Protected Create
+- Create
+    Rails:
+    - Controller method for create exists
+    - Strong params have been created in controller
+    - Rspec request spec for create method
+    React:
     - Form is added to ApartmentNew and inputs are setting state on component
     - createApartment method console logs the state object that will be sent to the database.
     - Jest test for ApartmentNew page
+    - Fetch call is created for create method to pull from database
     - Basic styling
 
-- Protected Update
+- Validations
+    - Model specs ensure an incomplete apartment throws an error
+    - Appropriate model validations are set to ensure the user submits all columns
+    - 422 error is thrown if validations are not met
+    
+- Update
+    Rails:
+    - Controller method for update exists
+    - Rspec test for update method
+    React:
     - Form is added to ApartmentUpdate and inputs are setting state on component
     - updateApartment method console logs apartment id and state object that will be sent to the database.
     - Link to update page from show
     - Jest test for ApartmentUpdate page
+    - Fetch call is created for update method to pull from database
     - Basic styling
 
-- Protected Delete
+- Delete
+    Rails:
+    - Controller method for destroy exists
+    - Rspec test for destroy method
+    React:
     - deleteApartment method is created in App.js and console logs the apartment id that will be removed
     - deleteApartment method is passed to protected index
     - Button on card allows user to delete only apartments they have created
+    - Fetch call is created for delete method to pull from database
     - Basic styling
 
 - Not Found
     - Basic Styling
     - Jest testing for Not Found page
-
-- Fetch
-    - Index: Fetch call is created for index method to pull from database
-    - Create: Fetch call is created for create method to pull from database
-    - Update: Fetch call is created for update method to pull from database
-    - Delete: Fetch call is created for delete method to pull from database
 
 - Additional Styling
     - Devise styling

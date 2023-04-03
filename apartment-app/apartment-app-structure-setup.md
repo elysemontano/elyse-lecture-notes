@@ -1,5 +1,6 @@
-## Apartment App Initial Setup with Devise
-
+# Apartment App Initial Setup with Devise
+## Initial Setup
+branch: none(initial commit)
 We can find the setup instructions in the apartment-app section of the syllabus.  It is important to follow the order given in here.
 ```
 $ rails new apartment-app -d postgresql -T
@@ -103,6 +104,10 @@ Add script to package.json
   }
 ```
 
+** Check server and run test libraries before pushing to GitHub **
+
+## Application Structure
+branch: application-structure
 ### Apartment Resource
 Here I want to spend some time thinking about how we will structure our database.  So let's brainstorm together what we may need as information for an apartment listing.
 
@@ -309,5 +314,4 @@ end
 Note that I am not adding the user_id in my objects for apartments, because I want Rails to handle that in my do blocks.
 
 
-** Check server **
-** Push up code here as our initial setup **
+** Check server before pushing to GitHub **
