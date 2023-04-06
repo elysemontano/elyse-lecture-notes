@@ -37,13 +37,9 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
     - Link to all apartments (both for logged in and logged out user)
     - Link to my apartments when logged in
     - Link to create an apartment when logged in
-    - Jest test for NavLink
-
-- Header/Footer
-    - Add navigation as needed
-    - Basic styling
-    - Jest test
-
+    - Jest test for NavLink, Header, and Footer
+    - Basic styling for Header and Footer
+    
 - Home Page
     - Welcome and description of application is displayed
     - Jest test to confirm page is rendering

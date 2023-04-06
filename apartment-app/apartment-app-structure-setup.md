@@ -118,7 +118,7 @@ Here I want to spend some time thinking about how we will structure our database
 - Email: string
 - Price: string
 - Bedrooms: integer
-- Bathrooms: integer
+- Bathrooms: float
 - Pets: string
 - Image: text
 - User ID: integer
@@ -216,7 +216,6 @@ Now that we have all of these pages with some basic boiler plate code in each, l
 
 ```javascript
 // app/javascript/components/App.js
-import React, { useState } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Footer from "./components/Footer"
@@ -261,7 +260,7 @@ export default App
 ```
 
 ### Styling
-For styling, I have found some people like to make separate stylesheets for each of these pages as well.  While this is fine, make sure that you are placing them in app/assets/stylesheets folder.
+For styling, I have found some people like to make separate stylesheets for each of these pages as well.  While this is fine, make sure that you are importing them into application.scss and also placing all stylesheets in the app/assets/stylesheets folder..
 
 ### Seeds
 The last thing with our initial setup is to setup our seed file so we can easily populate our database with data.  Since we have associated tables this time around, we are going to want to not only make apartments in our file, but also create some users that we can then associate with the apartments.  
@@ -315,3 +314,92 @@ Note that I am not adding the user_id in my objects for apartments, because I wa
 
 
 ** Check server before pushing to GitHub **
+
+
+### Navigation
+Now that we have our initial setup complete, let's think about some of the crucial navigation that our user will need.
+
+When navigating as a user, we may want specific access to pages based on whether they are logged in or not.  To do this, we are going to need to utilize some information that was handed off to us from devise and the hand it off to Header to our Navigation component.
+
+```javascript
+// app/javascript/components/App.js
+<Header {...props} />
+
+
+// app/javascript/components/Header.js
+import React from "react"
+import Navigation from "./Navigation"
+
+const Header = (props) => {
+  return (
+    <>
+      <Navigation {...props} />
+    </>
+  )
+}
+
+export default Header
+```
+
+Inside our navigation component, we want to consider if our user is logged in, we want to render the ability to create a new listing and sign out ability.  Otherwise, we want the user to still have access to all the apartments, but needs to sign up or sign in to access the other features.  For this, we will use some conditional rendering based on the user's logged in status.
+
+```javascript
+// app/javascript/components/
+import React from "react"
+import { Nav, NavItem } from "reactstrap"
+import { NavLink } from "react-router-dom"
+
+const Navigation = ({
+  logged_in,
+  current_user,
+  new_user_route,
+  sign_in_route,
+  sign_out_route
+}) => {
+  return (
+    <>
+      <Nav className="nav">
+        <NavItem>
+          <NavLink to="/apartmentindex" className="nav-link">View Listings</NavLink>
+        </NavItem>
+        {logged_in && (
+          <>
+            <NavItem>
+              <NavLink to="/myapartments" className="nav-link">My Listings</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/apartmentnew" className="nav-link">Create Listing</NavLink>
+            </NavItem>
+            <NavItem>
+              <a href={sign_out_route} className="nav-link">
+                Sign Out
+              </a>
+            </NavItem>
+          </>
+        )}
+        {!logged_in && (
+          <NavItem>
+            <a href={sign_in_route} className="nav-link">
+              Sign In
+            </a>
+          </NavItem>
+        )}
+        {!logged_in && (
+          <NavItem>
+            <a href={new_user_route} className="nav-link">
+              Sign Up
+            </a>
+          </NavItem>
+        )}
+      </Nav>
+    </>
+  )
+}
+
+export default Navigation
+
+```
+
+An important note for the links to sign in or sign up are not using react-router-dom because it is going to the rails side of the application which is handled differently.
+
+
