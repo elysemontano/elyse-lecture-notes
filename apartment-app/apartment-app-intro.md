@@ -50,25 +50,24 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
     - Controller method for index exists
 
 - Unprotected Index
+    - Fetch call is created for index method to pull from database
     - Refactor route to dynamically pass all apartments
     - Render list of cards with each apartment displaying information for price, location, bath, bed, and image.
+    - Basic styling
     - Jest test for the index page
-    - Fetch call is created for index method to pull from database
-    - Basic styling
-
-- Protected Index
-    - Refactor route to dynamically pass only current users apartments
-    - ProtectedApartmentIndex only displays all apartments created by the current user
-    - Jest test for ProtectedApartmentIndex
-    - Basic styling
 
 - Show
     - Refactor route to dynamically pass apartment
     - Render page that shows all that apartment's details
-    - Provide link to show page on individual card
     - Link back to index
-    - Jest test for Show page
     - Basic styling
+    - Jest test for Show page
+
+- Protected Index
+    - Refactor route to dynamically pass only current users apartments
+    - ProtectedApartmentIndex only displays all apartments created by the current user
+    - Basic styling (reuse classNames from index)
+    - Jest test for ProtectedApartmentIndex
 
 - Create
     Rails:
@@ -77,10 +76,9 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
     - Rspec request spec for create method
     React:
     - Form is added to ApartmentNew and inputs are setting state on component
-    - createApartment method console logs the state object that will be sent to the database.
-    - Jest test for ApartmentNew page
     - Fetch call is created for create method to pull from database
     - Basic styling
+    - Jest test for ApartmentNew page
 
 - Validations
     - Model specs ensure an incomplete apartment throws an error
