@@ -22,6 +22,8 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
 - Application Structure    
     - Apartment Resource
         - Associations (User has_many Apartments, Apartment belongs_to User)
+        - Model specs ensure an incomplete apartment throws an error
+        - Appropriate model validations are set to ensure the user submits all columns
     - React setup
         - Devise props
         - Components, Pages, Test Files
@@ -74,21 +76,18 @@ We used Trello with Cat Tinder, where you were provided cards with specific task
     - Controller method for create exists
     - Strong params have been created in controller
     - Rspec request spec for create method
+    - Request spec for 422 error is thrown if validations are not met
     React:
     - Form is added to ApartmentNew and inputs are setting state on component
     - Fetch call is created for create method to pull from database
     - Basic styling
     - Jest test for ApartmentNew page
-
-- Validations
-    - Model specs ensure an incomplete apartment throws an error
-    - Appropriate model validations are set to ensure the user submits all columns
-    - 422 error is thrown if validations are not met
     
 - Update
     Rails:
     - Controller method for update exists
     - Rspec test for update method
+    - Request spec for 422 error is thrown if validations are not met
     React:
     - Form is added to ApartmentUpdate and inputs are setting state on component
     - updateApartment method console logs apartment id and state object that will be sent to the database.

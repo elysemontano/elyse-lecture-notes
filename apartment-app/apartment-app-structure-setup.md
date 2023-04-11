@@ -148,6 +148,156 @@ class User < ApplicationRecord
 end
 ```
 
+### Validations
+Let's setup our validations next.  For this, we should start with Rspec.
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe Apartment, type: :model do
+  # Set reusable user for tests
+  let (:user) {User.create email: 'elyse@test.com', password: 'test123', password_confirmation: 'test123'}
+
+  it "should validate street" do
+    apartment = Apartment.create(city: "Little Whinging",state: "Surrey",
+    manager: "Mr. Potter",
+    email: "potter@example.com",
+    price: 2000,
+    bedrooms: 3,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:street]).to include "can't be blank"
+  end
+
+  it "should validate city" do
+    apartment = Apartment.create(street: "4 Privet Drive", state: "Surrey",
+    manager: "Mr. Potter",
+    email: "potter@example.com",
+    price: 2000,
+    bedrooms: 3,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:city]).to include "can't be blank"
+  end
+
+  it "should validate state" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", 
+    manager: "Mr. Potter",
+    email: "potter@example.com",
+    price: 2000,
+    bedrooms: 3,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:state]).to include "can't be blank"
+  end
+
+  it "should validate manager" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", state: "Surrey",
+    email: "potter@example.com",
+    price: 2000,
+    bedrooms: 3,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:manager]).to include "can't be blank"
+  end
+
+  it "should validate email" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", state: "Surrey",manager: "Mr. Potter",
+    price: 2000,
+    bedrooms: 3,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:email]).to include "can't be blank"
+  end  
+  
+  it "should validate price" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", state: "Surrey",manager: "Mr. Potter", email: "potter@example.com",
+    bedrooms: 3,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:price]).to include "can't be blank"
+  end  
+
+  it "should validate bedrooms" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", state: "Surrey",manager: "Mr. Potter", email: "potter@example.com",price: 2000,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:bedrooms]).to include "can't be blank"
+  end  
+
+  it "should validate bathrooms" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", state: "Surrey",manager: "Mr. Potter", email: "potter@example.com",price: 2000, bedrooms: 3,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:bathrooms]).to include "can't be blank"
+  end  
+
+  it "should validate pets" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", state: "Surrey",manager: "Mr. Potter", email: "potter@example.com",price: 2000, bedrooms: 3, bathrooms: 2,
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg", user_id: user.id)
+
+      expect(apartment.errors[:pets]).to include "can't be blank"
+  end  
+
+  it "should validate image" do
+    apartment = Apartment.create(city: "Little Whinging", street: "4 Privet Drive", state: "Surrey",manager: "Mr. Potter", email: "potter@example.com",price: 2000, bedrooms: 3, bathrooms: 2, pets: "yes", user_id: user.id)
+
+    expect(apartment.errors[:image]).to include "can't be blank"
+  end 
+
+  it "should validate user_id" do
+    apartment = Apartment.create(street: "4 Privet Drive",
+    city: "Little Whinging",
+    state: "Surrey",
+    manager: "Mr. Potter",
+    email: "potter@example.com",
+    price: 2000,
+    bedrooms: 3,
+    bathrooms: 2,
+    pets: "yes",
+    image:
+      "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg")
+
+      expect(apartment.errors[:user_id]).to include "can't be blank"
+  end
+end
+```
+
+Now let's add the validations:
+
+```ruby
+class Apartment < ApplicationRecord
+    belongs_to :user
+    validates :street, :city, :state, :manager, :email, :price, :bedrooms, :bathrooms, :pets, :image, :user_id, presence: true
+end
+```
+
+Devise already has validations set into it, so there is no need to write validations into our user model.
+
 ### React Setup
 Now that we have some of the backend structured, let's do some setup for the React side of our application.
 
@@ -260,7 +410,7 @@ export default App
 ```
 
 ### Styling
-For styling, I have found some people like to make separate stylesheets for each of these pages as well.  While this is fine, make sure that you are importing them into application.scss and also placing all stylesheets in the app/assets/stylesheets folder..
+In Rails, all stylesheets must live in the app/assets/stylesheets directory. If your team chooses to create additional stylesheets they should live in the same directory within the asset pipeline and be imported directly to the application.scss file.
 
 ### Seeds
 The last thing with our initial setup is to setup our seed file so we can easily populate our database with data.  Since we have associated tables this time around, we are going to want to not only make apartments in our file, but also create some users that we can then associate with the apartments.  
