@@ -93,7 +93,11 @@ app/assets/stylesheets/application.scss
 
 
 ### Add Testing
-`$ yarn add jest`
+```
+$ yarn add jest
+$ yarn add @testing-library/react
+$ yarn add -D jest-environment-jsdom
+```
 
 Add script to package.json
 
@@ -103,6 +107,18 @@ Add script to package.json
     "test-watch": "jest --watch"
   }
 ```
+Add to package.json:
+```javascript
+  "jest": {
+    "testEnvironment": "jsdom",
+    "roots": [
+      "app/javascript/components"
+    ]
+  }
+  ```
+
+You will also need to import `@testing-library/jest-dom` at the top of your test files.
+
 
 ** Check server and run test libraries before pushing to GitHub **
 
@@ -554,10 +570,31 @@ An important note for the links to sign in or sign up are not using react-router
 
 Next up, let's add some tests for Navigation, Header and Footer:
 
+** If this hasn't been done yet, add the following ** 
+We need to add a few missing dependencies to run our tests.  We have already added jest, but when we setup our react in rails app, react testing library was no installed.
+
+```
+$ yarn add @testing-library/react
+$ yarn add -D jest-environment-jsdom
+```
+Add to package.json:
+```javascript
+  "jest": {
+    "testEnvironment": "jsdom",
+    "roots": [
+      "app/javascript/components"
+    ]
+  }
+  ```
+
+You will also need to import `@testing-library/jest-dom` at the top of your test files.
+
+
 ```javascript
 // --- Navigation.test.js
 
 import React from "react"
+import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom"
