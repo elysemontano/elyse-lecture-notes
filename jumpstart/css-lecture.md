@@ -111,7 +111,32 @@ _BREAK_
 
 # CSS - Part two
 
+
+## Centering things is difficult
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flexbox-properties
+- The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kinds of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.
+
+
+**Flexbox froggy:** Let all the students play flex box froggy for five minutes so they can get an idea of what to be looking for.
+
+- Div tags 
+
+          Display : flex
+          Justify content : ____
+          text-align: center
+          align-items: center
+
+
+
 ## Background image: url()
+```css
+body{
+  background-image: url(https://cdn.pixabay.com/photo/2017/06/26/15/38/deserted-island-2444088_960_720.png);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+```
 
 ## Pseudo selectors
 - A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). For example, :hover can be used to change a button's color when the user's pointer hovers over it.
@@ -149,23 +174,6 @@ The following example binds the "example" animation to the <div> element. The an
         animation-timing-function: ease-in-out;
           }
           
-## Centering things is difficult
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flexbox-properties
-- The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kinds of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.
-
-
-**Flexbox froggy:** Let all the students play flex box froggy for five minutes so they can get an idea of what to be looking for.
-
-- Div tags 
-
-          Display : flex
-          Justify content : ____
-          text-align: center
-          align-items: center
-
-
-_BREAK_
-
 
 
 # GitHub 
