@@ -111,23 +111,71 @@ _BREAK_
 
 # CSS - Part two
 
+
+## Centering things is difficult
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flexbox-properties
+- The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kinds of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.
+
+
+**Flexbox froggy:** Let all the students play flex box froggy for five minutes so they can get an idea of what to be looking for.
+
+
+```html
+<div id="my-table">
+  <table border=1>
+    ...
+  </table>
+</div>
+```
+
+```css
+#my-table {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+td {
+  height: 100px;
+  width: 100px;
+}
+```
+
 ## Background image: url()
+```css
+body {
+  background-image: url(https://images.unsplash.com/photo-1523294587484-bae6cc870010?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1002&q=80);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+```
 
 ## Pseudo selectors
 - A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). For example, :hover can be used to change a button's color when the user's pointer hovers over it.
 
-    button:hover {
-      color: blue;
-    }
+button:hover {
+  color: blue;
+  cursor: pointer;
+}
 
 ## Animations
 - When you specify CSS styles inside the @keyframes rule, the animation will gradually change from the current style to the new style at certain times.
 
 - To get an animation to work, you must bind the animation to an element.
 
-The following example binds the "example" animation to the <div> element. The animation will last for 4 seconds, and it will gradually change the background-color of the <div> element from "red" to "yellow":
-@keyframes
+To setup the animation, we have to first think about the duration of the animation as a timeline in a sense.  We need a starting point, and an ending point that we want the animation to take, but we also need to tell the computer what we want to do in between.  We can use percents to describe what we want to happen at any point of that timeline to completion.  
 
+- 0% is the starting point
+- 50% halfway
+- 100% ending position
+
+
+We can then say what we want to do.  The transform property allows us to modify an element in many different ways, from scaling, rotating to being specific with it's location.  In this case, I want to be specific on where I want something to move to, so I will use the translate value to say how far and the direction I want it to move and also want to use the rotate value.  
+
+To make this animated though, I need to specify a sequence of events.
+
+** transform: translate(-x-axis-down, -y-axis-left) OR transform: translate(x-axis-up, y-axis-right)
 
         @keyframes shake {
         0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -149,23 +197,6 @@ The following example binds the "example" animation to the <div> element. The an
         animation-timing-function: ease-in-out;
           }
           
-## Centering things is difficult
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flexbox-properties
-- The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kinds of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.
-
-
-**Flexbox froggy:** Let all the students play flex box froggy for five minutes so they can get an idea of what to be looking for.
-
-- Div tags 
-
-          Display : flex
-          Justify content : ____
-          text-align: center
-          align-items: center
-
-
-_BREAK_
-
 
 
 # GitHub 
