@@ -204,7 +204,7 @@ const CatShow = ({ cats }) => {
 }
 ```
 
-Here is the dilema with this current setup.  All url params are given to us as strings, and so we will not be able to perform an accurate evaluation in .find when comparing a string to a number.  There is a handy operator we can use to help us here, and that is the unary operator which is a simple plus sign before the string.  Essentially, it is using Javascript type coersion to change it to an integer.
+Here is the dilemma with this current setup.  All url params are given to us as strings, and so we will not be able to perform an accurate evaluation in .find when comparing a string to a number.  There is a handy operator we can use to help us here, and that is the unary operator which is a simple plus sign before the string.  Essentially, it is using Javascript type coercion to change it to an integer.
 
 ```javascript
 import { useParams } from 'react-router-dom'

@@ -16,7 +16,7 @@ Connect to GitHub:
 `$ git branch -M main`
 `$ git push origin main`  <-- Git status may show there are not changes.  Push anyway and it should appear
 
-At this point, you will message myself and Nicole to add branch protections onto the repo.
+At this point, you will message myself and Gene to add branch protections onto the repo.
 
 ## Structure
 Let's go ahead and head on over to App.js to start with, and I always like to refactor so that it is in our es6 arrow syntax and remove all the boiler plate code given.

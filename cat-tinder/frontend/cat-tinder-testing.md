@@ -6,6 +6,14 @@ Testing can oftentimes help us pinpoint and locate problems that otherwise may t
 Let's start off by checking Trello which tells me to call this branch test-coverage and my acceptance criteria.
 
 To write our tests, we are going to be writing our tests using our old friend Jest, but this time we are going to be using a utility called React Testing Library that will allow us to test our React components while writing in Jest.  We can find the docs to Testing Library in the syllabus, and I highly recommend spending some time looking through this to get familiar.  Testing Library specifically has lots of testing components not limited to just React, but also to many other popular technologies.  That being said, since we are building our frontend using React, we will be using Testing Libraries React tests.
+<!-- 
+TDD - gives us confidence in the functionality of our code
+Red Green Refactor
+- Write test
+- See it fail
+- Write code
+- See it pass
+- Refactor- less lines, more efficient code -->
 
 Before we start writing our tests, I want to talk about some of the different types of testing we may run into as developers.
 
@@ -20,6 +28,7 @@ When we created our React app, yarn actually snuck in both Jest and React Testin
 
 - Jest: javascript testing framework
 - React Testing Library: provides methods to write the test scripts, works with the DOM nodes
+    - React testing library is going to focus on the end user side of how users will experience your webpage which is a really practical way to test for the frontend side of our application.
 
 With React Testing Library, we do have to think about testing in a bit of a different way than we have with Jest and Rspec.  Our goal is to ensure that what you are expecting when you are building this application for the user, you're user will be getting that result.  So it is very user event focused rather than our traditional input/output focus.
 
@@ -135,7 +144,7 @@ Let's go ahead and start writing another test where we are checking that it has 
 
 Each time I create a new it block, I will have to render my App component.  There is a way to write this so that you only have to write it once, but I will leave that to you when you are going back and DRYing up your code.
 
-When calling on screen, this time I want to use my testing playground to help write out the syntax to get by a specific role.  Inside, it is calling on an object where the key is name and the value is what is displayed on the page with a regex (string matcher).
+When calling on screen, this time I want to use my testing playground to help write out the syntax to get by a specific role.  Each element has a specific role that helps screen readers making your code more accessible.  Inside, it is calling on an object where the key is name and the value is what is displayed on the page with a regex (string matcher).
 
 ```javascript
 it("has a heading", () => {
@@ -222,7 +231,7 @@ describe("<Footer />", () => {
     // debug
     screen.logTestingPlaygroundURL()
     // act
-    const footer = screen.getByText(/&copy; LEARN | Elyse and Nicole/i)
+    const footer = screen.getByText(/&copy; LEARN | Elyse and Gene/i)
     expect(footer).toBeInTheDocument()
   })
 })
@@ -237,7 +246,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
-      <p>&copy; LEARN | Elyse and Nicole</p>
+      <p>&copy; LEARN | Elyse and Gene</p>
     </>
   )
 }

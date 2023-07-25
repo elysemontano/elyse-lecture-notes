@@ -170,6 +170,8 @@ The rest is just following the process for the enjoys and then all of these attr
     end
   end
 
+
+# Update
   describe "cannot update a cat without valid attributes" do
     it 'cannot update a cat without a name' do
       cat_params = {

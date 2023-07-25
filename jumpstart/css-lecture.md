@@ -114,7 +114,7 @@ _BREAK_
 
 ## Centering things is difficult
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flexbox-properties
-- The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kinds of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.
+- The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate all kinds of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.
 
 
 **Flexbox froggy:** Let all the students play flex box froggy for five minutes so they can get an idea of what to be looking for.
@@ -220,3 +220,69 @@ repository public otherwise you won’t be able to see your Treasure Hunt Game w
 8. Visit your GitHub Page URL: https://{your username}.github.io
 9. Enjoy and share the URL with friends and family
 
+
+
+## CSS Flexbox Understudy
+
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Flex Box </title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&family=Lemonada:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Welcome to Jumpstart Understudy</h1>
+    <h2>Topic: Flexbox with Elyse</h2>
+    <div class="flex">
+      <div id="blue" class="box"></div>
+      <div id="red" class="box"></div>
+      <div id="purple" class="box"></div>
+      <div id="yellow" class="box"></div>
+    </div>
+  </body>
+</html>
+```
+
+```css
+body {
+  text-align: center;
+}
+
+.box {
+  height: 200px;
+  width: 200px;
+  border: 2px solid black;
+}
+
+#blue {
+  background-color: blue;
+  align-content: center;
+}
+
+#red {
+  background-color: red;
+}
+
+#purple {
+  background-color: purple;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+/* The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate all kinds of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow. */
+
+.flex {
+  height: 700px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+```

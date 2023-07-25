@@ -197,3 +197,18 @@ We will need to console log instead if we need to see what is happening:
 const forEachArray = myArray.forEach(value => console.log(value * 2))
 console.log(forEachArray)
 ``` -->
+
+<!-- 
+With index and array:
+Create a function that takes in two arrays as arguments and returns one array with no duplicate values.
+
+const array1 = ["Hi", 3, 90, 5, true, 3, "Hello"]
+const array2 = [85, 48, 90, true, 3, "Hi"]
+
+1. Concat arrays together
+2. Use filter
+3. Use indexOf which gives the position of the first occurence of a value in a string and check against the current index.
+
+const combineArrays = (firstArr, secondArr) => {
+  firstArr.concat(secondArr).filter((value, index, array) => array.indexOf(value) === index)
+} -->

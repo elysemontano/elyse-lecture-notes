@@ -61,7 +61,7 @@ const App = () => {
 React is a collection of components. The power of this is components can be called as many times we need. Each component call invokes that component function and each function is unique and will act independently from any other function. This is wonderful but at this point our components are behaving exactly identical. We can create dynamic components that will accept additional information as props.
 
 So what are props?
-Props are short for properties and we assign these to components.  Essentially, we are passing information from a parent component (example App.js) to a child component
+Props are short for properties and we assign these to components.  Essentially, we are passing information from a component to a nested component
 
 `$ yarn create react-app react-props`
 
@@ -176,10 +176,11 @@ Then we want to display this in our Card component.  So we need to specify that 
 
 ```javascript
 const Card = (props) => {
+  console.log(props)
     return(
     <>
       <h2>Current Card</h2>
-      <p>{props.cards[props.index]}</p>
+      <p>{props.cards[props.randomIndex]}</p>
     </>
     )
 }
@@ -225,7 +226,7 @@ import React, { useState } from 'react'
 const App = () => {
     const [cards, setCards] = useState(["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"])
     const [randomIndex, setRandomIndex] = useState(null)
-    const [previousCards, setPreviousCards] = []
+    const [previousCards, setPreviousCards] = useState([])
 
 
   const drawCard = () => {

@@ -25,7 +25,7 @@ Since this is a week long project where you will be working in mostly pairs but 
   - Move to PR review once you have completed the task and you are waiting for review.
     - When requesting a review:
       - Submit PR
-      - Post in slack: @Austin, @Elyse Please review my PR for ____ 
+      - Post in slack: @Elyse, @Gene Please review my PR for ____ 
           PR: ---Link to PR---   
           Trello: ---Link to Trello Card---
       - When one of us is reviewing, we will place the 👀 emoji.
@@ -34,6 +34,8 @@ Since this is a week long project where you will be working in mostly pairs but 
       - If there are requested changes, we will leave a comment saying to take a look at our feedback in GitHub.
 
 (No PR needed for initial commit, but you will ask for Branch Protections)
+
+
 So that we can add you to your cat tinder board, please reply in thread with your email.  After this lecture, you will be receiving an email invite to the board.  You will need to accept the invitation and this should take you to your board.
 
 
@@ -65,7 +67,7 @@ Bring in data in an array
 
 - When you made the wildlife tracker you had to insert all of the data manually. with seeds you can get up and running with starter data quite quickly
 
-```javascript
+```ruby
 cats = [
   {
     name: 'Felix',
