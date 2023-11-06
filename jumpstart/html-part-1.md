@@ -2,37 +2,29 @@
 
  **  no screen share  ** 
 
-History of HTML
+<!-- History of HTML
 
-- Hyper Text Markup Language: structure and content of a page. Not the styling, not the functionality. Basically the skeleton.Whenever you have looked at the internet and read something on a web page you have been looking at HTML. 
+- Hyper Text Markup Language: structure and content of a page. Not the styling, not the functionality. Basically the skeleton.  Whenever you have looked at the internet and read something on a web page you have been looking at HTML. 
 
 - In the early days of the internet, there was no standardized way of sending information and documents. The Internet was mostly used for communication between colleges and universities as well as the military. People wanted standard formatting to happen. Thus, HTML was made to handle it around 1989/1990.
 
 - Some of the most basic formatting added included:  Headers, bold text or important italicized, bullet points, bigger and smaller text, etc
 
-- Eventually, HTML moved onto more broad uses. Remember myspace? Probably used HTML/CSS to edit your page
+- Eventually, HTML moved onto more broad uses. Remember myspace? Probably used HTML/CSS to edit your page -->
  
 
-What is a tag
+<!-- What is a tag
 - Just a wrapper that tells our browser how to display content in a certain way. That means, generally, it has a starting tag that happens before our content and a closing tag, after the content.  
 - I want to mention that sometimes, some tags do NOT need a closing tag, but don’t worry about that for right now, we’ll get to that later. 
 
-
-
-# HTML
-- HTML is made up of many tags. 
-- A tag is just a wrapper that tells our browser how to display content in a certain way. That means, generally, it has a starting tag that happens before our content and a closing tag, after the content.  
 
  **  Send in slack  **  
 ```
 GENERAL RULE
    <tagname> Some Content </tagname>
       ^		                		^                                  
- Opening tag			      Closing tag
+ Opening tag			      Closing tag 
 ```
-
-- I want to mention that sometimes, some tags do NOT need a closing tag, but don’t worry about that for right now, we’ll get to that later. 
-
 
 
  ** yes screen share ** 
@@ -101,6 +93,7 @@ In order to create a file in Atom we need to go to the top of our screen where i
 
 
 ** start here **
+-->
 
 ## Headings
 - h1-h6

@@ -41,7 +41,7 @@ The really cool thing about Devise is that it can handle both authorization and 
 Now, since we have a decoupled application, we will need to verify that a person is who they are on the backend, but will also need the frontend to know that a user is logged in, giving the authorization to access specific features in the application.  To pass this information, we will be using JWT.
 
 ## JWT
-JWT - Javascript Web Tokens
+JWT - JSON Web Tokens
 When a user logs into an application, this creates a user session.  When this session is created in the backend, we will be packaging up information securely to hand over to our frontend.  That being said, password will NOT be passed in this token, in fact the way Devise is setup, a password is encrypted so that we cannot even see what the password is in our database.  This package is a token that we can store in our frontend telling our application that a user is logged in, authenticated and now is authorized for access certain pages.
 
 - A token that is handed from our backend to the frontend telling our application a user is logged in and authenticated

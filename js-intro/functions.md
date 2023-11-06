@@ -1,12 +1,50 @@
 
-### Lecture
+# Lecture
+
+### Variable scope
+- var is available anywhere (function scoped).  Can be defined in a block (if/else, loops) and accessed outside of the block
+  - let is available only inside the block it is defined in
+  - var can be reasigned and overwrite variables whereas let and const will not allow this.  Also allows hoisting
+  - const does not allow you to redclare or reasign variable
+
+
+```javascript
+// Why we use let:
+
+for(let i = 0; i < 10; i++) {
+  var myCat = "Tobey"
+  console.log(i)
+}
+  console.log(myCat) // Will log Tobey
+
+
+//  let: function and block scope
+
+for(let i = 0; i < 10; i++) {
+  let myCat = "Tobey"
+  console.log(i)
+}
+
+console.log(myCat)
+
+// Why const is not reassingable:
+const myDog = "Bruno"
+myDog = "Kodi"
+
+console.log(myDog) // Will throw an error
+
+// Hoisting:
+myCat = "Tobey"
+console.log(myCat)
+var myCat
+```
+    
+### Functions
+
  - Reusable blocks of code, think of it as a container or tupperware that holds your code and can be reused over and over
  - Their main job is to take in an input, do something and produce an output.  
 
 There are many ways to define a function. The way we use functions at LEARN is using the arrow syntax.
-
-    
-### Process
 - Const
   - Variable declaration
 - Arrow Syntax (function expression)
@@ -94,15 +132,13 @@ console.log(makeCoffee("espresso"))
 console.log(makeCoffee("chai"))
 ```
 
-#### Pseudo Code
-As the code we are creating gets more complex, more work is required to break down the problem. Pseudo coding is the term for writing process notes in plain English. When pseudo coding functions it is important to think about the inputs and outputs and the steps in between to get to that output.
-- Build out a function that takes a coffeeType and a size and returns a statement with the appropriate price
-- Functions have to return something
-- Only one output in an conditional statement will ever be executed
+
 
 ```javascript
 // create a function called makeCoffee
-// input - coffeeType and size
+// input: coffeeType(string) and size(string)
+// output: string - "Your (size) (coffeeType) is $amount"
+	// Determine set prices: small - $3, medium - $4, large - $5
 // use conditional statement to make an evaluation on the size
 // if the size evaluates to large, it will cost $5
 // if the size evaluates to medium, it will cost $4
@@ -120,6 +156,11 @@ const orderCoffee = (coffeeType, size) => {
     return "Sorry that is not on the menu."
   }
 }
+
+console.log(orderCoffee("latte", "small")
+console.log(orderCoffee("mocha", "medium")
+console.log(orderCoffee("chai", "large")
+console.log(orderCoffee("regular", "extra large")
 ```
 
 

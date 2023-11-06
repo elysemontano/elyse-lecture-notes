@@ -1,5 +1,5 @@
 # Cat Tinder Fetch
-- [Mean Girls Video](https://www.youtube.com/watch?v=jjt9Qx9MBPk)
+- 
 At this point we have setup our backend to handle full CRUD and our frontend has pages for any possible CRUD views we need.  Since this is a decoupled app, our backend is a completely different app than our frontend and the two are not communicating yet.  Which means, a user cannot interact with our database currently.  What we really want, is for our frontend application to consume and interact with the backend database.  This is where we are going to incorporate a concept called FETCH.
 
 Fetch is a method in JavaScript that makes asynchronous requests. JavaScript, as a language, is single threaded. That means it can do one thing at a time. JavaScript has a queue of tasks and it executes the tasks one by one, in order. This can become problematic when working with APIs. As a developer, you don't have control over how long it will take to complete a request-response cycle. Even having a progress bar or a loading message requires code logic to be executing. Asynchronous programming is the way to solve this problem. An asynchronous action will step out of the queue while it is processing and step back in when the process is complete. Asynchronous programming is powerful yet complicated

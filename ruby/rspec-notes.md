@@ -10,9 +10,9 @@
 - Create a new branch ruby-rspec
 - `$ mkdir ruby-rspec`
 - `$ cd ruby-rspec`
-- `$ touch rspec.rb`
-- `$ touch rspec_spec.rb`
-- Run the tests with `rspec rspec_spec.rb`
+- `$ touch book.rb`
+- `$ touch book_spec.rb`
+- Run the tests with `rspec book_spec.rb`
 
 We are going to have two files. One is going to have the Ruby code and one is going to have the tests.
 
@@ -36,7 +36,7 @@ TDD which stands for test-driven development, is a developer philosophy of writi
 # require the rspec tools
 require 'rspec'
 # require the file that contains the code
-require_relative 'rspec.rb'
+require_relative 'book.rb'
 ```
 
 # TDD and CODE
@@ -81,11 +81,11 @@ end
 
 
 ```ruby
-# rspec_spec.rb
+# book_spec.rb
 # require the rspec tools
 require 'rspec'
 # require the file that contains the code
-require_relative 'rspec_book.rb'
+require_relative 'book.rb'
 
 
 describe 'Book' do # reference
@@ -100,7 +100,7 @@ end
 
 - Add the code that will make the test pass
 
-- For more details, run rspec rspec_spec.rb -f d
+- For more details, run rspec book_spec.rb -f d
     - f stands for format, d stands for documentation
 
     Write code to pass:
@@ -121,7 +121,7 @@ Now we want to be able to have our Book class have some static data.
 - Call a setter method to give Book a title
 - Expect the outcome
 - This expect has parentheses because the outcome is data, curly braces are used when the outcome is behavior
-- Run the tests with `rspec rspec_spec.rb`
+- Run the tests with `rspec book_spec.rb`
 - Look at the failing test
 
 ```ruby
@@ -152,7 +152,7 @@ Let's make the tests pass:
 - `attr_accessor` will give us getter and setter methods
 
 ```ruby
-# rspec_book.rb
+# book.rb
 class Book
   attr_accessor :title
   def initialize
@@ -171,7 +171,7 @@ If there is no author we can have a default value of anonymous.
 - This expect has parentheses because the outcome is data, curly braces are used when the outcome is behavior
 - Update Book to have an author
 - Expect the outcome
-- Run the tests with `rspec rspec_spec.rb`
+- Run the tests with `rspec book_spec.rb`
 - Look at the failing test
 
 ```ruby
@@ -190,7 +190,7 @@ end
 - Add the code that will make the test pass
 
 ```ruby
-# rspec_book.rb
+# book.rb
 class Book
   attr_accessor :title, :author
   def initialize author='anonymous'
@@ -208,11 +208,11 @@ A new instance of book will always start with the page at 1.
 - Create an instance of Book
 - Expect the outcome
 - This expect has parentheses because the outcome is data
-- Run the tests with `rspec rspec_spec.rb`
+- Run the tests with `rspec book_spec.rb`
 - Look at the failing test
 
 ```ruby
-# rspec_spec.rb
+# book_spec.rb
 it 'can report the current page' do
   my_book = Book.new
   expect(my_book.page).to eq 1
@@ -223,7 +223,7 @@ end
 - Add the code that will make the test pass
 
 ```ruby
-# rspec_book.rb
+# book.rb
 class Book
   attr_accessor :title, :author, :page
   def initialize author='anonymous'
@@ -236,17 +236,17 @@ end
 
 #### Reading the Book
 We can add a method that will move the pages forward, we are back to looking for a behavior rather than a static output so we need different expect statements in the test.
-- Google rspec change matchers: https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers/change-matcher
+- Google rspec change matchers: https://rubydoc.info/gems/rspec-expectations/RSpec%2FMatchers:change
 - Counter example in the relish docs has the syntax we are looking for
 - Add an additional `it` block to the test
 - Create an instance of Book
 - Expect the outcome
 - This expect has curly braces because the outcome is a behavior
-- Run the tests with `rspec rspec_spec.rb`
+- Run the tests with `rspec book_spec.rb`
 - Look at the failing test
 
 ```ruby
-# rspec_spec.rb
+# book_spec.rb
 it 'can read pages' do
   my_book = Book.new
   expect{ my_book.read 10 }.to change{ my_book.page }.from(1).to(11)
@@ -256,7 +256,7 @@ end
 - Add the method that will make the test pass
 
 ```ruby
-# rspec_book.rb
+# book.rb
 class Book
   attr_accessor :title, :author, :page
   def initialize author='anonymous'
@@ -279,19 +279,18 @@ end
 // Extra Examples
 #### Add a Library
 So now let's look at creating a collection of books. We can make another class that will handle our collection.
-- Create another file called rspec_library.rb
+- Create another file called library_spec.rb
 - Need to import library in the testing file and create another describe block
 - Add an `it` block to the test
 - Expect the outcome
 - This expect has curly braces because the outcome is a behavior
-- Run the tests with `rspec rspec_spec.rb`
+- Run the tests with `rspec library_spec.rb`
 - Look at the failing test
 
 ```ruby
-# rspec_spec.rb
+# library_spec.rb
 require 'rspec'
-require_relative 'rspec_book'
-require_relative 'rspec_library'
+require_relative 'book.rb'
 # Other code here ...
 describe 'Library' do
   it 'has to be real' do
@@ -303,7 +302,7 @@ end
 - Add the code that will make the test pass
 
 ```ruby
-# rspec_library.rb
+# book.rb
 class Library
 end
 ```
@@ -314,11 +313,11 @@ We can create a collection that is a data type of Array.
 - Create an instance of Book
 - Expect the outcome
 - This expect has parentheses because the outcome is a data
-- Run the tests with `rspec rspec_spec.rb`
+- Run the tests with `rspec library_spec.rb`
 - Look at the failing test
 
 ```ruby
-# rspec_spec.rb
+# library_spec.rb
 it 'has an array of books' do
   my_library = Library.new
   expect(my_library.book_collection).to be_a Array
@@ -339,22 +338,23 @@ end
 
 #### Add Books
 Add books to the books array.
-- Add an additional `it` block to the test
+- Add to existing it block 
 - Create an instance of Library
 - Create a couple instances of Book
 - Expect the outcome
 - This expect has parentheses because the outcome is a data
-- Run the tests with `rspec rspec_spec.rb`
+- Run the tests with `rspec library_spec.rb`
 - Look at the failing test
 
 ```ruby
-# rspec_spec.rb
+# library_spec.rb
 it 'has an array of books' do
   catch22 = Book.new
   sherlock = Book.new
   my_library = Library.new
   my_library.add_books catch22
   my_library.add_books sherlock
+  expect(my_library.book_collection).to be_a Array
   expect(my_library.book_collection).not_to be_empty
   expect(my_library.book_collection).to contain_exactly(catch22, sherlock)
 end

@@ -84,6 +84,21 @@ end
 
 Something to keep in mind, this does not mutate the original array.  We will talk about how we can mutate the array in a bit, but we currently are only printing the new value.
 
+    ** Possible Side note: 
+    - You can use each_with_index or .with_index
+    ```ruby
+    [1, 2, 3, 4, 5].each_with_index do |value, index|
+      puts "#{index}) #{value}"
+    end
+    ```
+
+    with_index you can set the starting index
+
+    ```ruby
+    .with_index(1)
+    ```
+    **
+
 
 ## Ranges
 List of values that has a start and end points that are seperated by 2 dots and it fills the content for you.
@@ -184,7 +199,7 @@ p only_evens(1..10)
 Lastly, if you are really eager to modify your original data set, you can change map to be a mutator by adding the bang operator
 
 ```ruby
-names = ['Elyse', 'Gene', 'Sarah']
+names = ['Elyse', 'Sarah', 'Charlean', 'Trish']
 
 names.map! do |name|
   name.upcase

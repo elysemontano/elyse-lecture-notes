@@ -10,7 +10,7 @@
 
 
 ## Questions
-- Advocates for pair programming might say…
+- Advocates for pair programming often say…
     -  2 heads are better than one
     -  Less mistakes
     -  Faster production

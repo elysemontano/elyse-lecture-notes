@@ -138,6 +138,12 @@ if(false){
 }
 ```
 
+#### Pseudo Code
+As the code we are creating gets more complex, more work is required to break down the problem. Pseudo coding is the term for writing process notes in plain English. When pseudo coding functions it is important to think about the inputs and outputs and the steps in between to get to that output.
+- Build out a function that takes a coffeeType and a size and returns a statement with the appropriate price
+- Functions have to return something
+- Only one output in an conditional statement will ever be executed
+
 #### Proper Indentation
 The most amateur thing you can do while you are learning code is be lazy about your formatting. Having messy indentation will make your code look bad and more importantly, it makes it really hard to find mistakes.
 

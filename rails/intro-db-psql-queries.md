@@ -105,6 +105,22 @@ Any password - SDlearn123
 Click into the side menu until you get to countries
 Tool >> Query Tool
 
+### Troubleshooting
+If LEARN password is not working:
+- Click Servers on the side bar
+- Reset Master Password
+- Type in SDlearn123
+
+You may also need to setup an object for the DB:
+- Open PGAdmin (command + spacebar for spotlight search)
+- Object >> Create >> Server
+- General >> name: localhost
+- Click on connection tab
+- Host name/address: 127.0.0.1 or localhost
+- Change username from postgres to learnacademy
+- Password: SDlearn123
+- Click save
+
 # Queries 
 So today we are going to ask some questions to our database and retrieve the data as a result to those questions or queries.
   - A query can either be a request for data results from your database or for action on the data, or for both.

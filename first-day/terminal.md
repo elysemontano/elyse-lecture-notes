@@ -29,7 +29,7 @@ This box is our wonderful terminal who we are going to become very good friends 
   - To move one level out of the directory you are in, you will add two dots after cd.  The first dot is to express this is where I am currently, and the next dot is the next level out.
 
 `$ mkdir <directory_name>`
-  - This command will make a new directory wherever you currently are with the file name.  Make sure to either use an underscore or a dash to separate words.  The terminal recognizes spaces as a new command and not a second word.
+  - This command will make a new directory wherever you currently are with the directory name.  Make sure to either use an underscore or a dash to separate words.  The terminal recognizes spaces as a new command and not a second word.
 
 `$ rmdir <directory_filename>`
   - This will remove the directory
@@ -45,7 +45,6 @@ This box is our wonderful terminal who we are going to become very good friends 
 
 When writing code, we will be using text editors.  Many of you became familiar with VS Code in Jumpstart, but the text editor is where we will store and work on code.  To open the text editor in the terminal:
 `$ code <filename>` - opens just that file
-`$ atom .` - opens that folder
 `$ code .` - opens folder
 
 `$ history`

@@ -1,5 +1,5 @@
 # Objects
-A really important concept in Javascript that whenever we are working with information, it has to be a data type that Javascript understands. Initially we explored Primitive data types
+A really important concept in Javascript that whenever we are working with information, it has to be a data type that Javascript understands. Initially we explored the 6 Primitive data types
 
 Primitive:
 - String
@@ -60,9 +60,15 @@ Oftentimes we will want to be able to access specific information from within th
 console.log(myObject.key2) // "value2"
 console.log(myObject.key4) // 7
 ```
+We can also add keys later on by calling on the variable object and the new key name and assigning it a value
 
+```javascript
+myObject.key6 = "value6"
+```
 
 # Nested Objects
+Let's expand this futher.  I mentioned that the value assigned to a key can be any valid type in JavaScript, and that includes another object.  Which means, we can have nested objects.
+
 ```javascript
 let breakfast = {
   item1: "cereal",
@@ -135,6 +141,8 @@ console.log(smoothie3) // herbal
 
 
 # Methods
+Objects are the intersection of data and behavior.  We have just looked at how we can interact with data in an object, but we can also have behavior.  
+
 Methods are functions or behavior that belongs to an object.
 
 ```javascript
@@ -169,3 +177,29 @@ console.log(numbers.addUp()) // 30
 ```
 
 To make the function execute, you have to add parenthesis, otherwise javascript will just recognize that there is a function at this key.
+
+
+## Arrays with Objects
+Often times we will see arrays with an assortment of objects.  This will really come into play in a few weeks when we start working with handling data.
+
+When we see an array of objects, we will often see the keys having the same name to help keep things consistent and organized.  This way, we can go through and search for specific things.
+
+Let's revisit one of the examples we did yesterday.  We were doing a price checker, however there were no item names associated with those prices making our function pretty limitting in the information we were passing.  One way to help make it more efficient would be to utilize objects and associate each element in the array with a name of the item with a price.
+
+```javascript
+const shoppingList = [
+  { item: "soap", price: 5},
+  { item: "shampoo", price: 7},
+  { item: "bbq", price: 500 },
+  { item: "sheets", price: 40 }
+]
+
+const shoppingCart = (array, minPrice, maxPrice) => {
+  return array.filter(item => item.price > minPrice && item.price < maxPrice)
+}
+
+console.log(shoppingCart(shoppingList, 10, 50)) // [ { item: 'sheets', price: 40 } ]
+console.log(shoppingCart(shoppingList, 0, 30)) // [ { item: 'soap', price: 5 }, { item: 'shampoo', price: 7 } ]
+```
+
+** In the challenges - pay close attention to when the vocab for method is used vs function.  This means different things!

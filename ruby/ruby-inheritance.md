@@ -35,7 +35,7 @@ So with all of this, everything is described in a hierarchy of objects that belo
 
 As you may recall, Ruby also has a method for declaring new instances of classes that have unique data.  In Javascript it was called Constructor, but in Ruby we have initialize.
 
-I am going to make a quick rebuild of Friday's application.
+I am going to make a quick rebuild of the class lecture
 - initialize method: declares new instances of classes that have unique data
   - takes as many parameters as we want
 
@@ -66,20 +66,21 @@ So this is a quick rebuild of what we covered last week with classes.
 ## Inheritance
 Now let's think about this a little further.  There are many different streaming applications like YouTube, Spotify, Netflix, Peacock, Disney+, etc.  The different content or objects that we interact with on each streaming application all have certain things in common like title and run time.  
 
-But there may be some things that are unique to the streaming application, for instance YouTube has the option to like and add comments, some may have a save for later option, playlists and so on. Each streaming application has some of their own features that makes them stand out in a market that is flooded with other streaming services.  But at the end of the day, there are still those things that are maintained across all applications when working with the content.  These same attributes, and also unique attributes.  This is where inheritance comes into play.
+But there may be some things that are unique to the streaming application, for instance YouTube has the option to like and add comments, some may have a save for later option, playlists and so on. Each streaming application has some of their own features that makes them stand out in a market that is flooded with other streaming services.  But at the end of the day, there are still those things that are maintained across all applications when working with the content.  There are same attributes, and also unique attributes.  This is where inheritance comes into play.
 
 - Inheritance: allows classes to have relationships with each other
 
 In other words, we can put common behaviors and attributes into a shared class, which is known as a SuperClass
 
 - Superclass: common behaviors in a shared class
-  - Parent Class: has attributes that are common to all possible children 
+  - has attributes that are common to all possible children 
+  - Sometimes referred to as Parent Class
   - Superclass passes info to the subclasses
 
-- Subclass
-  - Child Class - has attributes specific to the child and NOT the other children
+- Subclass - has attributes specific to the child and NOT the other children
+  - Sometimes referred to as Child Class
 
-Let's take a look first at the Superclass.  To do this, I am essentially going to copy over what we did for Hulu into a class called StreaminApp. 
+Let's take a look first at the Superclass.  To do this, I am essentially going to copy over what we did for Hulu into a class called StreamingApp. 
 
 ```ruby
 class StreamingApp
@@ -90,7 +91,7 @@ class StreamingApp
     @consumed_media = false
   end
     def get_show_data
-    if @watch
+    if @consumed_media
       "You have consumed the media #{@title} is #{run_time} long."
     else
       "You have not consumed the media #{@title} is #{run_time} long.
@@ -103,16 +104,16 @@ Now that we have built out our superclass, we can setup another class that is un
 
 For this example, let's create a class for YouTube.  Some of the unique features that YouTube has a creator for the content.
 
-- Initialize method in the child class invokes the super() method
-- Child classes use super() which calls on the parent class' initialize method and borrows the parameters in the initialize method.
+- Initialize method in the subclass class invokes the super() method
+- Subclasses use super() which calls on the superclass' initialize method and borrows the parameters in the initialize method.
 
 ```ruby
-# < is marking that this is inheriting from a parent class and then states what the parent class is
+# < is marking that this is inheriting from a superclass and then states what the superclass is
 class YouTube < StreamingApp
   
-  # Initialize method in the child class invokes the super method
+  # Initialize method in the subclass invokes the super method
   def initialize(title_parameter, run_time_parameter, creator_parameter)
-    # super() which calls on the parent class' initialize method and borrows the parameters in the initialize method.
+    # super() which calls on the superclass' initialize method and borrows the parameters in the initialize method.
     super(title_parameter, run_time_parameter)
     # create instance variable for ONLY unique attributes
     @creator = creator_parameter

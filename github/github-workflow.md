@@ -35,7 +35,7 @@ Git status tells us several different things.  For right now, what I am looking 
 First we need to stage the files that we want to send up to GitHub using
 `$ git add <filename>`
 
-While it doesn't look like it does anything when I do this, if I run git status again, I can see that I went from having an untracked file, to having GitHub recognize that this is going to be part of this process.
+While it doesn't look like it does anything when I do this, if I run git status again, I can see that I went from having an untracked file, to having git recognize that this is going to be part of this process.
 
 Next, we need to commit our changes.  Git commit is what actually creates version control.  Committing our changes is creating a label in GitHub for our changes.  Since we are creating a label, our commit is going to take a message (-m).  Our message will be placed inside of quotes that will communicate to yourself or other developers about the intent of the changes made on this commit.
 `$ git commit -m "message"`
@@ -186,7 +186,7 @@ So far, we have successfully cloned a repo, worked on code, pushed it up to GitH
 
 Up to now, we have been working on a branch that is not main to collaborate.  Eventually when we have completed our work on that task, we are going to want to have the changes on our branch to become part of the source of truth (main).
 
-To do this, we are going to need to submit a pull request (pr).  A pull request is a way to submit contributions to the main branch and update main.  When submitting a pull request, we are asking for GitHub to compare the changes between main and my branch and allow my changes to become a part of this.  Part of this process will include a review of the code prior to merging, or updating main with your code.  This is a very standard practice in development where you will have other developers review code to keep each other accountable.  In class, myself and Nicole will review your pull requests and upon approval you can than merge your work to main.
+To do this, we are going to need to submit a pull request (pr).  A pull request is a way to submit contributions to the main branch and update main.  When submitting a pull request, we are asking for GitHub to compare the changes between main and my branch and allow my changes to become a part of this.  Part of this process will include a review of the code prior to merging, or updating main with your code.  This is a very standard practice in development where you will have other developers review code to keep each other accountable.  In class, myself and Gene will review your pull requests and upon approval you can than merge your work to main.
 
 ** End Slide show **
 

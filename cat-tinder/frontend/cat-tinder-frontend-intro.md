@@ -171,18 +171,36 @@ We also need to import this into App.js so that we can utilize this later on whe
 ```javascript
 // App.js
 
-import { React, useState } from 'react'
-import cats from './mockCats'
+import React, { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import CatIndex from './pages/CatIndex'
+import CatShow from './pages/CatShow'
+import CatNew from './pages/CatNew'
+import CatEdit from './pages/CatEdit'
+import NotFound from './pages/NotFound'
+import Home from './pages/Home'
+import mockCats from './mockCats'
 
 const App = () => {
-  const [mockCats, setMockCats] = useState(cats)
+  const [cats, setCats] = useState(mockCats)
 
-  console.log(mockCats)
+  console.log(cats)
 
   return (
-    <>
-      <h1>Cat Tinder!<h1/>
-    </>
+  <>
+    <Header />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/catindex" element={<CatIndex />} />
+      <Route path="/catshow" element={<CatShow />} />
+      <Route path="/catnew" element={<CatNew />} />
+      <Route path="/catedit" element={<CatEdit />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    <Footer />
+  </>
   )
 }
 ```

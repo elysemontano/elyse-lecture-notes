@@ -7,8 +7,20 @@ When setting up our backend, we created a has_many belongs_to association, so ap
 
 To set this up, let's start off in App.js and update our route.  We will certainly need apartments from state along with the current user.
 
+We also will want to make it so this particular route can only be accessed if a user is signed in.  For this, we will conditionally render the route.
+
 ```javascript
- <Route path="/myapartments" element={<ApartmentProtectedIndex current_user={current_user} apartments={apartments} />} />
+{currentUser && (
+  <Route
+    path="/myapartments"
+    element={
+      <ApartmentProtectedIndex
+        currentUser={currentUser}
+        apartments={apartments}
+      />
+    }
+  />
+)}
 ```
 
 Now that we are passing these to ApartmentProtectedIndex.js, let's check that we have access to those props.

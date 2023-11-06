@@ -72,13 +72,15 @@ State is a special variable that we can utilize in React components which can af
 
 State is a variable that holds information within your application that belongs to the React component.  State gives us 2 things, we have a variable that can be displayed and a method that will update that variable.  
 
+  useState is a built in piece of React functionality called a state hook. React hooks are sets of built in methods that belong to React.  There are quite a few, and they can get pretty involved, so for now we will just focus on useState.
+
 ```javascript
 import React, { useState } from 'react'
 
 const App = () => {
   // Display will be what I want to call it, the method to update which conventions has us using the same name of the variable but with the word set before it.
   const [miles, setMiles] = useState(0)
-  // useState is a built in piece of React functionality called a state hook. (A method that belongs to React, so we need to add this in our import)
+ 
 
   return (
     <>
@@ -95,7 +97,7 @@ export default App
  Our application needs to store miles. So we will set an initial value of 0.
 
 
-#### Passing Class Variables in JSX
+#### Passing State Variables in JSX
 Instead of hard coding the value of 0 in our JSX we can reference the state value.  If I put `miles` inside the JSX tag it just treats those characters like innerHTML.
 
 ```javascript
@@ -172,13 +174,15 @@ Now we have a working app!
 #### Creating Multiple Trackers
 But If I want to keep track of my miles run per month, I need more than one tracker. We are going to do a big refactor here. So take this in, take a screen shot, whatever you want to do. We are going to tear this apart. We are going to move all this logic into another component.
 
-App.js is the highest level component. It is the component that puts everything else on the page. We are going to group all the other components we create into another folder. This is just a convention to keep our files organized. Inside of `src` we are going to create a new folder called components. And inside of components, we will create a file called Tracker.js
-
-Tracker.js and any other components will use the Pascal naming convention.
-
 Cut everything and move it over.
 
+App.js is the highest level component. It is the component that puts everything else on the page. This is commonly refered to as the comtainer component. We are going to group all the other components we create into another folder. This is just a convention to keep our files organized. Inside of `src` we are going to create a new folder called components. And inside of components, we will create a file called Tracker.js
+
 Now, that we have all of this brought over into our new file, we want to be able to display it.  To do that, we need two things. One is a component call.
+
+Tracker.js and any other components will use the Pascal naming convention and this component's purpose is to display content, also known as a presentational component.
+
+
 
 ```javascript
 import React from 'react'

@@ -10,7 +10,7 @@ In Jumpstart we explored HTML and CSS and were able to build a website and even 
 
 To build a great website, the two things that you fundamentally need is HTML and CSS.  You can add a little more complexity of course with Javascript, but at the root of it HTML and CSS is all you need for a really nice looking website.
 
-## How do we write HTML?
+## (Next Slide) How do we write HTML?
 HTML consists of a collection of tags.  There are many different types of tags that tell us how we want the content to appear on the page.
 
 What are some tags we have explored?
@@ -40,7 +40,15 @@ We have our Headings which there are 6 levels of, with h1 being the largest and 
 There are also several different containers.  The first few, html, head, and body are required for all html files and should automatically appear using the html shortcut on your text editor.
 Div is a way to section off a tag or collection of tags on a page.  We also have a paragraph tag that we can put a block of text in.
 
-Lastly, we have several other tags such as strong which will make the text bold, em which will italicize the text, we talked about image and a tags.  There is also lists, the title which lives in the head tag that will show the title of your page on the tab, br will give you a line break, table which will create a spreadsheet type of layout, and you can also add comments into your html files that is to communicate to developers and will not display any content on the page.
+Lastly, we have several other tags such as 
+- strong which will make the text bold, 
+- em which will italicize the text, 
+- we talked about image and a tags.  
+-  lists, 
+- the title which lives in the head tag that will show the title of your page on the tab, 
+- br will give you a line break, 
+- table which will create a spreadsheet type of layout, 
+- and you can also add comments into your html files that is to communicate to developers and will not display any content on the page.
 
 ** Next slide **
 
@@ -69,7 +77,7 @@ The main difference between targeting an element, vs a class, vs an id is that y
 
 ** Next slide **
 
-Here is an example of what a CSS file could look like.  We can provide multiple style rules to the element, class or ID we are targeting as we see here.
+Here is an example of what a CSS file could look like.  We can provide multiple style rules to the element class or ID we are targeting as we see here.
 
 There is a certain amount of uniformity to this code, we can see that there is a space sperating each selector and the rules are indented over for the sake of readibility as the developer.
 

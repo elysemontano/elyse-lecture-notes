@@ -40,18 +40,18 @@ Applications using React as their UI library:
 ### Reusable
 - Components
   - functions are reusable
-  - functions return data including objects 
-    - objects have data (some kind of data type) and behavior (method)
-    - Objects can hold JSX (Javascript XML(extensible markup language)) 
-        - JSX is JavaScript flavored markdown that behaves very similarly to HTML 
+  - The markup returned by a React component is called JSX. **JSX** stands for JavaScript XML, which is a meshing of HTML and JS.
+    - JSX looks and behaves like HTML but allows for us to embed JavaScript code to create dynamic user interactions.
 
 
 ### User Interactions
 Let's talk about some vocabulary that is important to note that makes React different than just an HTML file and why it is such a great tool to use.
 
 - DOM - document object model, visual representation of your code.  Let's the browser know where things are at structurally and what can be interacted with.  The DOM uses an HTML document as a tree of nodes.
-- Node - Each node, represents a single HTML element.  
+- Node - Each node, represents a single HTML element.
+- DOM reloads are considered "expensive" by developers and limiting that action is really important.  
 - REACT uses Virtual DOM - Listens to the individual nodes in the DOM, compares the change and refreshes only the affected elements.(For example: I can reply to a thread, or respond with an emoji and only that is changing instead of refreshing the entire page which would be really irritating).  
+- At its core React is an SPA or a single page application - meaning that there is just a single view made up of lots of different components. Many components work together like a collage.
 
 ### Getting Started
 Lets take a look at the syllabus, and look at the code block in getting started.  This is good old fashioned HTML.  I am going to copy this over to an HTML file.

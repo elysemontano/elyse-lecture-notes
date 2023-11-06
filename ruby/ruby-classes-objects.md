@@ -164,7 +164,7 @@ Adding `attr_accessor` allows the removal of some of the getter and setter metho
 class StreamingService
   attr_accessor :title, :actor, :watched
   
-  def initializer(title, actor)
+  def initialize(title, actor)
     @title = title
     @actor = actor
     @watched = false

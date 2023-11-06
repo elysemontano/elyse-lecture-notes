@@ -1,5 +1,5 @@
 # Functional Props
-So far we have talked about how we can store information temporarily in React using state, and then if we want to send that information from state to another component we can do so with props.  But one problem with props is that they can only go in one direction.  So we can pass something from state to a component, but that component cannot send information back.  This can pose a problem when we have functionality on this "child" component that we need to send back to the "parent".  So today we are going to talk about how we can extract the information needed from a "child" component using functional props.
+So far we have talked about how we can store information temporarily in React using state, and then if we want to send that information from state to another component we can do so with props.  But one problem with props is that they can only go in one direction.  So we can pass something from state to a component, but that component cannot send information back.  This can pose a problem when we have functionality on a nested component that we need to send back to the main component.  So today we are going to talk about how we can extract the information needed from a nested component component using functional props.
 
 ## Setup
 - Checkout branch `$ git checkout -b react-functional-props` in lecture-examples repo

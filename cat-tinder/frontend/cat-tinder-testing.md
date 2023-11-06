@@ -38,7 +38,7 @@ We can go to our package.json and take a look at this as well.  We see that jest
 
 When I do this, I am prompted with a few different options.  I want to run all tests, so I will type 'a'.
 
-Currently, I have a failing test because the test that lives in my App.test.js is trying to find stuff that no longer exists since I got rid of my boiler plate code.  Let's get rid of the current test that lives in here, and we will setup our own.  Before we set up our own test though, I fo want to go over some of the imports in this file.
+Currently, I have a failing test because the test that lives in my App.test.js is trying to find stuff that no longer exists since I got rid of my boiler plate code.  Let's get rid of the current test that lives in here, and we will setup our own.  Before we set up our own test though, I do want to go over some of the imports in this file.
 
 At the top, we can see that we are importing several things.  We are bringing in render and screen from testing-library/react.
 
@@ -52,15 +52,12 @@ Alright, so with any other jest and even RSPEC test, we have three key parts to 
 ```javascript
 describe("<App />", () => {
   it("renders a greeting", () => {
-    expect()
   })
 })
 ```
 
 Great, now inside of our it, there are also three stages we need to consider. Arrange, Act, and Assert. 
 - Arrange: what is needed to setup the environment that I am testing.  In this case, I need to render my component that I want to test (App.js)
-
-- Act: getting the method I need to pull this information.  Here I know I want to see a greeting, so I can store it in a variable
 
 ```javascript
     it("renders a greeting", () => {
@@ -95,6 +92,8 @@ describe("<App />", () => {
 ```
 
 Now I can see all of the stuff rendering on my page.  I can call on these things to make sure my App page is rendering something specific.
+
+- Act: getting the method I need to pull this information.  Here I know I want to see a greeting, so I can store it in a variable
 
 There are some specific React Testing Library methods we are going to frequent:
 - getByText(): finds an element by it's text value

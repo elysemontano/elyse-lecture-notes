@@ -1,6 +1,6 @@
 # Intro to Trello, Cat Tinder API, Seeds, CORS
 
-For the rest of this week and part of the week we get back from break we will be working on a full stack application called Cat Tinder.  For those of you who are not familiar with what Tinder is, it is a dating website, where we have converted it to a cat (or your choice of animal or object) "dating" website, where you can see a list of cats, view their information, create, update or delete a cat.  
+We will be working on a full stack application called Cat Tinder.  For those of you who are not familiar with what Tinder is, it is a dating website, where we have converted it to a cat (or your choice of animal or object) "dating" website, where you can see a list of cats, view their information, create, update or delete a cat.  
 
 We will be building the backend of this application first as an API in Rails and later write the frontend in REACT.  We will then connect the frontend and backend together.  This is known as a decoupled application (frontend and backend are built as two separate applications and then linked together).
 
