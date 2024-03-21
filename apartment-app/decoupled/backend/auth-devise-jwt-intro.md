@@ -1,21 +1,7 @@
 # Apartment App API Intro
-This week we will be building another decoupled application called Apartment App.  We will once again be utilizing Trello for project management, but this time we will be working in teams of 3.  There will be a little different dynamic when it comes to our project management.  Each team will be responsible for communication and be in agreement with each other on who is working on what tasks.  While you it is up to you on how you want to work in your teams, many groups find that splitting off into two pairs is helpful, just make sure each pair is still communicating with the other half of the team on blockers or progress made.  
+This week we will be building another decoupled application called Apartment App.  We will once again be utilizing Trello for project management. Each team will be responsible for communication and be in agreement with each other on who is working on what tasks.  While it is up to you on how you want to work in your teams, many groups find that splitting off into two pairs is helpful, just make sure each pair is still communicating with the other half of the team on blockers or progress made.  
 
-As instructors, we will be around to help wherever and whenever possible and will also be reviewing PR's as they come through.  We will periodically check on your Trello board and will ask questions if something seems out of place.
-
-## Setup
-With that, we are going to follow a similar workflow to cat tinder, where we build the backend out, then the frontend and later connect the two.  So let's start by creating our Rails API:
-
-`rails new apartment-app-backend -d postgresql -T`
-`cd apartment-app-backend`
-`rails db:create`
-`bundle add rspec-rails`
-`rails generate rspec:install`
-Add the remote from your GitHub classroom repository
-Create a default branch (main)
-Make an initial commit to the repository
-Ask your instructors for branch protection
-`rails server`
+I will be around to help wherever and whenever possible and will also be reviewing PR's as they come through.  We will periodically check on your Trello board and will ask questions if something seems out of place.
 
 
 ## Authorization vs Authentication
@@ -44,9 +30,23 @@ Now, since we have a decoupled application, we will need to verify that a person
 JWT - JSON Web Tokens
 When a user logs into an application, this creates a user session.  When this session is created in the backend, we will be packaging up information securely to hand over to our frontend.  That being said, password will NOT be passed in this token, in fact the way Devise is setup, a password is encrypted so that we cannot even see what the password is in our database.  This package is a token that we can store in our frontend telling our application that a user is logged in, authenticated and now is authorized for access certain pages.
 
-- A token that is handed from our backend to the frontend telling our application a user is logged in and authenticated
+- A token is handed from our backend to the frontend telling our application a user is logged in and authenticated
 
 Analogy: Devise is a bank that does the handling of transactions and money.  JWT is like a debit card that our bank gives us so that we can carry it around with us and gives us access to our money.
+
+## Setup
+With that, we are going to follow a similar workflow to cat tinder, where we build the backend out, then the frontend and later connect the two.  So let's start by creating our Rails API:
+
+`rails new apartment-app-backend -d postgresql -T`
+`cd apartment-app-backend`
+`rails db:create`
+`bundle add rspec-rails`
+`rails generate rspec:install`
+Add the remote from your GitHub classroom repository
+Create a default branch (main)
+Make an initial commit to the repository
+Ask your instructors for branch protection
+`rails server`
 
 
 ## Installing Devise
@@ -164,9 +164,6 @@ We need a secret key to create a JWT token. We can generate one with this comman
 
 `$ bundle exec rake secret`
 
-** Note: use .ENV instead?? **
-
-
 Be sure to copy the newly-generated key. It is very important that we hide this key. Rails stores secrets in config/credentials.yml.enc and uses the config/master.key to encrypt the credentials file. To add our secret key to these credentials, we can edit the credentials file through the terminal:
 
 `$ EDITOR="code --wait" bin/rails credentials:edit`
@@ -185,11 +182,11 @@ secret_key_base: 3fd528aca03e14342dd41c3a5b03d26c76a71b036a021a3f1e294d6461fd44c
 Now we can add our new secret at the bottom of this file by assigning it to a key jwt_secret_key:
 
 `$ jwt_secret_key: <newly-created secret key>`
-Use control + c to encrypt and save the file.
+Save and use control + c to encrypt and save the file.
 
 
 # Configure Devise and JWT
-Next we need to add the following code to the Devise configurations file. This will configure the JWT to work with Devise. It defines the types of requests that will be using JWT.
+Next we need to add the following code to the Devise configurations file. This will configure the JWT to work with Devise. It defines the types of requests that we will be using with JWT.
 ```ruby
 #config/initializers/devise.rb
 
@@ -206,7 +203,7 @@ end
 ```
 
 ## Revocation with JWT
-While we have setup for a user to be able to login and pass access with JWT, we also need a way to tell our frontend that a user is no longer logged in as well.  Devise has a few ways that we can do this, and in this case we will be using denylist to revoke the JWT token when signed out.
+While we have setup for a user to be able to login and pass access with JWT, we also need a way to tell our frontend that a user is no longer logged in as well.  Devise has a few ways that we can do this, and in this case we will be using deny list to revoke the JWT token when signed out.
 
 We are going to use a DenyList to revoke the JWT. To create a DenyList, we need to generate a new model.
 

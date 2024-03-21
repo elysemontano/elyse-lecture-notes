@@ -62,8 +62,6 @@ I want to spin up my server today since we will be working with this side of thi
 
 We have used generate commands so far, primarily to generate migration files and a model, but we are going to use generate to create our controller file.
 
-This generate command makes a number of item for us but the two we need today are our view folder and our newly built controller. We can delete the stylesheet and the helper file for now. 
-
 We will name it the same way as the model since it is a class.  
 
 ``` $ rails g controller Home ```
@@ -73,17 +71,9 @@ We will name it the same way as the model since it is a class.
       create    app/views/home
       invoke  helper
       create    app/helpers/home_helper.rb
-      invoke  assets
-      invoke    scss
-      create      app/assets/stylesheets/home.scss
       
 ### Review the files
  $ code .
-
-Let's keep a tidy application - for today I am going to delete the scss file and the helper file as I won't be needing them
-
- > delete app/assets/stylesheets/home.scss
- > delete app/helpers/home_helper.rb
 
 
 Let's add some content in our controller:
@@ -135,7 +125,7 @@ get '/joke' => 'home#joke'
 
 Obviously, having a method display a single line of html is going to be very limiting down the line, so let's make anohter method in a different way that leads to a more dynamic setup.
 
-This time around, instead of rendering html, we are going to render a view.  We already have a view that has been created when we ran the controller method that is setup automatically to communicate with this particular controller.
+This time around, instead of rendering html, we are going to render a view.  We already have a view folder that has been created when we ran the controller method that is setup automatically to communicate with this particular controller.
 
 ```ruby
 def current_cohort
@@ -241,7 +231,7 @@ root to: 'home#landing'
 # Landing View
 There is a Ruby helper method called link_to that will take 2 arguments (an anchor, and a path)
 
-/views/food/landing.html.erb
+/views/home/landing.html.erb
 ```html
 <h1>Welcome to this App!</h1>
 <%= link_to "Greeter", "/greeter" %>

@@ -148,7 +148,7 @@ $
       We can also pull out errors specifically tied to the name column
 > veteranarain.errors[:name]
       This is how you access a single item from a hash.  By using the square brackets and passing in the key of the hash
-      We get back an error message in the array "can't be blank"  $
+      We get back an error message in an array "can't be blank"  $
 
 So realistically, writing tests has a little bit of a backwards thinking.  We have to think of the end result and then work backwards from there.
 

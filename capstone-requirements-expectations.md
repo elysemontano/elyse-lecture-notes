@@ -1,6 +1,6 @@
 # CAPSTONE!
 
-Welcome to the last major milestone of the classroom time at LEARN.  Capstones are the last of the requirements for internship.  This project is going to be an accumulation of all of the skills you have acquired over the past several months.  
+Capstones are projects that are completely your creation, from concept to completion you and your team will use your creativity and skills to create an application that solves something.  This project is going to be an accumulation of all of the skills you have acquired over the past several months.  
 
 Inside the syllabus, there are 2 pages that have crucial information about your capstone projects.  The first is the Capstone Requirements.
 
@@ -8,12 +8,12 @@ Inside the syllabus, there are 2 pages that have crucial information about your 
 While we try to give you a bit of creative freedom with this project, we do have certain requirements that is expected to be reached by the end of day 10 on this project.  
 
 ### Project Requirements
-- React in Rails application: Like Apartment App, you will have an application that has the Model and Controllers handled on the Rails side, and React will handle the views
-- Full CRUD: Your app MUST have the ability to create, read, update and delete entries in the database using a user interface CRUD (should be done by Thursday)
+- React frontend application supported by a Rails API: Like Apartment App, you will have an application that has the Model and Controllers handled on the Rails side, and React will handle the views
+- Full CRUD: Your app MUST have the ability to create, read, update and delete entries in the database using a user interface CRUD (should be done by day 5)
 - User authentication with Devise
 - Minimum of two database tables: User from devise is considered one table, you need to come up with at least one other.
 - 60% testing coverage: This is actually a pretty low standard for the industry.  The average you will run into is anywhere between 70-90% coverage in the tech industry.  60% means that you have 60% coverage for Rails using Rspec, and 60% coverage for React with React Testing Library
-- Deployed product: The syllabus says to Heroku, however Heroku recently changed their pricing so now you have to pay.  With that, we are most likely going to use another host for deployment.  We will talk more in depth about this with each group toward the end of your first sprint
+- Deployed product: We use Render to deploy our capstones as the first 3 months are free. We will talk more in depth about this with each group toward the end of your first sprint
 - A well written README: There is a link on the syllabus that can help in what is meant by a well written readme.  Make sure to take the time and look at that.
 - About us page: I find that a lot of groups forget about this and the README until the last few days.  This is your chance to show future employers who you are, don't ignore this!
 - Demo with your team: This will be at the end of day 10.  Highly recommend rehearsing this!
@@ -24,7 +24,7 @@ Once ALL of the above (your MVP) is complete roughly by end of day 5, you can st
 - Responsive design
 - Accessibility
 - Continuous Integration
-- External API's
+- External API's (Will be doing a lecture next week covering some details on this)
 
 ### Important Notes
 - What has worked the best in the past for groups is to put ALL of your focus on completing these project requirements FIRST.  This can be done in 5 days.  After that, start doing all the other cool things like adding in components, API's, styling, etc.  The groups that have focused on styling in the first week, often scramble to complete these requirements on the last day of capstone.  Save yourself the stress, and complete the requirements first. 
@@ -50,19 +50,19 @@ Green light is a pitch meeting where you are meeting with a client that has aske
 
 To get to this green light meeting, we have a prep list to follow:
 - Create a team name (this is not the same as your app name)
-- Create a slack channel within the LEARN workspace (make sure to add myself and Austin)
+- Create a slack channel within the LEARN workspace (make sure to add me)
 - Create a team email address
 - Create a team GitHub Organization
       - Must be set to public
       - Add team members and instructors as owners
       - Slack integration can be done after you have a repo
 - Create a Trello Board
-      - Add all team members and instructors
-- We will hold off on creating a team heroku account
+      - Add all team members and instructor
+- Create a Render account
 - Decide on developer roles
 
 ## Developer Roles
-The developer roles are positions that each of you on your team will be held responsible for.  That is to say that EVERYONE is responsible for coding and participating, but the roles are essentially making a designated person the point person for that particular role.  Once again, to clearly explain this, these responsibilities of the role DO NOT solely land on that one person, it means that if I have a question about something that falls into a one of these categories, I will ask the person leading that role.
+The developer roles are positions that each of you on your team will be held responsible for.  That is to say that EVERYONE is responsible for coding and participating, but the roles are essentially making a designated person the point person for that particular role.  Once again, to clearly explain this, these responsibilities of the role DO NOT solely land on that one person, it means that if I have a question about something that falls into one of these categories, I will ask the person leading that role.
 
 ** Groups of 4 ** 
 Product Manager:
@@ -81,7 +81,7 @@ The project manager is focused on the human side of the project and the workflow
     - Must have strong communication with the team about who is working on what.
     - Guardian of the Trello board.
     - Ensures developers are assigned to the card they are working on.
-    - Notifies the instructors and/or mentors of PRs when a card is moved to the PR swimlane.
+    - Notifies the instructors of PRs when a card is moved to the PR swimlane.
     - Keeps Slack active with updates and pins appropriate content.
     - Manages external resources.
     - Gives status updates to the class at the beginning of the day.
@@ -92,7 +92,6 @@ Takes ownership over the code base and version control.
     - Must have a strong understanding of the technical needs of the project.
     - Guardian of GitHub.
     - Merges code when appropriate.
-    - Leads mentorship sessions for the team.
     - Surfaces blockers to the class at the beginning of the day.
 
 
@@ -113,7 +112,7 @@ Same thing but product and project manager is combined.  This is a large respons
 
 
 ## Green Light Meeting
-The green light meeting can start as early as Friday and will take approximately 30 minutes to an hour.  This is where you meet with myself and or Austin and show us the prep work that you have done and walk us through your product pitch.  Once we have vetted your idea and are confident that you will be able to accomplish this, we will give you the green light to start coding. At this meeting, you will be expected to show up with:
+The green light meeting can start as early as Friday and will take approximately 30 minutes to an hour.  This is where you meet with me and show the prep work that you have done and walk me through your product pitch.  Once I have vetted your idea and am confident that you will be able to accomplish this, I will give you the green light to start coding. At this meeting, you will be expected to show up with:
 
  - Elevator pitch - 30 sec summary of the app
  - Wireframes - visual representations of all the pages your user will see for your MVP
@@ -124,9 +123,9 @@ The green light meeting can start as early as Friday and will take approximately
 
 Let me just put this out there, the groups that take the time to efficiently plan their product will most likely reach MVP quicker than those who rush through the planning phase.  Planning is not to be underestimated in it's importance in the development process.  
 
-That being said, be prepared to not get the green light the first go around.  We spend a lot of time with you to make sure that your product will be achievable within 10 days.  We dig deep and make sure you have a strong understanding and agreement on all the above aspects of your application.
+That being said, be prepared to not get the green light the first go around.  I will spend a lot of time with you to make sure that your product will be achievable within 10 days.  I dig deep and make sure you have a strong understanding and agreement on all the above aspects of your application.
 
-This ultimately is your project that you are owners on.  We are here to support you not to take over your project, and this goes for mentors as well.  This is your product so stand by your product.
+This ultimately is your project that you are owners on.  I am here to support you, not to take over your project.  This is your product so stand by your product.
 
 
 ## Trello
@@ -141,15 +140,13 @@ Swim lanes
 ## Schedules
 This project will have a total of 10 days to code.  I would highly recommend come up with ideas as a team that you know you can create in 5 days, this will give you some buffer (back to the it may take longer than you think it will).  
 
-There will also be interruptions from time to time as we experienced during Apartment App.  So keep this into account as you go through the planning phase.
-
 A typical day may look like this:
 
     9:00 - Check in with the class
 
     9:15 - Morning standup with the class
     - Project: What tasks did you complete yesterday? What task are you working on today?
-    - Tech: What are your blockers? What is your plan for your mentorship session today?
+    - Tech: What are your blockers? 
 
     9:30 - Check in with your group and discuss the plan for the day
     - What story is each person working on?

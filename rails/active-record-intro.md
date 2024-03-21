@@ -56,7 +56,7 @@ We are going to be using a new command in rails to generate some things.
   - Generate will create files and folders in a rails app the rails way
   - Utilizes Active Record Datatypes (go to rails docs on dev.to)
     Since we are dealing with data, we will have some specific datatypes we will need to work with that are specific to Active Record.
-  - We need to decide now the structure the database and what type of data will be stored
+  - We need to decide now the structure of database and what type of data will be stored
 
 In this case, I am going to be creating a schueduler where I will need day date and event.
 
@@ -151,14 +151,6 @@ Update:
 ```
   - The variable is only available until we exit out of the console.  Any modifications to the data itself though will persist.
 
-  ** The syllabus has a different approach to update that will also work! ** 
-```ruby
-> office_hours = Schedule.find 1
-> office_hours.event = 'Super awesome office hours!'
-> office_hours.save
-> office_hours
-```
-
 
 Delete: 
   - Once again I need to set this up in the same way I just did then call on the Ruby method destroy.  
@@ -169,3 +161,17 @@ Delete:
 > Schedule.all # shows the last entry is gone
 ```
 
+
+To exit out of the rails console, type exit
+- Be aware of whether you are in the rails console versus your file path.  You cannot type typical terminal commands in the rails console.
+
+
+<!-- ** Outdated: ** -->
+
+  <!-- ** The syllabus has a different approach to update that will also work! ** 
+```ruby
+> office_hours = Schedule.find 1
+> office_hours.event = 'Super awesome office hours!'
+> office_hours.save
+> office_hours -->
+```

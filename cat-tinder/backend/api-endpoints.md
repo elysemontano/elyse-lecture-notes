@@ -18,7 +18,7 @@ An endpoint is one end of a communication channel. So when an API interacts with
 If I want to get a list of all the cats or objects off of my table I need to create a specific endpoint for index. The end point is where the request turns into the response. 
 
 The end result of our request response cycle is a page that our user can see- where as the end result of the API is the JSON package being delivered to us via our API
-The routes get us the right controller method and the controller method that perform the right action to interact with our API.
+The routes get us the right controller method that performs the right action to interact with our API.
 
 
 ## Routes

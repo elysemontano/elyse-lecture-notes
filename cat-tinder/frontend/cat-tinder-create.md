@@ -16,10 +16,10 @@
 
 # Lecture
 Today we will be working on our create functionality.  To see what our task requirements are for this, we will start by heading over to trello and bringing the card over to in progress.
+<!-- 
+I also want to head to the syllabus and bring in the developer stories and place them in my notes so I can keep track of what I am doing. -->
 
-I also want to head to the syllabus and bring in the developer stories and place them in my notes so I can keep track of what I am doing.
-
-We can see that we will need to store information in state, then pass it on back to App.js so later we can update our cat.
+We can see that we will need to store information in state, then pass it on back to App.js so later we can submit our cat to the database.
 We will also need test coverage for this.
 
 We have 7 RESTful routes:

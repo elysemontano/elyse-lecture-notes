@@ -10,13 +10,12 @@ Fetch - a tool that allows for asynchronous requests
 - Fetch allows the app to multitask
 - Fetch - sends a request and waits for a response
 - Fetch returns a Promise
-- A Promise has three states: pending, fulfilled, rejected
-
-Diagram for Promise: https://javascript.info/promise-basics
 
 
 #### Promises
 Fetch is a way to make asynchronous requests. When you send out a request and specify that it is going to be asynchronous, what you get back is a Promise. Promises represent the eventual completion (or failure) of an asynchronous operation. Promises will return either the payload of data or an error. A Promise is a proxy for a value not yet known. A Promise says, "I will definitely give you back something. I just have no way of knowing if it will succeed or fail or how long it will take."
+
+Diagram for Promise: https://javascript.info/promise-basics
 
 - Promises are JavaScript objects
 - Promises are in one of three states: pending, fulfilled, rejected
