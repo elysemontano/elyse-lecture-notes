@@ -99,7 +99,8 @@ const handleSubmit = (e) => {
 
 ### Login and Signup Functions
 
-Inside our fetch for user authentication, we need to store the token created by JWT. **localStorage** allows us to store key-value pairs in the form of strings and provides methods to store, retrieve, and remove the token locally in the user's browser. The data stored remains available even after the user closes the browser or navigates away from the website.
+Inside our fetch for user authentication, we need to store the token created by JWT. **localStorage** allows us to store key-value pairs in the form of strings and provides methods to store, retrieve, and remove the token locally in the user's browser. 
+<!-- The data stored remains available even after the user closes the browser or navigates away from the website. -->
 
 The localStorage property comes with four basic methods:
 
@@ -225,19 +226,101 @@ end
 
 ### Persist Current User
 
-Having the initial state of `currentUser` set to `null` will cause the user to be logged out if the user manually refreshes the browser. To solve this problem we can create a function that checks if a JWT exists and set the state to the logged in user if it does. This function will live in the `useEffect` hook.
+Having the initial state of `currentUser` set to `null` will cause the user to be logged out if the user manually refreshes the browser. To solve this problem we can check if a JWT exists and set the state to the logged in user if it does. This process will happen in the `useEffect` hook.
 
 **src/App.js**
 
 ```javascript
 useEffect(() => {
-  const loggedInUser = localStorage.getItem("token")
-  if (loggedInUser) {
-    setCurrentUser(loggedInUser)
-  }
-  readApartments()
-}, [])
+
+  }, [])
 ```
+
+Before we fill in the logic in our useEffect, we need to add into our fetch calls for login and sign up to set local storage to the current user:
+
+```javascript
+  const login = (userInfo) => {
+    fetch(`${url}/login`, {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        // store the token
+        localStorage.setItem("token", response.headers.get("Authorization"))
+        return response.json()
+      })
+      .then((payload) => {
+        // store the user as well.  Need to stringify the payload so that we can store it
+        localStorage.setItem("user", JSON.stringify(payload))
+        setCurrentUser(payload)
+      })
+      .catch((error) => console.log("login errors: ", error))
+  }
+
+  const signup = (userInfo) => {
+    fetch(`${url}/signup`, {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        console.log(response)
+        // store the token
+        localStorage.setItem("token", response.headers.get("Authorization"))
+        return response.json()
+      })
+      .then((payload) => {
+        localStorage.setItem("user", JSON.stringify(payload))
+        setCurrentUser(payload)
+      })
+      .catch((error) => console.log("signup errors: ", error))
+  }
+```
+
+Finish useEffect:
+```javascript
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user")
+    if (loggedInUser) {
+      setCurrentUser(JSON.parse(loggedInUser))
+    }
+  }, [])
+```
+
+
+Let's also remove the user from local storage if the user logs out
+
+```javascript
+  const logout = (id) => {
+    fetch(`${url}/logout`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"), //retrieve token
+      },
+      method: "DELETE",
+    })
+      .then((payload) => {
+        setCurrentUser(null)
+        localStorage.removeItem("token") //removes the token
+        localStorage.removeItem("user") // removes the user
+      })
+      .catch((error) => console.log("logout errors: ", error))
+  }
+```
+
 
 
 

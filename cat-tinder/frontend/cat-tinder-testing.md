@@ -165,6 +165,8 @@ Debugging tools:
 
 
 ## Header Test
+** Add __tests__ folder in src
+
 So in Trello, we are asked to create tests for our Header.  So let's do that next.  We first need to create a test file with the extension test.js.
 
 I am going to copy the imports from App.test.js into this file and just modify as needed.
@@ -173,8 +175,9 @@ Looking at the syllabus, there is another matcher we can use to check for images
 
 ```javascript
 import { render, screen } from '@testing-library/react';
-import Header from './Header';
+import Header from '../components/Header';
 import { BrowserRouter } from "react-router-dom"
+import catLogo from "../assets/cat-logo.png"
 
 describe("<Header />", () => {
   it("has an image", () => {
@@ -188,7 +191,7 @@ describe("<Header />", () => {
     screen.logTestingPlaygroundURL()
     // act
     const image = screen.getByRole("img")
-    expect(image).toHaveAttribute("src", link)
+    expect(image).toHaveAttribute("src", catLogo)
   })
 })
 ```
@@ -197,12 +200,17 @@ Make sure I have an image in my Header component:
 
 ```javascript
 import React from 'react'
+import catLogo from "../assets/cat-logo.png"
 
 const Header = () => {
   return (
     <>
       <h1>Header</h1>
-      <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="cute cat"/>
+      <img
+            src={catLogo}
+            alt="Cat Tinder logo with cat outline"
+            width="100px"
+          />
     </>
   )
 }
@@ -224,7 +232,7 @@ describe("<Footer />", () => {
     // arrange
     render(
       <BrowserRouter>
-        <Header />
+        <Footer />
       </BrowserRouter>
     )
     // debug

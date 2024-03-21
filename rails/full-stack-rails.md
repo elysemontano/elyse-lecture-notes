@@ -741,7 +741,7 @@ Since we need params to know which instance we want to setup a form for, a good 
 <% end %>
 
 <p><%= link_to 'All the Books', books_path %></p>
-<p><%= button_to 'Edit Book', edit_book_path %></p>
+<p><%= link_to 'Edit Book', edit_book_path %></p>
 <p><%= button_to 'Remove Book', delete_book_path, method: :delete %></p>
 ```
 

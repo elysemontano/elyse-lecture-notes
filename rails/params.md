@@ -196,7 +196,7 @@ Now we can display these instance variables
 <h3> order for <%= @quantity%> <%= @food_item%> in my cart</h3>
 ```
 
-Parameters: {"number"=>"5", "item"=>"steaks", "shop"=>"longhorns"}
+Parameters: {"number"=>"5", "item"=>"steaks"}
 
 # Overview 3
 So to recap so far we have

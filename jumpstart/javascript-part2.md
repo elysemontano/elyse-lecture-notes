@@ -64,9 +64,39 @@ console.log(Math.floor(5.8)) // Output: 5
 ```javascript
 console.log(Math.floor(Math.Random() * 3))
 ```
+Update the function to have a variable assigned to the random number
 
+```javascript
+const magic8 = () => {
+    var randomNum = Math.floor(Math.random() * 3)
+    console.log(randomNum)
+}
 
-Now that we have a random number that we can use to randomize something, we will need to evaluate this number and return an outcome based on the number.  This sounds like a great place for a conditional statement
+magic8()
+```
+
+Now that we have a random number that we can use to randomize something, we will need to evaluate this number and return an outcome based on the number.  Because we need to make an evaluation, we can use something called a conditional statement.
+
+If else statements allows Javascript to evaluate a condition and return a response. 
+- IF is a keyword built into the Javascript language 
+- As a tool IF exists to help us set up a conditional statement
+- A conditional statement describes something we want to happen under a certain condition
+
+if(condition is true) {
+  do this action
+}
+
+- If has two friend keywords called
+  - else - Which works as a catch all 
+  - else if - which allows for extra conditional statements 
+
+        if(condition is true) {
+           do this action
+         } else if(this condition is true) {
+           do this action
+         } else {
+           do this action as a catch all
+         }
 
 ```javascript
 const magic8 = () => {
@@ -100,10 +130,12 @@ magic8()
 # Connecting JS to HTML
 
 - We need to add some things to our html page so that our javascript file and html files are connected and working properly.
-- Setup script tag with src and type attributes
+- Setup script tag with src and type attributes just before the closing body tag
 
 ```html
-<script type="text/javascript" src="name.js"></script>
+  </footer>
+  <script type="text/javascript" src="logic.js"></script>
+</body>
 ```
 
 - Set up an alert in Javascript to show page is connected:

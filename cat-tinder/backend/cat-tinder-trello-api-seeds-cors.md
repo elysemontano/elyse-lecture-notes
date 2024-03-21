@@ -118,6 +118,16 @@ class ApplicationController < ActionController::Base
 end
 ```
 
+<!-- ** Side note: You can use a different approach to not expose your endpoints that will require passing CSRF tokens from the headers in your fetch **
+
+```javascript
+// fetch in React
+headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
+    }
+``` -->
+
 - Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading of resources.
 
 - Adding this line of code to the Gemfile:

@@ -8,11 +8,12 @@ As a full stack developer, you are going to define your location and define your
 To add to this further, we need to talk about something called RESTful Routes
 
 ## RESTful Routes
+
+** Show slide show **
+
 RESTful routes are the routes that map CRUD actions and the corresponding HTTP verbs into how we construct the controller for a full stack application.  
 
 Rails really like to follow the RESTful route architecture, so it is going to follow these ideas and naming conventions exactly.
-
-** Show slide show **
 
   - To talk about RESTful routes, I first need to start with CRUD.  
   
